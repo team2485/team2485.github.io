@@ -7,76 +7,8 @@ requirements.splice(0, 4);
 var loadingElement = '<svg class="spinner" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><style>.spinner{width:1em; animation: rotator 5s linear infinite;transform-origin: center;overflow: hidden;}@keyframes rotator{0%{transform:rotate(0deg);}100%{transform:rotate(360deg);}}.path {stroke-dasharray:270;stroke-dashoffset:0;transform-origin:center;stroke: #000000;animation: dash 1.4s ease-in-out infinite;}@keyframes dash{0%{stroke-dashoffset:265;}50%{stroke-dashoffset:65;transform:rotate(90deg);}100%{stroke-dashoffset: 265;transform:rotate(360deg);}}</style><circle class="path" fill="none" stroke-width="20" stroke-linecap="butt" cx="50" cy="50" r="40"></circle></svg>';
 
 // Some data-related variables
-// var savedPositionPre = "";
-// var savedPositionAuto = "";
-// var savedPositionTele = "";
-// var savedPositionAutoList = "[]";
-// var savedPositionTeleList = "[]";
 var autoNumber = 0;
 var teleNumber = 0;
-
-/*
-// Canvases elements for start and shoot positions
-var canvasPre = document.getElementById("posPre");
-var canvasPre2d = canvasPre.getContext("2d");
-var canvasAuto = document.getElementById("posAuto");
-var canvasAuto2d = canvasAuto.getContext("2d");
-var canvasTele = document.getElementById("posTele");
-var canvasTele2d = canvasTele.getContext("2d");
-
-// Canvas Images
-var fieldImage = new Image();
-var flagImage = new Image(40, 40);
-fieldImage.src = "resources/field.png";
-flagImage.src = "resources/target.png";
-fieldImage.onload = function () {
-    canvasPre2d.drawImage(fieldImage, 0, 0, canvasPre.scrollWidth, canvasPre.scrollHeight);
-    canvasAuto2d.drawImage(fieldImage, 0, 0, canvasAuto.scrollWidth, canvasAuto.scrollHeight);
-    canvasTele2d.drawImage(fieldImage, 0, 0, canvasTele.scrollWidth, canvasTele.scrollHeight);
-}
-
-// Define resizeCanvas
-function resizeCanvas(canvasID) {
-    var canvas = document.getElementById(canvasID);
-    canvas.width = canvas.scrollWidth;
-    canvas.height = canvas.scrollWidth * (362 / 691);
-}
-
-// Set canvases to size
-resizeCanvas("posPre");
-resizeCanvas("posAuto");
-resizeCanvas("posTele");
-
-// Set listener for auto
-canvasAuto.addEventListener("click", function (event) {
-    resizeCanvas("posAuto");
-    canvasAuto2d.drawImage(fieldImage, 0, 0, canvasAuto.scrollWidth, canvasAuto.scrollHeight);
-    canvasAuto2d.drawImage(flagImage, event.pageX - canvasAuto.offsetLeft - flagImage.width / 2, event.pageY - canvasAuto.offsetTop - flagImage.height / 2, 40, 40);
-    savedPositionAuto = "[" + ((event.pageX - canvasAuto.offsetLeft) / canvasAuto.width).toFixed(3) + ", " + ((event.pageY - canvasAuto.offsetTop) / canvasAuto.height).toFixed(3) + "]";
-    document.getElementById("reqPosAuto").value = savedPositionAuto;
-});
-
-// Again?
-canvasAuto.addEventListener("click", function (event) {
-    resizeCanvas("posAuto");
-    canvasAuto2d.drawImage(fieldImage, 0, 0, canvasAuto.scrollWidth, canvasAuto.scrollHeight);
-    canvasAuto2d.drawImage(flagImage, event.pageX - canvasAuto.offsetLeft - flagImage.width / 2, event.pageY - canvasAuto.offsetTop - flagImage.height / 2, 40, 40);
-    savedPositionAuto = ((event.pageX - canvasAuto.offsetLeft) / canvasAuto.width).toFixed(3) + ", " + ((event.pageY - canvasAuto.offsetTop) / canvasAuto.height).toFixed(3);
-    console.log(event);
-    console.log(savedPositionAuto);
-});
-
-// Add listener for tele
-canvasTele.addEventListener("click", function (event) {
-    resizeCanvas("posTele");
-    canvasTele2d.drawImage(fieldImage, 0, 0, canvasTele.scrollWidth, canvasTele.scrollHeight);
-    canvasTele2d.drawImage(flagImage, event.pageX - canvasTele.offsetLeft - flagImage.width / 2, event.pageY - canvasTele.offsetTop - flagImage.height / 2, 40, 40);
-    savedPositionTele = ((event.pageX - canvasTele.offsetLeft) / canvasTele.width).toFixed(3) + ", " + ((event.pageY - canvasTele.offsetTop) / canvasTele.height).toFixed(3);
-    console.log(event);
-    console.log(savedPositionTele);
-    document.getElementById("reqPosTele").value = savedPositionTele;
-});
-*/
 
 // Define the increase and decrease funcitons (for buttons)
 function increase(id) {
@@ -95,46 +27,6 @@ function decrease(id) {
   }
   console.log("a");
 }
-
-/*
-// Define parseAutoData
-function parseAutoData() {
-    /*
-    if (savedPositionAuto == "")
-        return;
-    savedPositionAuto = "[" + autoNumber + ", " + savedPositionAuto + ", " + Number(document.getElementById("upperAuto").value) + ", " + Number(document.getElementById("upperAutoFail").value) + "]"
-    if (savedPositionAutoList == "[]")
-        savedPositionAutoList = savedPositionAutoList.slice(0, -1).concat(savedPositionAuto + "]");
-    else
-        savedPositionAutoList = savedPositionAutoList.slice(0, -1).concat(", " + savedPositionAuto + "]");
-    canvasAuto2d.drawImage(fieldImage, 0, 0, canvasAuto.scrollWidth, canvasAuto.scrollHeight);
-document.getElementById("upperAuto").value = null;
-document.getElementById("upperAutoFail").value = null;
-document.getElementById("reqPosAuto").value = savedPositionAutoList;
-savedPositionAuto = "";
-autoNumber++;
-document.getElementById("autoSubmit").innerHTML = "Submit Shots (" + autoNumber + " sumbitted)";
-}
-*/
-
-/*
-function parseTeleData() {
-    if (savedPositionTele == "")
-        return;
-    savedPositionTele = "[" + teleNumber + ", " + savedPositionTele + ", " + Number(document.getElementById("upperTele").value) + ", " + Number(document.getElementById("upperTeleFail").value) + "]"
-    if (savedPositionTeleList == "[]")
-        savedPositionTeleList = savedPositionTeleList.slice(0, -1).concat(savedPositionTele + "]");
-    else
-        savedPositionTeleList = savedPositionTeleList.slice(0, -1).concat(", " + savedPositionTele + "]");
-    canvasTele2d.drawImage(fieldImage, 0, 0, canvasTele.scrollWidth, canvasTele.scrollHeight);
-    document.getElementById("upperTele").value = null;
-    document.getElementById("upperTeleFail").value = null;
-    document.getElementById("reqPosTele").value = savedPositionTeleList;
-    savedPositionTele = "";
-    teleNumber++;
-    document.getElementById("teleSubmit").innerHTML = "Submit Shots (" + teleNumber + " submitted)";
-}
-*/
 
 function setdefault(data, id) {
   if (data.get(id)==="") {
@@ -176,9 +68,6 @@ document.getElementById("ScoutName").addEventListener("keyup", function(event) {
 document.getElementById("ScoutTeamNumber").addEventListener("keyup", function(event) {
   setCookie("scoutTeamNumber", document.getElementById("ScoutTeamNumber").value);
 });
-// document.getElementById("MatchNumber").addEventListener("keyup", function (event) {
-//     setCookie("matchNumber", document.getElementById("MatchNumber").value);
-// });
 
 // Set the NoShow checkbox to show the dropdown if checked
 document.getElementById("NoShow").addEventListener("change", function(event) {

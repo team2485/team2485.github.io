@@ -11,7 +11,6 @@
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
   <link href="https://fonts.googleapis.com/css?family=Oswald:400,700" rel="stylesheet" type="text/css" />
   <link rel="icon" href="resources/icon-on-black.png">
-  <!-- <script src="/socket.io/socket.io.js"></script> -->
 </head>
 
 <body>
@@ -21,9 +20,6 @@
       <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover">
         <a id="menuLink1" class="pure-menu-link">2022 Scouting</a>
         <ul class="pure-menu-children">
-          <!-- <li class="pure-menu-item">
-            <a href="#stats" class="pure-menu-link" onclick="openBetting('betting', 'form')">Resources</a>
-          </li> -->
           <li class="pure-menu-item">
             <a href="#Info" class="pure-menu-link" onclick="openBetting('betting', 'form')">Pre-Match</a>
           </li>
@@ -43,9 +39,6 @@
             <a href="#other" class="pure-menu-link" onclick="openBetting('betting', 'form')">Other</a>
           </li>
         </ul>
-        <!-- <li class="pure-menu-item">
-                    <a href="#" class="pure-menu-link" onclick="openBetting('form', 'betting'); scoreDisplay(score)" style="width: 51px !important;">Betting</a>
-                </li> -->
       </li>
       <h4>Outdated and being updated</h4>
     </ul>
@@ -55,19 +48,10 @@
   <div class="page-display form-display" id="form">
     <form id="mainForm" class="pure-form pure-form-stacked container" name="mainForm">
       <fieldset id="pre">
-        <!-- <legend>
-          <a id="stats">Resources</a>
-        </legend>
-
-        <a href="interface.html">Web Interface</a>
-        <br>
-        <a href="https://docs.google.com/spreadsheets/d/1mTckmnCFqT8uu4yJhCqddeKZt6YKeS0fuAshcJDdyKY/edit?usp=sharing">Scout Schedule</a> -->
-
         <legend>
           <a id="Info">Pre-Match</a>
         </legend>
         <div class="pure-g">
-          <!-- <div class="pure-u-1-2 pure-u-sm-1"> -->
           <div class="pure-u-1-4 pure-u-sm-1">
             <label for="ScoutName">Scout Name</label>
             <input id="ScoutName" name="ScoutName" class="pure-u-23-24" type="text" placeholder="Scout Name" required>
@@ -84,28 +68,7 @@
             <label for="MatchNumber">Match #</label>
             <input id="MatchNumber" name="MatchNumber" class="pure-u-23-24" type="number" placeholder="Match #" required max="200" min="0">
           </div>
-          <!-- </div>   -->
         </div>
-        <!-- <hr>
-                <div class="center">
-                    <div>
-                        <span>Preloaded Balls</span>
-                    </div>
-                    <div class="pure-u-1-2 pure-u-sm-1">
-                        <div class="pure-g relative">
-                                <div class="pure-u-20-24">
-                                    <label for=""></label>
-                                    <input id="BallsPreloaded" name="BallsPreloaded" min="0" max="3" class="pure-u-1" type="number" placeholder="Balls Preloaded" style="background: #fffff3;">
-                                </div>
-                                <div class="pure-u-4-24 ">
-                                    <div class="pure-g plus-minus">
-                                        <img src="resources/plus.svg" class="pure-u-1-2 svg" onclick="increase('BallsPreloaded')"></img>
-                                        <img src="resources/minus.svg" class="pure-u-1-2 svg" onclick="decrease('BallsPreloaded')"></img>
-                                    </div>
-                                </div>
-                            </div>
-                    </div>
-                </div>-->
         <div class="center">
           <label for="NoShow" class="pure-checkbox centerDiv">
             <input type="hidden" name="NoShow" value="0"><input id="NoShow" name="NoShow" type="checkbox" onclick="this.previousSibling.value=1-this.previousSibling.value"> Didn't Show Up
@@ -130,25 +93,6 @@
         </div>
         <hr>
         <div class="pure-g">
-          <!--<div class="pure-u-1-2 pure-u-sm-1 center">
-                        <div class="centerDiv pure-u-22-24 pure-u-sm-1 centerDiv">
-                            <p class="auto">Starting Point</p>
-                            <input id="reqPosAuto" name="StartPosition" required style="position:relative; z-index:1; margin:0; margin-left:auto;margin-right:auto; top: 20px"> </input>
-                            <canvas id="posAuto" class="fieldCanvas"> </canvas>
-                        </div>
-                    </div>
-REMOVING LOCATION TRACKER
--->
-          <!-- <div class="pure-u-1-2 pure-u-sm-1 center">
-                        <div class="centerDiv pure-u-22-24 pure-u-sm-1">
-                            <p class="auto">Firing Point (High Balls only)</p>
-                            <input id="reqPosAuto" name="AutoScoring" style="position:relative; z-index:1; margin:0; margin-left:auto;margin-right:auto; top: 20px"> </input>
-                            <canvas id="posAuto" class="fieldCanvas"> </canvas>
-                        </div>
-                        <div class="centerDiv" style="margin-bottom: 1em">
-                            <button type="button" id="autoSubmit" onclick="parseAutoData();" class="pure-button pure-button-primary">Submit Shots</button>
-                        </div>
-                    </div> -->
           <div class="pure-u-1-2 pure-u-sm-1">
             <div class="center">
               <span>Upper Balls</span>
@@ -216,18 +160,6 @@ REMOVING LOCATION TRACKER
           <a id="Teleop">Teleop</a>
         </legend>
         <div class="pure-g">
-          <!--<div class="pure-u-1-2 pure-u-sm-1 center">
-                        <div class="centerDiv pure-u-22-24 pure-u-sm-1">
-                            <p class="auto">Firing Point for Upper Balls</p>
-                            <input id="reqPosTele" name="TeleopScoring" style="position:relative; z-index:1; margin:0; margin-left:auto;margin-right:auto; top: 20px"> </input>
-                            <canvas id="posTele" class="fieldCanvas"> </canvas>
-                        </div>
-                        <div class="centerDiv" style="margin-bottom: 1em">
-                            <button type="button" id="teleSubmit" onclick="parseTeleData();" class="pure-button pure-button-primary">Submit Shots</button>
-                        </div>
-                    </div>
-REMOVING LOCATION TRACKER (#2)
--->
           <div class="pure-u-1-2 pure-u-sm-1">
             <div class="center">
               <span>Upper Balls</span>
@@ -288,29 +220,6 @@ REMOVING LOCATION TRACKER (#2)
               </div>
             </div>
           </div>
-          <!--
-          <div class="pure-u-2-3 pure-u-sm-1 center">
-            <br />
-            <div class="center">
-              <span>Control Panel</span>
-            </div>
-            <hr>
-            <div class="pure-g center">
-              <div class="pure-u-1-2">
-                <label for="RotationControlSuccess" class="pure-checkbox">
-                  <input type="hidden" name="RotationControlSuccess" value="0"><input id="RotationControlSuccess" type="checkbox" name="RotationControlSuccess" onclick="this.previousSibling.value=1-this.previousSibling.value"> Rotation Control
-                  Success?
-                </label>
-              </div>
-              <div class="pure-u-1-2">
-                <label for="PositionControlSuccess" class="pure-checkbox">
-                  <input type="hidden" name="PositionControlSuccess" value="0"><input id="PositionControlSuccess" type="checkbox" name="PositionControlSuccess" onclick="this.previousSibling.value=1-this.previousSibling.value"> Position Control
-                  Success?
-                </label>
-              </div>
-            </div>
-          </div>
-        -->
         </div>
       </fieldset>
       <div class="pure-g">
@@ -433,25 +342,6 @@ REMOVING LOCATION TRACKER (#2)
               </fieldset>
               <div class="button-secondary pure-button" onclick="deselect('ClimbSub'); starInput('Climb', 0)">Clear</div>
             </div>
-            <!-- <div class="rating-outer">
-              <legend class="s-legend">Control Panel</legend>
-              <fieldset class="rating relative">
-                <input id="ControlPanel" name="ControlPanel" type="number" value="0" class="hiddenInput" tabindex="-1" min="0" max="6">
-                <input type="radio" id="starPanel6" name="ControlPanelSub" onclick="starInput('ControlPanel', 6)" />
-                <label class="full" for="starPanel6" title="Exceptional - 6 stars"></label>
-                <input type="radio" id="starPanel5" name="ControlPanelSub" onclick="starInput('ControlPanel', 5)" />
-                <label class="full" for="starPanel5" title="Great - 5 star"></label>
-                <input type="radio" id="starPanel4" name="ControlPanelSub" onclick="starInput('ControlPanel', 4)" />
-                <label class="full" for="starPanel4" title="Above average - 4 stars"></label>
-                <input type="radio" id="starPanel3" name="ControlPanelSub" onclick="starInput('ControlPanel', 3)" />
-                <label class="full" for="starPanel3" title="Below average - 3 stars"></label>
-                <input type="radio" id="starPanel2" name="ControlPanelSub" onclick="starInput('ControlPanel', 2)" />
-                <label class="full" for="starPanel2" title="Not Great - 2 stars"></label>
-                <input type="radio" id="starPanel1" name="ControlPanelSub" onclick="starInput('ControlPanel', 1)" />
-                <label class="full" for="starPanel1" title="Incapable - 1 star"></label>
-              </fieldset>
-              <div class="button-secondary pure-button" onclick="deselect('ControlPanelSub'); starInput('ControlPanel', 0)">Clear</div>
-            </div> -->
             <div class="rating-outer">
               <legend class="s-legend">Non-Ground Intake</legend>
               <fieldset class="rating relative">
@@ -519,21 +409,6 @@ REMOVING LOCATION TRACKER (#2)
         <label for="Breakdown" class="pure-checkbox" style="margin-top: 0px;">
           <input type="hidden" name="Breakdown" value="0"><input id="Breakdown" name="Breakdown" type="checkbox" onclick="this.previousSibling.value=1-this.previousSibling.value"> Robot Broke Down
         </label>
-        <!-- <label for="Fall" class="pure-checkbox">
-                    <input id="fallInput" type="hidden" name="Fall" value="0">
-                    <input id="Fall" type="checkbox" name="Fall" onchange="dropDown()" onclick="document.getElementById('fallInput').value=0"> Robot Fell
-                </label>
-                <div id="expandingFall" class="expand-before" style="float:left;">
-                    <label class="pure-radio">
-                        <input id="Fall1" class="expanding" name="Fall" type="radio" onclick="document.getElementById('fallInput').value=1"> During Sandstorm
-                    </label>
-                    <label class="pure-radio">
-                        <input id="Fall2" class="expanding" name="Fall" type="radio" onclick="document.getElementById('fallInput').value=2"> During Teleop
-                    </label>
-                    <label class="pure-radio">
-                        <input id="Fall3" class="expanding" name="Fall" type="radio" onclick="document.getElementById('fallInput').value=3"> During Climbing Attempt
-                    </label>
-                </div> -->
         <textarea class="pure-input-1" name="" placeholder="Comments" style="background:#fffff3;" id="Comments"></textarea>
       </fieldset>
       <button type="submit" id="submitButton" class="pure-button pure-button-primary">Submit Data</button>

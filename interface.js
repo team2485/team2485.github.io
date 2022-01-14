@@ -1,6 +1,3 @@
-/*
-* Author: Brett Kim
-*/
 
 //Column arrays
 
@@ -53,7 +50,7 @@ $(function() {
             console.log("#: " + colCount + " Entry: " + entry[i].content.$t);
         }
         output += "</table>";
-    
+
         document.getElementById("team").innerHTML = output;
 
         console.log(entry);
