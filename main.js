@@ -1,5 +1,8 @@
 // PREVIOUS : // const scriptURL = 'https://script.google.com/macros/s/AKfycbwFYUNte7AJ37U1p6Re9p11O2NvxugyyagKCVsIn0Si7ohbfWU/exec'
-const scriptURL = 'https://script.google.com/macros/s/AKfycbzwDOf4NqKZa2Umrr-StBhmqNesS46sRRt73SehAuzynp3njmLTp3289L-YuPZ29_g/exec';
+// const scriptURL = 'https://script.google.com/macros/s/AKfycbzwDOf4NqKZa2Umrr-StBhmqNesS46sRRt73SehAuzynp3njmLTp3289L-YuPZ29_g/exec';
+// const scriptURL = 'https://script.google.com/macros/s/AKfycbznj7NXYI0ANWuVM_PbcJWkNRDIKdg0rJ5fWhwZ9JNDVWTvCsoezmAPDt21qwwrDBycEQ/exec';
+const scriptURL = 'https://script.google.com/macros/s/AKfycbznj7NXYI0ANWuVM_PbcJWkNRDIKdg0rJ5fWhwZ9JNDVWTvCsoezmAPDt21qwwrDBycEQ/exec';
+// https://script.google.com/macros/s/AKfycbznj7NXYI0ANWuVM_PbcJWkNRDIKdg0rJ5fWhwZ9JNDVWTvCsoezmAPDt21qwwrDBycEQ/exec
 
 const form = document.forms['mainForm'];
 requirements = Array.from(document.querySelectorAll('[required]'));
@@ -25,26 +28,32 @@ function decrease(id) {
   } else {
     ele.value = 0;
   }
-  console.log("a");
 }
 
 function setdefault(data, id) {
-  if (data.get(id)==="") {
+  if (data.get(id) === "") {
     data.append(id, 0);
     data.set(id, 0);
   }
 }
 
+// var fdata = null;
+
 // Add the submit listener to the form
 form.addEventListener('submit', e => {
-  e.preventDefault()
+  e.preventDefault();
   document.getElementById("submitButton").disabled = true;
   document.getElementById("submitButton").innerHTML = "Submitting " + loadingElement;
 
   var data = new FormData(form);
-  ["BallsUpperAuto", "BallsUpperFailAuto", "BallsLowerAuto", "BallsLowerFailAuto", "BallsLowerTele", "BallsLowerFailTele", "BallsUpperTele", "BallsUpperFailTele"].forEach(id => setdefault(data, id));
+  // ["BallsUpperAuto", "BallsUpperFailAuto", "BallsLowerAuto", "BallsLowerFailAuto", "BallsLowerTele", "BallsLowerFailTele", "BallsUpperTele", "BallsUpperFailTele"].forEach(id => setdefault(data, id));
   data.append("Comments", "'" + document.getElementById("Comments").value.replace(/(\r\n|\n|\r)/gm, "; ")); // Replace newlines and other naught characters
   data.set("ScoutName", "\'" + data.get("ScoutName"));
+  ["LowAutoSuccess", "LowAutoMiss", "HighAutoSuccess", "HighAutoMiss", "LowTeleSuccess", "LowTeleMiss", "HighTeleSuccess", "HighTeleMiss"].forEach(id => {
+    if (!data.get(id)) {
+      data.set(id, 0);
+    }
+  });
   fetch(scriptURL, {
       method: 'POST',
       body: data
@@ -52,21 +61,22 @@ form.addEventListener('submit', e => {
     .then(response => (document.getElementById("submitButton").innerHTML = "Submitted", console.log('Success!', response), setTimeout(function() {
       alert("Success!"), location = top.location.href
     }, 10))) //setCookie("matchNumber", parseInt(getCookie("matchNumber"))+0),
-    .catch(error => (console.error('Error!', error.message), alert("Something went wrong...")))
+    .catch(error => (console.error('Error!', error.message), alert("Something went wrong...")));
+    ["TeamNumScouted", "MatchNum", "NoShow", "Taxi", "HumanPlayerAttempt", "HumanPlayerSuccess", "LowAutoSuccess", "LowAutoMiss", "HighAutoSuccess", "HighAutoMiss", "LowTeleSuccess", "LowTeleMiss", "HighTeleSuccess", "HighTeleMiss", "LowClimbFell", "MidClimbFell", "HighClimbFell", "TraversalClimbFell", "Endstate", "ShotVersatility", "Defense", "OpponentCargo", "Mnv", "Intake", "ClimbSpeed", "Breakdown", "Comments"].forEach(id => setdefault(data, id));
 });
 
 // Set saved data/default data in the fields
 if (document.cookie.length >= 1) {
   document.getElementById("ScoutName").value = getCookie("scoutName");
-  document.getElementById("ScoutTeamNumber").value = getCookie("scoutTeamNumber");
+  document.getElementById("ScoutTeamNum").value = getCookie("scoutTeamNum");
   //document.getElementById("MatchNumber").value = getCookie("matchNumber");
 }
 // Set cookie setters
 document.getElementById("ScoutName").addEventListener("keyup", function(event) {
   setCookie("scoutName", document.getElementById("ScoutName").value);
 });
-document.getElementById("ScoutTeamNumber").addEventListener("keyup", function(event) {
-  setCookie("scoutTeamNumber", document.getElementById("ScoutTeamNumber").value);
+document.getElementById("ScoutTeamNum").addEventListener("keyup", function(event) {
+  setCookie("scoutTeamNum", document.getElementById("ScoutTeamNum").value);
 });
 
 // Set the NoShow checkbox to show the dropdown if checked
@@ -156,4 +166,8 @@ function getCookie(cname) {
       return c.substring(name.length, c.length);
     }
   }
+}
+
+function radio(ele) {
+  document.getElementById(ele).checked = true;
 }
