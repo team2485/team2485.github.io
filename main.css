@@ -652,3 +652,7 @@ div:has(div) {
 * {
     touch-action: manipulation;
 }
+
+textarea.pure-input-1 {
+  background:#fffff3;
+}

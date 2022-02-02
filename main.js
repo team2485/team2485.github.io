@@ -47,7 +47,8 @@ form.addEventListener('submit', e => {
 
   var data = new FormData(form);
   // ["BallsUpperAuto", "BallsUpperFailAuto", "BallsLowerAuto", "BallsLowerFailAuto", "BallsLowerTele", "BallsLowerFailTele", "BallsUpperTele", "BallsUpperFailTele"].forEach(id => setdefault(data, id));
-  data.append("Comments", "'" + document.getElementById("Comments").value.replace(/(\r\n|\n|\r)/gm, "; ")); // Replace newlines and other naught characters
+  ["BreakdownElaboration", "DefenseElaboration", "Comments"].forEach(id => {data.append(id, "'" + document.getElementById(id).value.replace(/(\r\n|\n|\r)/gm, "; "))});
+  // data.append("Comments", "'" + document.getElementById("Comments").value.replace(/(\r\n|\n|\r)/gm, "; ")); // Replace newlines and other "naughty" characters
   data.set("ScoutName", "\'" + data.get("ScoutName"));
   ["LowAutoSuccess", "LowAutoMiss", "HighAutoSuccess", "HighAutoMiss", "LowTeleSuccess", "LowTeleMiss", "HighTeleSuccess", "HighTeleMiss"].forEach(id => {
     if (!data.get(id)) {
@@ -170,4 +171,8 @@ function getCookie(cname) {
 
 function radio(ele) {
   document.getElementById(ele).checked = true;
+}
+
+function toggle(id, val) {
+  document.getElementById(id).style = "display: " + (val > 0 ? "block":"none") + ";";
 }

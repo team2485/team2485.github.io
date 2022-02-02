@@ -14,7 +14,6 @@
 </head>
 
 <body>
-  <!-- My feeble attempt to hide the fact that the menu starts at 0px, for when it matters. I don't think it works but so be it. -->
   <div class="pure-menu pure-menu-horizontal" style="position: fixed; top:-100px; z-index: 5; height:100px; background-color: black; color: #FFD900; font-family: 'Oswald'"></div>
   <div class="pure-menu pure-menu-horizontal" style="position: fixed; top:0; z-index: 5; height:50px; background-color: black; color: #FFD900; font-family: 'Oswald'">
     <img style="display:inline-block; vertical-align: top; padding-left: 10px; padding-top: 5px; height: 40px" src="resources/icon-on-black.png"></img>
@@ -22,24 +21,6 @@
       <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover">
         <a id="menuLink1" class="pure-menu-link">2022 Scouting</a>
         <ul class="pure-menu-children">
-          <!-- <li class="pure-menu-item">
-            <a href="#Info" class="pure-menu-link" onclick="openBetting('betting', 'form')">Pre-Match</a>
-          </li>
-          <li class="pure-menu-item">
-            <a href="#Auto" class="pure-menu-link" onclick="openBetting('betting', 'form')">Auto</a>
-          </li>
-          <li class="pure-menu-item">
-            <a href="#Teleop" class="pure-menu-link" onclick="openBetting('betting', 'form')">Teleop</a>
-          </li>
-          <li class="pure-menu-item">
-            <a href="#endGame" class="pure-menu-link" onclick="openBetting('betting', 'form')">Endgame</a>
-          </li>
-          <li class="pure-menu-item">
-            <a href="#Rating" class="pure-menu-link" onclick="openBetting('betting', 'form')">Rating</a>
-          </li>
-          <li class="pure-menu-item">
-            <a href="#other" class="pure-menu-link" onclick="openBetting('betting', 'form')">Other</a>
-          </li> -->
         </ul>
       </li>
     </ul>
@@ -55,30 +36,31 @@
         <div class="pure-g">
           <div class="pure-u-1-4 pure-u-sm-1">
             <label for="ScoutName">Scout Name</label>
-            <input id="ScoutName" name="ScoutName" class="pure-u-23-24" type="text" placeholder="Scout Name" required>
+            <div class="pure-u-1-1">
+              <input id="ScoutName" name="ScoutName" class="pure-u-23-24" type="text" placeholder="Scout Name" required>
+            </div>
           </div>
           <div class="pure-u-1-4 pure-u-sm-1">
             <label for="ScoutTeamNum">Your Team #</label>
-            <input id="ScoutTeamNum" name="ScoutTeamNum" class="pure-u-23-24" type="number" placeholder="Your Team #" required max="10000" min="0">
+            <div class="pure-u-1-1">
+              <input id="ScoutTeamNum" name="ScoutTeamNum" class="pure-u-23-24" type="number" placeholder="Your Team #" required max="10000" min="0">
+            </div>
           </div>
           <div class="pure-u-1-4 pure-u-sm-1">
             <label for="TeamNumScouted">Team # Scouted</label>
-            <input id="TeamNumScouted" name="TeamNumScouted" class="pure-u-23-24" type="number" placeholder="Scout Team #" required max="10000" min="0">
+            <div class="pure-u-1-1">
+              <input id="TeamNumScouted" name="TeamNumScouted" class="pure-u-23-24" type="number" placeholder="Scout Team #" required max="10000" min="0">
+            </div>
           </div>
           <div class="pure-u-1-4 pure-u-sm-1 pure-g relative">
             <label for="MatchNum">Match #</label>
-            <div>
-              <div class="pure-u-19-24">
-                <div>
-                  <input id="MatchNum" name="MatchNum" class="pure-u-23-24" type="number" placeholder="Match #" required max="200" min="0">
-                </div>
+            <div class="pure-u-1-1 pure-g">
+              <div id="matchnumbox" style="width: calc(100% - 96px)">
+                <input id="MatchNum" name="MatchNum" class="pure-u-1-1" type="number" placeholder="Match #" required max="200" min="0">
               </div>
-              <div class="pure-u-4-24" style="height: 64px">
-                <!-- maybe remove/fix the height: 64px -->
-                <div class="pure-g plus-minus">
-                  <img src="resources/plus.svg" class="pure-u-1-2 svg" onclick="increase('MatchNum')"></img>
-                  <img src="resources/minus.svg" class="pure-u-1-2 svg" onclick="decrease('MatchNum')"></img>
-                </div>
+              <div class="pure-g plus-minus" style="margin: 12px 0 4px 0; left: calc(100% - 96px);">
+                <img src="resources/plus.svg" class="pure-u-1-2 svg" onclick="increase('MatchNum')"></img>
+                <img src="resources/minus.svg" class="pure-u-1-2 svg" onclick="decrease('MatchNum')"></img>
               </div>
             </div>
           </div>
@@ -101,14 +83,15 @@
           </div>
           <div class="pure-u-1-2">
             <label class="pure-checkbox">
-              <input type="hidden" name="HumanPlayerAttempt" value="0"><input id="HumanPlayerAttempt" name="HumanPlayerAttempt" type="checkbox" onclick="this.previousSibling.value=1-this.previousSibling.value; if(this.previousSibling.value==0) {document.getElementById(`HumanPlayerSuccess`).previousSibling.value = 0; document.getElementById(`HumanPlayerSuccess`).checked = false;}"> HP Attempt
+              <input type="hidden" name="HumanPlayerAttempt" value="0"><input id="HumanPlayerAttempt" name="HumanPlayerAttempt" type="checkbox"
+                onclick="this.previousSibling.value=1-this.previousSibling.value; if(this.previousSibling.value==0) {document.getElementById(`HumanPlayerSuccess`).previousSibling.value = 0; document.getElementById(`HumanPlayerSuccess`).checked = false;}">
+              HP Attempt
             </label>
-            <!-- ADDing HIDDEN/SHOWN HP SUCCESS -->
-            <!-- <div id="hpsuccess-cover" style="background-color: gray;"> -->
-              <label class="pure-checkbox" style="">
-                <input type="hidden" name="HumanPlayerSuccess" value="0" style=""><input id="HumanPlayerSuccess" name="HumanPlayerSuccess" type="checkbox" onclick="if(document.getElementById(`HumanPlayerAttempt`).previousSibling.value == 1) {this.previousSibling.value=1-this.previousSibling.value} else {this.checked=!this.checked}" style=""> HP Success
-              </label>
-            <!-- </div> -->
+            <!-- Elaborate/explain what "HP Attempt" and "HP Success" are? -->
+            <label class="pure-checkbox" style="">
+              <input type="hidden" name="HumanPlayerSuccess" value="0" style=""><input id="HumanPlayerSuccess" name="HumanPlayerSuccess" type="checkbox"
+                onclick="if(document.getElementById(`HumanPlayerAttempt`).previousSibling.value == 1) {this.previousSibling.value=1-this.previousSibling.value} else {this.checked=!this.checked}" style=""> HP Success
+            </label>
           </div>
         </div>
         <hr>
@@ -212,7 +195,7 @@
           </div>
           <div class="pure-u-1-2 pure-u-sm-1">
             <div class="center">
-              <span>Lower Balls</span>
+              <span>Low Hub</span>
             </div>
             <hr>
             <div class="pure-g relative">
@@ -249,10 +232,6 @@
           </legend>
           <div class="" id="climb-container">
             <br />
-            <!-- <legend> -->
-            <!-- <a id="endGame">Climb</a> -->
-            <!-- </legend> -->
-            <!-- CLIMB LOCATION -->
             <div id="climb-title" class="pure-g">
               <div class="pure-u-1-3">
                 <div class="climb-title-ele">
@@ -468,9 +447,14 @@
           <a id="other">Other Info</a>
         </legend>
         <label for="Breakdown" class="pure-checkbox" style="margin-top: 0px;">
-          <input type="hidden" name="Breakdown" value="0"><input id="Breakdown" name="Breakdown" type="checkbox" onclick="this.previousSibling.value=1-this.previousSibling.value"> Robot Broke Down
+          <input type="hidden" name="Breakdown" value="0"><input id="Breakdown" name="Breakdown" type="checkbox" onclick="this.previousSibling.value=1-this.previousSibling.value; toggle(`BreakdownElaborationContainer`, this.previousSibling.value);">
+          Robot Broke Down
         </label>
-        <textarea class="pure-input-1" name="" placeholder="Comments" style="background:#fffff3;" id="Comments"></textarea>
+        <div id="BreakdownElaborationContainer" style="display: none;">
+          <textarea class="pure-input-1" name="" placeholder="Breakdown Elaboration" style="" id="BreakdownElaboration"></textarea>
+        </div>
+        <textarea class="pure-input-1" name="" placeholder="Defense Elaboration" style="" id="DefenseElaboration"></textarea>
+        <textarea class="pure-input-1" name="" placeholder="Comments" style="" id="Comments"></textarea>
       </fieldset>
       <button type="submit" id="submitButton" class="pure-button pure-button-primary">Submit Data</button>
       <br />
