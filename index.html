@@ -312,108 +312,120 @@
           </div>
           <br />
         </fieldset>
-        <fieldset class=" pure-u-2-3 pure-u-md-1 center" id="qual">
+        <fieldset class=" pure-u-2-3 pure-u-md-1 pure-g" id="qual">
           <legend>
             <a id="Rating">Qualitative Ratings</a>
             <div class="tooltip">*
               <span class="tooltiptext" style="font-size: .6em">There is intentionally no middle ground, so please choose Above Average or Below Average.</span>
             </div>
           </legend>
-          <div>
-            <div>
-              <span>1 - Not Great | 2 - Below Average
-                <br>3 - Above Average | 4 - Great</span>
-            </div>
-            <hr>
+		  <div class="instruction-container">
+		  <span>1 - Not Great | 2 - Below Average
+			<br>3 - Above Average | 4 - Great</span>
+		  </div>
+		  <hr>
+          <div class="rating-outer-container">
             <div class="rating-outer">
               <legend class="s-legend">Shot Versatility</legend>
-              <fieldset class="rating relative">
-                <input id="ShotVersatility" name="ShotVersatility" type="number" value="0" class="hiddenInput" tabindex="-1" min="0" max="6">
-                <input type="radio" id="star4" name="ShotVersatilitySub" onclick="starInput('ShotVersatility', 4)" />
-                <label class="full" for="star4" title="Great - 4 stars"></label>
-                <input type="radio" id="star3" name="ShotVersatilitySub" onclick="starInput('ShotVersatility', 3)" />
-                <label class="full" for="star3" title="Above Average - 3 stars"></label>
-                <input type="radio" id="star2" name="ShotVersatilitySub" onclick="starInput('ShotVersatility', 2)" />
-                <label class="full" for="star2" title="Below Average - 2 stars"></label>
-                <input type="radio" id="star1" name="ShotVersatilitySub" onclick="starInput('ShotVersatility', 1)" />
-                <label class="full" for="star1" title="Not Great - 1 star"></label>
-              </fieldset>
-              <div class="button-secondary pure-button" onclick="deselect('ShotVersatilitySub'); starInput('ShotVersatility', 0)">Clear</div>
+			  <div class='rating-buttons-container'>
+				<fieldset class="rating relative">
+					<input id="ShotVersatility" name="ShotVersatility" type="number" value="0" class="hiddenInput" tabindex="-1" min="0" max="6">
+					<input type="radio" id="star4" name="ShotVersatilitySub" onclick="starInput('ShotVersatility', 4)" />
+					<label class="full" for="star4" title="Great - 4 stars"></label>
+					<input type="radio" id="star3" name="ShotVersatilitySub" onclick="starInput('ShotVersatility', 3)" />
+					<label class="full" for="star3" title="Above Average - 3 stars"></label>
+					<input type="radio" id="star2" name="ShotVersatilitySub" onclick="starInput('ShotVersatility', 2)" />
+					<label class="full" for="star2" title="Below Average - 2 stars"></label>
+					<input type="radio" id="star1" name="ShotVersatilitySub" onclick="starInput('ShotVersatility', 1)" />
+					<label class="full" for="star1" title="Not Great - 1 star"></label>
+				</fieldset>
+				<div class="button-secondary pure-button" onclick="deselect('ShotVersatilitySub'); starInput('ShotVersatility', 0)">Clear</div>
+			  </div>
             </div>
             <div class="rating-outer">
               <legend class="s-legend">Defense</legend>
-              <fieldset class="rating relative">
-                <input id="Defense" name="Defense" type="number" value="0" class="hiddenInput" tabindex="-1" min="0" max="6">
-                <input type="radio" id="starMan4" name="DefenseSub" onclick="starInput('Defense', 4)" />
-                <label class="full" for="starMan4" title="Great - 4 stars"></label>
-                <input type="radio" id="starMan3" name="DefenseSub" onclick="starInput('Defense', 3)" />
-                <label class="full" for="starMan3" title="Above Average - 3 stars"></label>
-                <input type="radio" id="starMan2" name="DefenseSub" onclick="starInput('Defense', 2)" />
-                <label class="full" for="starMan2" title="Below Average - 2 stars"></label>
-                <input type="radio" id="starMan1" name="DefenseSub" onclick="starInput('Defense', 1)" />
-                <label class="full" for="starMan1" title="Not Great - 1 star"></label>
-              </fieldset>
-              <div class="button-secondary pure-button" onclick="deselect('DefenseSub'); starInput('Defense', 0)">Clear</div>
+			  <div class='rating-buttons-container'>
+				<fieldset class="rating relative">
+					<input id="Defense" name="Defense" type="number" value="0" class="hiddenInput" tabindex="-1" min="0" max="6">
+					<input type="radio" id="starMan4" name="DefenseSub" onclick="starInput('Defense', 4)" />
+					<label class="full" for="starMan4" title="Great - 4 stars"></label>
+					<input type="radio" id="starMan3" name="DefenseSub" onclick="starInput('Defense', 3)" />
+					<label class="full" for="starMan3" title="Above Average - 3 stars"></label>
+					<input type="radio" id="starMan2" name="DefenseSub" onclick="starInput('Defense', 2)" />
+					<label class="full" for="starMan2" title="Below Average - 2 stars"></label>
+					<input type="radio" id="starMan1" name="DefenseSub" onclick="starInput('Defense', 1)" />
+					<label class="full" for="starMan1" title="Not Great - 1 star"></label>
+				</fieldset>
+				<div class="button-secondary pure-button" onclick="deselect('DefenseSub'); starInput('Defense', 0)">Clear</div>
+			  </div>
             </div>
             <div class="rating-outer">
               <legend class="s-legend">Opponent Cargo</legend>
-              <fieldset class="rating relative">
-                <input id="OpponentCargo" name="OpponentCargo" type="number" value="0" class="hiddenInput" tabindex="-1" min="0" max="6">
-                <input type="radio" id="starRen4" name="OpponentCargoSub" onclick="starInput('OpponentCargo', 4)" />
-                <label class="full" for="starRen4" title="Great - 4 stars"></label>
-                <input type="radio" id="starRen3" name="OpponentCargoSub" onclick="starInput('OpponentCargo', 3)" />
-                <label class="full" for="starRen3" title="Above Average - 3 stars"></label>
-                <input type="radio" id="starRen2" name="OpponentCargoSub" onclick="starInput('OpponentCargo', 2)" />
-                <label class="full" for="starRen2" title="Below Average - 2 stars"></label>
-                <input type="radio" id="starRen1" name="OpponentCargoSub" onclick="starInput('OpponentCargo', 1)" />
-                <label class="full" for="starRen1" title="Not Great - 1 star"></label>
-              </fieldset>
-              <div class="button-secondary pure-button" onclick="deselect('OpponentCargoSub'); starInput('OpponentCargo', 0)">Clear</div>
+			  <div class='rating-buttons-container'>
+				<fieldset class="rating relative">
+					<input id="OpponentCargo" name="OpponentCargo" type="number" value="0" class="hiddenInput" tabindex="-1" min="0" max="6">
+					<input type="radio" id="starRen4" name="OpponentCargoSub" onclick="starInput('OpponentCargo', 4)" />
+					<label class="full" for="starRen4" title="Great - 4 stars"></label>
+					<input type="radio" id="starRen3" name="OpponentCargoSub" onclick="starInput('OpponentCargo', 3)" />
+					<label class="full" for="starRen3" title="Above Average - 3 stars"></label>
+					<input type="radio" id="starRen2" name="OpponentCargoSub" onclick="starInput('OpponentCargo', 2)" />
+					<label class="full" for="starRen2" title="Below Average - 2 stars"></label>
+					<input type="radio" id="starRen1" name="OpponentCargoSub" onclick="starInput('OpponentCargo', 1)" />
+					<label class="full" for="starRen1" title="Not Great - 1 star"></label>
+				</fieldset>
+				<div class="button-secondary pure-button" onclick="deselect('OpponentCargoSub'); starInput('OpponentCargo', 0)">Clear</div>
+			  </div>
             </div>
             <div class="rating-outer">
               <legend class="s-legend">Maneuverability</legend>
-              <fieldset class="rating relative">
-                <input id="Mnv" name="Mnv" type="number" value="0" class="hiddenInput" tabindex="-1" min="0" max="6">
-                <input type="radio" id="starGround4" name="MnvSub" onclick="starInput('Mnv', 4)" />
-                <label class="full" for="starGround4" title="Great - 4 stars"></label>
-                <input type="radio" id="starGround3" name="MnvSub" onclick="starInput('Mnv', 3)" />
-                <label class="full" for="starGround3" title="Above Average - 3 stars"></label>
-                <input type="radio" id="starGround2" name="MnvSub" onclick="starInput('Mnv', 2)" />
-                <label class="full" for="starGround2" title="Below Average - 2 stars"></label>
-                <input type="radio" id="starGround1" name="MnvSub" onclick="starInput('Mnv', 1)" />
-                <label class="full" for="starGround1" title="Not Great - 1 star"></label>
-              </fieldset>
-              <div class="button-secondary pure-button" onclick="deselect('MnvSub'); starInput('Mnv', 0)">Clear</div>
+			  <div class='rating-buttons-container'>
+				<fieldset class="rating relative">
+					<input id="Mnv" name="Mnv" type="number" value="0" class="hiddenInput" tabindex="-1" min="0" max="6">
+					<input type="radio" id="starGround4" name="MnvSub" onclick="starInput('Mnv', 4)" />
+					<label class="full" for="starGround4" title="Great - 4 stars"></label>
+					<input type="radio" id="starGround3" name="MnvSub" onclick="starInput('Mnv', 3)" />
+					<label class="full" for="starGround3" title="Above Average - 3 stars"></label>
+					<input type="radio" id="starGround2" name="MnvSub" onclick="starInput('Mnv', 2)" />
+					<label class="full" for="starGround2" title="Below Average - 2 stars"></label>
+					<input type="radio" id="starGround1" name="MnvSub" onclick="starInput('Mnv', 1)" />
+					<label class="full" for="starGround1" title="Not Great - 1 star"></label>
+				</fieldset>
+				<div class="button-secondary pure-button" onclick="deselect('MnvSub'); starInput('Mnv', 0)">Clear</div>
+			  </div>
             </div>
             <div class="rating-outer">
               <legend class="s-legend">Intake</legend>
-              <fieldset class="rating relative">
-                <input id="Intake" name="Intake" type="number" value="0" class="hiddenInput" tabindex="-1" min="0" max="6"> 
-                <input type="radio" id="starLoading4" name="IntakeSub" onclick="starInput('Intake', 4)" />
-                <label class="full" for="starLoading4" title="Great - 4 stars"></label>
-                <input type="radio" id="starLoading3" name="IntakeSub" onclick="starInput('Intake', 3)" />
-                <label class="full" for="starLoading3" title="Above Average - 3 stars"></label>
-                <input type="radio" id="starLoading2" name="IntakeSub" onclick="starInput('Intake', 2)" />
-                <label class="full" for="starLoading2" title="Below Average - 2 stars"></label>
-                <input type="radio" id="starLoading1" name="IntakeSub" onclick="starInput('Intake', 1)" />
-                <label class="full" for="starLoading1" title="Not Great - 1 star"></label>
-              </fieldset>
-              <div class="button-secondary pure-button" onclick="deselect('IntakeSub'); starInput('Intake', 0)">Clear</div>
+			  <div class='rating-buttons-container'>
+				<fieldset class="rating relative">
+					<input id="Intake" name="Intake" type="number" value="0" class="hiddenInput" tabindex="-1" min="0" max="6"> 
+					<input type="radio" id="starLoading4" name="IntakeSub" onclick="starInput('Intake', 4)" />
+					<label class="full" for="starLoading4" title="Great - 4 stars"></label>
+					<input type="radio" id="starLoading3" name="IntakeSub" onclick="starInput('Intake', 3)" />
+					<label class="full" for="starLoading3" title="Above Average - 3 stars"></label>
+					<input type="radio" id="starLoading2" name="IntakeSub" onclick="starInput('Intake', 2)" />
+					<label class="full" for="starLoading2" title="Below Average - 2 stars"></label>
+					<input type="radio" id="starLoading1" name="IntakeSub" onclick="starInput('Intake', 1)" />
+					<label class="full" for="starLoading1" title="Not Great - 1 star"></label>
+				</fieldset>
+				<div class="button-secondary pure-button" onclick="deselect('IntakeSub'); starInput('Intake', 0)">Clear</div>
+			  </div>
             </div>
             <div class="rating-outer">
               <legend class="s-legend">Climb Speed</legend>
-              <fieldset class="rating relative">
-                <input id="ClimbSpeed" name="ClimbSpeed" type="number" value="0" class="hiddenInput" tabindex="-1" min="0" max="6">
-                <input type="radio" id="starClimb4" name="ClimbSpeedSub" onclick="starInput('ClimbSpeed', 4)" />
-                <label class="full" for="starClimb4" title="Great - 4 stars"></label>
-                <input type="radio" id="starClimb3" name="ClimbSpeedSub" onclick="starInput('ClimbSpeed', 3)" />
-                <label class="full" for="starClimb3" title="Above Average - 3 stars"></label>
-                <input type="radio" id="starClimb2" name="ClimbSpeedSub" onclick="starInput('ClimbSpeed', 2)" />
-                <label class="full" for="starClimb2" title="Below Average - 2 stars"></label>
-                <input type="radio" id="starClimb1" name="ClimbSpeedSub" onclick="starInput('ClimbSpeed', 1)" />
-                <label class="full" for="starClimb1" title="Not Great - 1 star"></label>
-              </fieldset>
-              <div class="button-secondary pure-button" onclick="deselect('ClimbSpeedSub'); starInput('ClimbSpeed', 0)">Clear</div>
+			  <div class='rating-buttons-container'>
+				<fieldset class="rating relative">
+					<input id="ClimbSpeed" name="ClimbSpeed" type="number" value="0" class="hiddenInput" tabindex="-1" min="0" max="6">
+					<input type="radio" id="starClimb4" name="ClimbSpeedSub" onclick="starInput('ClimbSpeed', 4)" />
+					<label class="full" for="starClimb4" title="Great - 4 stars"></label>
+					<input type="radio" id="starClimb3" name="ClimbSpeedSub" onclick="starInput('ClimbSpeed', 3)" />
+					<label class="full" for="starClimb3" title="Above Average - 3 stars"></label>
+					<input type="radio" id="starClimb2" name="ClimbSpeedSub" onclick="starInput('ClimbSpeed', 2)" />
+					<label class="full" for="starClimb2" title="Below Average - 2 stars"></label>
+					<input type="radio" id="starClimb1" name="ClimbSpeedSub" onclick="starInput('ClimbSpeed', 1)" />
+					<label class="full" for="starClimb1" title="Not Great - 1 star"></label>
+				</fieldset>
+				<div class="button-secondary pure-button" onclick="deselect('ClimbSpeedSub'); starInput('ClimbSpeed', 0)">Clear</div>
+			  </div>
             </div>
           </div>
         </fieldset>

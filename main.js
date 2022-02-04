@@ -1,4 +1,4 @@
-const scriptURL = 'javascript:alert("submitted")'; //https://script.google.com/macros/s/AKfycbznj7NXYI0ANWuVM_PbcJWkNRDIKdg0rJ5fWhwZ9JNDVWTvCsoezmAPDt21qwwrDBycEQ/exec';
+const scriptURL = 'https://script.google.com/macros/s/AKfycbznj7NXYI0ANWuVM_PbcJWkNRDIKdg0rJ5fWhwZ9JNDVWTvCsoezmAPDt21qwwrDBycEQ/exec';
 
 const form = document.forms['mainForm'];
 requirements = Array.from(document.querySelectorAll('[required]'));
@@ -39,7 +39,7 @@ function setdefault(data, id) {
 // Add the submit listener to the form
 form.addEventListener('submit', (e) => {
     e.preventDefault();
-    if (!confirm('are you sure you want to submit?')) return;
+    if (!confirm('Are you sure you want to submit?')) return;
     document.getElementById('submitButton').disabled = true;
     document.getElementById('submitButton').innerHTML = 'Submitting ' + loadingElement;
 
