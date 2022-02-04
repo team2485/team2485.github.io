@@ -10,7 +10,7 @@ var loadingElement =
 var autoNumber = 0;
 var teleNumber = 0;
 
-// Define the increase and decrease funcitons (for buttons)
+// Define the increase and decrease functions (for buttons)
 function increase(id) {
     var ele = document.getElementById(id);
     if ((Number(ele.value) || 0) < Number(ele.max)) {
