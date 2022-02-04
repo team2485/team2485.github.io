@@ -88,9 +88,9 @@
               HP Attempt
             </label>
             <!-- Elaborate/explain what "HP Attempt" and "HP Success" are? -->
-            <label class="pure-checkbox" style="">
-              <input type="hidden" name="HumanPlayerSuccess" value="0" style=""><input id="HumanPlayerSuccess" name="HumanPlayerSuccess" type="checkbox"
-                onclick="if(document.getElementById(`HumanPlayerAttempt`).previousSibling.value == 1) {this.previousSibling.value=1-this.previousSibling.value} else {this.checked=!this.checked}" style=""> HP Success
+            <label class="pure-checkbox">
+              <input type="hidden" name="HumanPlayerSuccess" value="0"><input id="HumanPlayerSuccess" name="HumanPlayerSuccess" type="checkbox"
+                onclick="if(document.getElementById(`HumanPlayerAttempt`).previousSibling.value == 1) {this.previousSibling.value=1-this.previousSibling.value} else {this.checked=!this.checked}"> HP Success
             </label>
           </div>
         </div>
@@ -329,10 +329,6 @@
               <legend class="s-legend">Shot Versatility</legend>
               <fieldset class="rating relative">
                 <input id="ShotVersatility" name="ShotVersatility" type="number" value="0" class="hiddenInput" tabindex="-1" min="0" max="6">
-                <!-- <input type="radio" id="star6" name="ShotVersatilitySub" onclick="starInput('ShotVersatility', 6)" />
-                <label class="full" for="star6" title="Exceptional - 6 stars"></label>
-                <input type="radio" id="star5" name="ShotVersatilitySub" onclick="starInput('ShotVersatility', 5)" />
-                <label class="full" for="star5" title="Great - 5 star"></label> -->
                 <input type="radio" id="star4" name="ShotVersatilitySub" onclick="starInput('ShotVersatility', 4)" />
                 <label class="full" for="star4" title="Great - 4 stars"></label>
                 <input type="radio" id="star3" name="ShotVersatilitySub" onclick="starInput('ShotVersatility', 3)" />
@@ -348,10 +344,6 @@
               <legend class="s-legend">Defense</legend>
               <fieldset class="rating relative">
                 <input id="Defense" name="Defense" type="number" value="0" class="hiddenInput" tabindex="-1" min="0" max="6">
-                <!-- <input type="radio" id="starMan6" name="DefenseSub" onclick="starInput('Defense', 6)" />
-                <label class="full" for="starMan6" title="Exceptional - 6 stars"></label>
-                <input type="radio" id="starMan5" name="DefenseSub" onclick="starInput('Defense', 5)" />
-                <label class="full" for="starMan5" title="Great - 5 stars"></label> -->
                 <input type="radio" id="starMan4" name="DefenseSub" onclick="starInput('Defense', 4)" />
                 <label class="full" for="starMan4" title="Great - 4 stars"></label>
                 <input type="radio" id="starMan3" name="DefenseSub" onclick="starInput('Defense', 3)" />
@@ -367,10 +359,6 @@
               <legend class="s-legend">Opponent Cargo</legend>
               <fieldset class="rating relative">
                 <input id="OpponentCargo" name="OpponentCargo" type="number" value="0" class="hiddenInput" tabindex="-1" min="0" max="6">
-                <!-- <input type="radio" id="starRen6" name="OpponentCargoSub" onclick="starInput('OpponentCargo', 6)" />
-                <label class="full" for="starRen6" title="Exceptional - 6 stars"></label>
-                <input type="radio" id="starRen5" name="OpponentCargoSub" onclick="starInput('OpponentCargo', 5)" />
-                <label class="full" for="starRen5" title="Great - 5 stars"></label> -->
                 <input type="radio" id="starRen4" name="OpponentCargoSub" onclick="starInput('OpponentCargo', 4)" />
                 <label class="full" for="starRen4" title="Great - 4 stars"></label>
                 <input type="radio" id="starRen3" name="OpponentCargoSub" onclick="starInput('OpponentCargo', 3)" />
@@ -386,10 +374,6 @@
               <legend class="s-legend">Maneuverability</legend>
               <fieldset class="rating relative">
                 <input id="Mnv" name="Mnv" type="number" value="0" class="hiddenInput" tabindex="-1" min="0" max="6">
-                <!-- <input type="radio" id="starGround6" name="MnvSub" onclick="starInput('Mnv', 6)" />
-                <label class="full" for="starGround6" title="Exceptional - 6 stars"></label>
-                <input type="radio" id="starGround5" name="MnvSub" onclick="starInput('Mnv', 5)" />
-                <label class="full" for="starGround5" title="Great - 5 star"></label> -->
                 <input type="radio" id="starGround4" name="MnvSub" onclick="starInput('Mnv', 4)" />
                 <label class="full" for="starGround4" title="Great - 4 stars"></label>
                 <input type="radio" id="starGround3" name="MnvSub" onclick="starInput('Mnv', 3)" />
@@ -404,11 +388,7 @@
             <div class="rating-outer">
               <legend class="s-legend">Intake</legend>
               <fieldset class="rating relative">
-                <input id="Intake" name="Intake" type="number" value="0" class="hiddenInput" tabindex="-1" min="0" max="6">
-                <!-- <input type="radio" id="starLoading6" name="IntakeSub" onclick="starInput('Intake', 6)" />
-                <label class="full" for="starLoading6" title="Exceptional - 6 stars"></label>
-                <input type="radio" id="starLoading5" name="IntakeSub" onclick="starInput('Intake', 5)" />
-                <label class="full" for="starLoading5" title="Great - 5 star"></label> -->
+                <input id="Intake" name="Intake" type="number" value="0" class="hiddenInput" tabindex="-1" min="0" max="6"> 
                 <input type="radio" id="starLoading4" name="IntakeSub" onclick="starInput('Intake', 4)" />
                 <label class="full" for="starLoading4" title="Great - 4 stars"></label>
                 <input type="radio" id="starLoading3" name="IntakeSub" onclick="starInput('Intake', 3)" />
@@ -424,10 +404,6 @@
               <legend class="s-legend">Climb Speed</legend>
               <fieldset class="rating relative">
                 <input id="ClimbSpeed" name="ClimbSpeed" type="number" value="0" class="hiddenInput" tabindex="-1" min="0" max="6">
-                <!-- <input type="radio" id="starClimb6" name="ClimbSpeedSub" onclick="starInput('ClimbSpeed', 6)" />
-                <label class="full" for="starClimb6" title="Exceptional - 6 stars"></label>
-                <input type="radio" id="starClimb5" name="ClimbSpeedSub" onclick="starInput('ClimbSpeed', 5)" />
-                <label class="full" for="starClimb5" title="Great - 5 star"></label> -->
                 <input type="radio" id="starClimb4" name="ClimbSpeedSub" onclick="starInput('ClimbSpeed', 4)" />
                 <label class="full" for="starClimb4" title="Great - 4 stars"></label>
                 <input type="radio" id="starClimb3" name="ClimbSpeedSub" onclick="starInput('ClimbSpeed', 3)" />
