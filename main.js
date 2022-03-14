@@ -1,8 +1,5 @@
-// PREVIOUS : // const scriptURL = 'https://script.google.com/macros/s/AKfycbwFYUNte7AJ37U1p6Re9p11O2NvxugyyagKCVsIn0Si7ohbfWU/exec'
-// const scriptURL = 'https://script.google.com/macros/s/AKfycbzwDOf4NqKZa2Umrr-StBhmqNesS46sRRt73SehAuzynp3njmLTp3289L-YuPZ29_g/exec';
-// const scriptURL = 'https://script.google.com/macros/s/AKfycbznj7NXYI0ANWuVM_PbcJWkNRDIKdg0rJ5fWhwZ9JNDVWTvCsoezmAPDt21qwwrDBycEQ/exec';
+
 const scriptURL = 'https://script.google.com/macros/s/AKfycbznj7NXYI0ANWuVM_PbcJWkNRDIKdg0rJ5fWhwZ9JNDVWTvCsoezmAPDt21qwwrDBycEQ/exec';
-// https://script.google.com/macros/s/AKfycbznj7NXYI0ANWuVM_PbcJWkNRDIKdg0rJ5fWhwZ9JNDVWTvCsoezmAPDt21qwwrDBycEQ/exec
 
 const form = document.forms['mainForm'];
 requirements = Array.from(document.querySelectorAll('[required]'));
