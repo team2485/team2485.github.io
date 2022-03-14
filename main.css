@@ -67,6 +67,7 @@ legend {
 .s-legend {
   font-family: 'Lato', sans-serif;
   text-transform: none;
+  text-align: center;
 }
 
 ::-webkit-input-placeholder {
@@ -350,7 +351,22 @@ h1 {
   padding: 0;
   display: inline-block;
   width: 250px;
-  margin-right: 10px;
+}
+
+.rating-buttons-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.rating-outer-container {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+	justify-items: center;
+}
+
+.instruction-container {
+	text-align: center;
 }
 
 .rating-container {}
@@ -370,8 +386,8 @@ h1 {
 }
 
 .rating>label:before {
-  margin: 2px;
-  margin-top: -25%;
+  margin-right: 5px;
+  margin-top: -70%;
   font-size: 30px;
   display: inline-block;
   content: "★";
