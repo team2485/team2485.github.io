@@ -8,12 +8,13 @@ var loadingElement =
 
 // Cookie opt-in
 var cookie_opt;
-if (getCookie("cookie_opt") !== undefined) {
+if (getCookie("cookie_opt") !== undefined && getCookie("cookie_opt") != "") {
   if (getCookie("cookie_opt")) {
     document.getElementById("cookie_notice").style = "display: none;";
     cookie_opt = true;
   } else {
     cookie_opt = false;
+    setCookie("cookie_opt", false, 0);
   }
 } else {
   // Remove cookies
@@ -29,7 +30,9 @@ if (getCookie("cookie_opt") !== undefined) {
 function opt(accept) {
   if (accept) {
     setCookie("cookie_opt", true, 30);
+    location.reload();
   } else {
+    setCookie("cookie_opt", false, 0);
     // Clear cookies
     var cookies = document.cookie.split(";");
     for (var i = 0; i < cookies.length; i++)
@@ -132,8 +135,10 @@ form.addEventListener('submit', (e) => {
 
 if (cookie_opt) {
   // Set saved data/default data in the fields
-  if (document.cookie.length >= 1) {
+  if (getCookie('scoutName') !== undefined) {
     document.getElementById('ScoutName').value = getCookie('scoutName');
+  }
+  if (getCookie('scoutTeamNum') !== undefined) {
     document.getElementById('ScoutTeamNum').value = getCookie('scoutTeamNum');
   }
   // Set cookie setters
@@ -234,10 +239,8 @@ function getCookie(cname) {
   }
 }
 
-function clearCookie(name, domain, path) {
-  var domain = domain || document.domain;
-  var path = path || "/";
-  document.cookie = name + "=; expires=" + +new Date + "; domain=" + domain + "; path=" + path;
+function clearCookie(name) {
+  setCookie(name, null, 0);
 };
 
 function radio(ele) {

@@ -354,19 +354,19 @@ h1 {
 }
 
 .rating-buttons-container {
-	display: flex;
-	justify-content: center;
-	align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .rating-outer-container {
-	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-	justify-items: center;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  justify-items: center;
 }
 
 .instruction-container {
-	text-align: center;
+  text-align: center;
 }
 
 .rating-container {}
@@ -627,8 +627,8 @@ input::-webkit-inner-spin-button {
 /* .svg:hover {
     filter: invert(72%) sepia(59%) saturate(691%) hue-rotate(1deg) brightness(106%) contrast(107%);
 } */
-
 @media screen and (-webkit-min-device-pixel-ratio:0) {
+
   select,
   textarea,
   input {
@@ -637,6 +637,7 @@ input::-webkit-inner-spin-button {
 }
 
 @media screen and (-webkit-min-device-pixel-ratio:0) {
+
   select:focus,
   textarea:focus,
   input:focus {
@@ -666,11 +667,11 @@ div:has(div) {
 }
 
 * {
-    touch-action: manipulation;
+  touch-action: manipulation;
 }
 
 textarea.pure-input-1 {
-  background:#fffff3;
+  background: #fffff3;
 }
 
 .input-success {
@@ -689,7 +690,7 @@ textarea.pure-input-1 {
   /* position: relative; */
 }
 
-.colour-selector > div > input {
+.colour-selector>div>input {
   float: right;
   width: 100%;
 }
@@ -715,4 +716,11 @@ textarea.pure-input-1 {
   padding: 4px;
   /* font-size: 12px; */
   color: #404040;
+}
+
+#resetColoursButton {
+  /* width: 140px; */
+  /* background-color: #202020; */
+  /* text-align: center; */
+  /* margin: auto; */
 }
