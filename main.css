@@ -672,3 +672,47 @@ div:has(div) {
 textarea.pure-input-1 {
   background:#fffff3;
 }
+
+.input-success {
+  background-color: #f3fff3;
+}
+
+.input-miss {
+  background-color: #fff3f3;
+}
+
+.colour-selector {
+  padding: 4px;
+  vertical-align: middle;
+  float: left;
+  width: 148px;
+  /* position: relative; */
+}
+
+.colour-selector > div > input {
+  float: right;
+  width: 100%;
+}
+
+.colour-label {
+  line-height: 1.75em;
+  vertical-align: middle;
+  margin: 2px;
+}
+
+#cookie_notice {
+  width: 100%;
+}
+
+.notice_bar {
+  position: fixed;
+  bottom: 0px;
+  background-color: #e0e0e0;
+  z-index: 1;
+  float: left;
+  align-content: center;
+  text-align: center;
+  padding: 4px;
+  /* font-size: 12px; */
+  color: #404040;
+}

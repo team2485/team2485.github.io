@@ -6,6 +6,38 @@ requirements.splice(0, 4);
 var loadingElement =
   '<svg class="spinner" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><style>.spinner{width:1em; animation: rotator 5s linear infinite;transform-origin: center;overflow: hidden;}@keyframes rotator{0%{transform:rotate(0deg);}100%{transform:rotate(360deg);}}.path {stroke-dasharray:270;stroke-dashoffset:0;transform-origin:center;stroke: #000000;animation: dash 1.4s ease-in-out infinite;}@keyframes dash{0%{stroke-dashoffset:265;}50%{stroke-dashoffset:65;transform:rotate(90deg);}100%{stroke-dashoffset: 265;transform:rotate(360deg);}}</style><circle class="path" fill="none" stroke-width="20" stroke-linecap="butt" cx="50" cy="50" r="40"></circle></svg>';
 
+// Cookie opt-in
+var cookie_opt;
+if (getCookie("cookie_opt") !== undefined) {
+  if (getCookie("cookie_opt")) {
+    document.getElementById("cookie_notice").style = "display: none;";
+    cookie_opt = true;
+  } else {
+    cookie_opt = false;
+  }
+} else {
+  // Remove cookies
+  cookie_opt = false;
+
+  // Clear cookies
+  var cookies = document.cookie.split(";");
+  for (var i = 0; i < cookies.length; i++)
+    clearCookie(cookies[i].split("=")[0]);
+}
+
+// Cookie opt-in function (called by button)
+function opt(accept) {
+  if (accept) {
+    setCookie("cookie_opt", true, 30);
+  } else {
+    // Clear cookies
+    var cookies = document.cookie.split(";");
+    for (var i = 0; i < cookies.length; i++)
+      clearCookie(cookies[i].split("=")[0]);
+  }
+  document.getElementById("cookie_notice").style = "display: none;";
+}
+
 // Some data-related variables
 var autoNumber = 0;
 var teleNumber = 0;
@@ -98,19 +130,20 @@ form.addEventListener('submit', (e) => {
   ].forEach((id) => setdefault(data, id));
 });
 
-// Set saved data/default data in the fields
-if (document.cookie.length >= 1) {
-  document.getElementById('ScoutName').value = getCookie('scoutName');
-  document.getElementById('ScoutTeamNum').value = getCookie('scoutTeamNum');
-  //document.getElementById("MatchNumber").value = getCookie("matchNumber");
+if (cookie_opt) {
+  // Set saved data/default data in the fields
+  if (document.cookie.length >= 1) {
+    document.getElementById('ScoutName').value = getCookie('scoutName');
+    document.getElementById('ScoutTeamNum').value = getCookie('scoutTeamNum');
+  }
+  // Set cookie setters
+  document.getElementById('ScoutName').addEventListener('keyup', function(event) {
+    setCookie('scoutName', document.getElementById('ScoutName').value, 30);
+  });
+  document.getElementById('ScoutTeamNum').addEventListener('keyup', function(event) {
+    setCookie('scoutTeamNum', document.getElementById('ScoutTeamNum').value, 30);
+  });
 }
-// Set cookie setters
-document.getElementById('ScoutName').addEventListener('keyup', function(event) {
-  setCookie('scoutName', document.getElementById('ScoutName').value);
-});
-document.getElementById('ScoutTeamNum').addEventListener('keyup', function(event) {
-  setCookie('scoutTeamNum', document.getElementById('ScoutTeamNum').value);
-});
 
 // Set the NoShow checkbox to show the dropdown if checked
 document.getElementById('NoShow').addEventListener('change', function(event) {
@@ -201,10 +234,67 @@ function getCookie(cname) {
   }
 }
 
+function clearCookie(name, domain, path) {
+  var domain = domain || document.domain;
+  var path = path || "/";
+  document.cookie = name + "=; expires=" + +new Date + "; domain=" + domain + "; path=" + path;
+};
+
 function radio(ele) {
   document.getElementById(ele).checked = true;
 }
 
 function toggle(id, val) {
   document.getElementById(id).style = 'display: ' + (val > 0 ? 'block' : 'none') + ';';
+}
+
+// Check/set success_colour and miss_colour and their respective cookies
+success_colour = "#f3fff3";
+miss_colour = "#fff3f3";
+
+if (cookie_opt) {
+  if (getCookie("success_colour") !== undefined) {
+    success_colour = getCookie("success_colour");
+  } else {
+    setCookie("success_colour", success_colour, 30);
+  }
+  if (getCookie("miss_colour") !== undefined) {
+    miss_colour = getCookie("miss_colour");
+  } else {
+    setCookie("miss_colour", miss_colour, 30);
+  }
+}
+
+document.getElementById("success-colour").value = success_colour;
+document.getElementById("miss-colour").value = miss_colour;
+
+success_fields = document.getElementsByClassName("input-success");
+miss_fields = document.getElementsByClassName("input-miss");
+
+updateColours();
+
+// Updates colours based on the values entered/stored in #success-colour and #miss-colour
+function updateColours() {
+  success_colour = document.getElementById("success-colour").value;
+  miss_colour = document.getElementById("miss-colour").value;
+
+  if (cookie_opt) {
+    setCookie("success_colour", success_colour, 30);
+    setCookie("miss_colour", miss_colour, 30);
+  }
+
+  for (var i = 0; i < success_fields.length; i++) {
+    success_fields.item(i).style = "background-color: " + success_colour;
+  }
+  for (var i = 0; i < miss_fields.length; i++) {
+    miss_fields.item(i).style = "background-color: " + miss_colour;
+  }
+}
+
+// Reset coloured fields to their defaults
+function resetColours() {
+  document.getElementById("success-colour").value = "#f3fff3";
+  document.getElementById("miss-colour").value = "#fff3f3";
+
+  updateColours();
 }

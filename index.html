@@ -14,6 +14,7 @@
 </head>
 
 <body>
+  <!-- Menu bar -->
   <div class="pure-menu pure-menu-horizontal" style="position: fixed; top:-100px; z-index: 5; height:100px; background-color: black; color: #FFD900; font-family: 'Oswald'"></div>
   <div class="pure-menu pure-menu-horizontal" style="position: fixed; top:0; z-index: 5; height:50px; background-color: black; color: #FFD900; font-family: 'Oswald'">
     <img style="display:inline-block; vertical-align: top; padding-left: 10px; padding-top: 5px; height: 40px" src="resources/icon-on-black.png"></img>
@@ -21,14 +22,57 @@
       <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover">
         <a id="menuLink1" class="pure-menu-link">2022 Scouting</a>
         <ul class="pure-menu-children">
+          <div id="success-colour-selector" class="colour-selector pure-g">
+            <div class="pure-u-1-2">
+              <label for="success-colour" class="colour-label">Success</label>
+            </div>
+            <div class="pure-u-1-2">
+              <input id="success-colour" type="color" name="success-colour" value="#f3fff3" onchange="updateColours()">
+            </div>
+          </div>
+          <br>
+          <br>
+          <div id="miss-colour-selector" class="colour-selector pure-g">
+            <div class="pure-u-1-2">
+              <label for="miss-colour" class="colour-label">Miss</label>
+            </div>
+            <div class="pure-u-1-2">
+              <input id="miss-colour" type="color" name="miss-colour" value="#fff3f3" onchange="updateColours()">
+            </div>
+          </div>
+          <br>
+          <br>
+          <br>
+          <div class="pure-u-1-1 pure-g colour-selector" style="padding-bottom: 8px;">
+            <div class="pure-u-1-3">
+            </div>
+            <div class="pure-u-1-3">
+              <button type="button" name="reset-colours" style="width: 100%; background-color: #202020; text-align: center;" onclick="resetColours()">Reset</button>
+            </div>
+            <div class="pure-u-1-3">
+            </div>
+          </div>
         </ul>
       </li>
     </ul>
-
+  </div>
+  <!-- Cookie notif -->
+  <div id="cookie_notice" class="notice_bar pure-g">
+    <!-- <div class="pure-u-1-4">
+    </div> -->
+    <div class="pure-u-2-3">
+      <span id="cookie_text" style="bottom: 1.5em;">This website uses local storage (cookies) to improve user experience.</span>
+    </div>
+    <div class="pure-u-1-3">
+      <button type="button" name="opt_in" onclick="opt(true)">Accept</button>
+      <button type="button" name="opt_out" onclick="opt(false)">Opt Out</button>
+    </div>
   </div>
   <br />
+  <!-- Page contents -->
   <div class="page-display form-display" id="form">
     <form id="mainForm" class="pure-form pure-form-stacked container" name="mainForm">
+      <!-- Pre-Match -->
       <fieldset id="pre">
         <legend>
           <a id="Info">Pre-Match</a>
@@ -71,6 +115,7 @@
           </label>
         </div>
       </fieldset>
+      <!-- Auto -->
       <fieldset id="auto">
         <legend>
           <a id="Auto">Auto</a>
@@ -104,7 +149,7 @@
             <div class="pure-g relative">
               <div class="pure-u-18-24">
                 <label for="upperAuto"></label>
-                <input id="upperAuto" name="HighAutoSuccess" min="0" max="50" class="pure-u-1" type="number" placeholder="Successful Balls" style="background: #f3fff3;">
+                <input id="upperAuto" name="HighAutoSuccess" min="0" max="50" class="pure-u-1 input-success" type="number" placeholder="Successful Balls">
               </div>
               <div class="pure-u-6-24 ">
                 <div class="pure-g plus-minus">
@@ -116,7 +161,7 @@
             <div class="pure-g relative">
               <div class="pure-u-18-24">
                 <label for="upperAutoFail"></label>
-                <input id="upperAutoFail" name="HighAutoMiss" min="0" max="50" class="pure-u-1" type="number" placeholder="Missed Balls" style="background: #fff3f3;">
+                <input id="upperAutoFail" name="HighAutoMiss" min="0" max="50" class="pure-u-1 input-miss" type="number" placeholder="Missed Balls">
               </div>
               <div class="pure-u-6-24">
                 <div class="pure-g plus-minus">
@@ -134,7 +179,7 @@
             <div class="pure-g relative">
               <div class="pure-u-18-24">
                 <label for="lowerAuto"></label>
-                <input id="lowerAuto" name="LowAutoSuccess" min="0" max="50" class="pure-u-1" type="number" placeholder="Successful Balls" style="background: #f3fff3;">
+                <input id="lowerAuto" name="LowAutoSuccess" min="0" max="50" class="pure-u-1 input-success" type="number" placeholder="Successful Balls">
               </div>
               <div class="pure-u-6-24">
                 <div class="pure-g plus-minus">
@@ -146,7 +191,7 @@
             <div class="pure-g relative">
               <div class="pure-u-18-24">
                 <label for="lowerAutoFail"></label>
-                <input id="lowerAutoFail" name="LowAutoMiss" min="0" max="50" class="pure-u-1" type="number" placeholder="Missed Balls" style="background: #fff3f3;">
+                <input id="lowerAutoFail" name="LowAutoMiss" min="0" max="50" class="pure-u-1 input-miss" type="number" placeholder="Missed Balls">
               </div>
               <div class="pure-u-6-24 ">
                 <div class="pure-g plus-minus">
@@ -158,6 +203,7 @@
           </div>
         </div>
       </fieldset>
+      <!-- Tele -->
       <fieldset id="tele">
         <legend>
           <a id="Teleop">Teleop</a>
@@ -171,7 +217,7 @@
             <div class="pure-g relative">
               <div class="pure-u-18-24">
                 <label for="upperTele"></label>
-                <input id="upperTele" name="HighTeleSuccess" min="0" max="50" class="pure-u-1" type="number" placeholder="Successful Balls" style="background: #f3fff3;">
+                <input id="upperTele" name="HighTeleSuccess" min="0" max="50" class="pure-u-1 input-success" type="number" placeholder="Successful Balls">
               </div>
               <div class="pure-u-6-24 ">
                 <div class="pure-g plus-minus">
@@ -183,7 +229,7 @@
             <div class="pure-g relative">
               <div class="pure-u-18-24">
                 <label for="upperTeleFail"></label>
-                <input id="upperTeleFail" name="HighTeleMiss" min="0" max="50" class="pure-u-1" type="number" placeholder="Missed Balls" style="background: #fff3f3;">
+                <input id="upperTeleFail" name="HighTeleMiss" min="0" max="50" class="pure-u-1 input-miss" type="number" placeholder="Missed Balls">
               </div>
               <div class="pure-u-6-24 ">
                 <div class="pure-g plus-minus">
@@ -201,7 +247,7 @@
             <div class="pure-g relative">
               <div class="pure-u-18-24">
                 <label for="lowerTele"></label>
-                <input id="lowerTele" name="LowTeleSuccess" min="0" max="50" class="pure-u-1" type="number" placeholder="Successful Balls" style="background: #f3fff3;">
+                <input id="lowerTele" name="LowTeleSuccess" min="0" max="50" class="pure-u-1 input-success" type="number" placeholder="Successful Balls">
               </div>
               <div class="pure-u-6-24 ">
                 <div class="pure-g plus-minus">
@@ -213,7 +259,7 @@
             <div class="pure-g relative">
               <div class="pure-u-18-24">
                 <label for="lowerTeleFail"></label>
-                <input id="lowerTeleFail" name="LowTeleMiss" min="0" max="50" class="pure-u-1" type="number" placeholder="Missed Balls" style="background: #fff3f3;">
+                <input id="lowerTeleFail" name="LowTeleMiss" min="0" max="50" class="pure-u-1 input-miss" type="number" placeholder="Missed Balls">
               </div>
               <div class="pure-u-6-24 ">
                 <div class="pure-g plus-minus">
@@ -225,6 +271,7 @@
           </div>
         </div>
       </fieldset>
+      <!-- Endgame State -->
       <div class="pure-g">
         <fieldset class="pure-u-1-3 pure-u-md-1 pure-g" id="end">
           <legend>
@@ -447,6 +494,7 @@
           </div>
         </fieldset>
       </div>
+      <!-- Other Info -->
       <fieldset id="other">
         <legend>
           <a id="other">Other Info</a>
@@ -461,6 +509,7 @@
         <textarea class="pure-input-1" name="" placeholder="Defense Elaboration" style="" id="DefenseElaboration"></textarea>
         <textarea class="pure-input-1" name="" placeholder="Comments" style="" id="Comments"></textarea>
       </fieldset>
+      <!-- Submit Button -->
       <button type="submit" id="submitButton" class="pure-button pure-button-primary">Submit Data</button>
       <br />
       <br />
@@ -469,6 +518,7 @@
     <script src="main.js"></script>
 
   </div>
+
 </body>
 
 </html>
