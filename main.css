@@ -645,14 +645,6 @@ input::-webkit-inner-spin-button {
   }
 }
 
-div:has(div) {
-  background-color: blue;
-  min-width: 4em;
-  clear: both;
-  width: auto;
-  /* padding: 10%; */
-}
-
 .climb-title-ele {
   width: 50%;
   margin: auto;
