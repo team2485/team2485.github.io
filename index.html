@@ -42,15 +42,13 @@
           </div>
           <br>
           <br>
+          <div class="pure-u-1-1 colour-selector" style="padding-bottom: 8px;">
+              <button id="resetColoursButton" type="button" name="reset-colours" style="width: 100%; background-color: #202020; text-align: center;" onclick="resetColours()">Reset</button>
+          </div>
+          <br>
           <br>
           <div class="pure-u-1-1 colour-selector" style="padding-bottom: 8px;">
-            <!-- <div class="pure-u-1-3">
-            </div>
-            <div class="pure-u-1-3"> -->
-              <button id="resetColoursButton" type="button" name="reset-colours" style="width: 100%; background-color: #202020; text-align: center;" onclick="resetColours()">Reset</button>
-            <!-- </div>
-            <div class="pure-u-1-3">
-            </div> -->
+            <a href="https://docs.google.com/document/d/1IcCMiYjyAM5Aa3DgM2Aqe4oyLrCUzAxqMCIT8Welm9k/preview" target="_blank"><button type="button" name="instructions_doc" style="width: 100%; background-color: #202020; text-align: center; color: #ffd900;">Instructions</button></a>
           </div>
         </ul>
       </li>
@@ -58,8 +56,6 @@
   </div>
   <!-- Cookie notif -->
   <div id="cookie_notice" class="notice_bar pure-g">
-    <!-- <div class="pure-u-1-4">
-    </div> -->
     <div class="pure-u-2-3">
       <span id="cookie_text" style="bottom: 1.5em;">This website uses local storage (cookies) to improve user experience.</span>
     </div>
@@ -93,7 +89,7 @@
           <div class="pure-u-1-4 pure-u-sm-1">
             <label for="TeamNumScouted">Team # Scouted</label>
             <div class="pure-u-1-1">
-              <input id="TeamNumScouted" name="TeamNumScouted" class="pure-u-23-24" type="number" placeholder="Scout Team #" required max="10000" min="0">
+              <input id="TeamNumScouted" name="TeamNumScouted" class="pure-u-23-24" type="number" placeholder="Team # Scouted" required max="10000" min="0">
             </div>
           </div>
           <div class="pure-u-1-4 pure-u-sm-1 pure-g relative">
@@ -121,21 +117,9 @@
           <a id="Auto">Auto</a>
         </legend>
         <div class="center pure-g">
-          <div class="pure-u-1-2">
+          <div class="pure-u-1-1">
             <label class="pure-checkbox">
               <input type="hidden" name="Taxi" value="0"><input id="Taxi" name="Taxi" type="checkbox" onclick="this.previousSibling.value=1-this.previousSibling.value"> Taxi
-            </label>
-          </div>
-          <div class="pure-u-1-2">
-            <label class="pure-checkbox">
-              <input type="hidden" name="HumanPlayerAttempt" value="0"><input id="HumanPlayerAttempt" name="HumanPlayerAttempt" type="checkbox"
-                onclick="this.previousSibling.value=1-this.previousSibling.value; if(this.previousSibling.value==0) {document.getElementById(`HumanPlayerSuccess`).previousSibling.value = 0; document.getElementById(`HumanPlayerSuccess`).checked = false;}">
-              HP Attempt
-            </label>
-            <!-- Elaborate/explain what "HP Attempt" and "HP Success" are? -->
-            <label class="pure-checkbox">
-              <input type="hidden" name="HumanPlayerSuccess" value="0"><input id="HumanPlayerSuccess" name="HumanPlayerSuccess" type="checkbox"
-                onclick="if(document.getElementById(`HumanPlayerAttempt`).previousSibling.value == 1) {this.previousSibling.value=1-this.previousSibling.value} else {this.checked=!this.checked}"> HP Success
             </label>
           </div>
         </div>
@@ -292,7 +276,7 @@
               </div>
               <div class="pure-u-1-3">
                 <div class="climb-title-ele">
-                  <a>Fell</a>
+                  <a>Fail</a>
                 </div>
               </div>
             </div>
@@ -407,23 +391,6 @@
               </div>
             </div>
             <div class="rating-outer">
-              <legend class="s-legend">Opponent Cargo</legend>
-              <div class='rating-buttons-container'>
-                <fieldset class="rating relative">
-                  <input id="OpponentCargo" name="OpponentCargo" type="number" value="0" class="hiddenInput" tabindex="-1" min="0" max="4">
-                  <input type="radio" id="starRen4" name="OpponentCargoSub" onclick="starInput('OpponentCargo', 4)" />
-                  <label class="full" for="starRen4" title="Great - 4 stars"></label>
-                  <input type="radio" id="starRen3" name="OpponentCargoSub" onclick="starInput('OpponentCargo', 3)" />
-                  <label class="full" for="starRen3" title="Above Average - 3 stars"></label>
-                  <input type="radio" id="starRen2" name="OpponentCargoSub" onclick="starInput('OpponentCargo', 2)" />
-                  <label class="full" for="starRen2" title="Below Average - 2 stars"></label>
-                  <input type="radio" id="starRen1" name="OpponentCargoSub" onclick="starInput('OpponentCargo', 1)" />
-                  <label class="full" for="starRen1" title="Not Great - 1 star"></label>
-                </fieldset>
-                <div class="button-secondary pure-button" onclick="deselect('OpponentCargoSub'); starInput('OpponentCargo', 0)">Clear</div>
-              </div>
-            </div>
-            <div class="rating-outer">
               <legend class="s-legend">Maneuverability</legend>
               <div class='rating-buttons-container'>
                 <fieldset class="rating relative">
@@ -438,23 +405,6 @@
                   <label class="full" for="starGround1" title="Not Great - 1 star"></label>
                 </fieldset>
                 <div class="button-secondary pure-button" onclick="deselect('MnvSub'); starInput('Mnv', 0)">Clear</div>
-              </div>
-            </div>
-            <div class="rating-outer">
-              <legend class="s-legend">Groud Intake</legend>
-              <div class='rating-buttons-container'>
-                <fieldset class="rating relative">
-                  <input id="Intake" name="Intake" type="number" value="0" class="hiddenInput" tabindex="-1" min="0" max="4">
-                  <input type="radio" id="starLoading4" name="IntakeSub" onclick="starInput('Intake', 4)" />
-                  <label class="full" for="starLoading4" title="Great - 4 stars"></label>
-                  <input type="radio" id="starLoading3" name="IntakeSub" onclick="starInput('Intake', 3)" />
-                  <label class="full" for="starLoading3" title="Above Average - 3 stars"></label>
-                  <input type="radio" id="starLoading2" name="IntakeSub" onclick="starInput('Intake', 2)" />
-                  <label class="full" for="starLoading2" title="Below Average - 2 stars"></label>
-                  <input type="radio" id="starLoading1" name="IntakeSub" onclick="starInput('Intake', 1)" />
-                  <label class="full" for="starLoading1" title="Not Great - 1 star"></label>
-                </fieldset>
-                <div class="button-secondary pure-button" onclick="deselect('IntakeSub'); starInput('Intake', 0)">Clear</div>
               </div>
             </div>
             <div class="rating-outer">

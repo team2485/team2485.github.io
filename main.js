@@ -77,11 +77,9 @@ form.addEventListener('submit', (e) => {
   document.getElementById('submitButton').innerHTML = 'Submitting ' + loadingElement;
 
   var data = new FormData(form);
-  // ["BallsUpperAuto", "BallsUpperFailAuto", "BallsLowerAuto", "BallsLowerFailAuto", "BallsLowerTele", "BallsLowerFailTele", "BallsUpperTele", "BallsUpperFailTele"].forEach(id => setdefault(data, id));
   ['BreakdownElaboration', 'DefenseElaboration', 'Comments'].forEach((id) => {
     data.append(id, "'" + document.getElementById(id).value.replace(/(\r\n|\n|\r)/gm, '; '));
   });
-  // data.append("Comments", "'" + document.getElementById("Comments").value.replace(/(\r\n|\n|\r)/gm, "; ")); // Replace newlines and other "naughty" characters
   data.set('ScoutName', "'" + data.get('ScoutName'));
   ['LowAutoSuccess', 'LowAutoMiss', 'HighAutoSuccess', 'HighAutoMiss', 'LowTeleSuccess', 'LowTeleMiss', 'HighTeleSuccess', 'HighTeleMiss'].forEach((id) => {
     if (!data.get(id)) {
@@ -100,15 +98,13 @@ form.addEventListener('submit', (e) => {
           alert('Success!'), (location = top.location.href);
         }, 10)
       )
-    ) //setCookie("matchNumber", parseInt(getCookie("matchNumber"))+0),
+    )
     .catch((error) => (console.error('Error!', error.message), alert('Something went wrong...')));
   [
     'TeamNumScouted',
     'MatchNum',
     'NoShow',
     'Taxi',
-    'HumanPlayerAttempt',
-    'HumanPlayerSuccess',
     'LowAutoSuccess',
     'LowAutoMiss',
     'HighAutoSuccess',
@@ -124,9 +120,7 @@ form.addEventListener('submit', (e) => {
     'Endstate',
     'ShotVersatility',
     'Defense',
-    'OpponentCargo',
     'Mnv',
-    'Intake',
     'ClimbSpeed',
     'Breakdown',
     'Comments',

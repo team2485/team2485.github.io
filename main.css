@@ -679,7 +679,6 @@ textarea.pure-input-1 {
   vertical-align: middle;
   float: left;
   width: 148px;
-  /* position: relative; */
 }
 
 .colour-selector>div>input {
@@ -711,8 +710,4 @@ textarea.pure-input-1 {
 }
 
 #resetColoursButton {
-  /* width: 140px; */
-  /* background-color: #202020; */
-  /* text-align: center; */
-  /* margin: auto; */
 }
