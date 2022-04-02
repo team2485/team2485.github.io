@@ -318,25 +318,25 @@
               </div>
               <div class="pure-u-1-3">
                 <div class="climb-ele" onclick="">
-                  <input type="hidden" name="NoClimbFell" value="0">
-                  <input id="NoClimbFell" type="checkbox" class="pure-checkbox" name="" disabled>
+                  <input type="hidden" name="NoClimbFail" value="0">
+                  <input id="NoClimbFail" type="checkbox" class="pure-checkbox" name="" disabled>
                 </div>
                 <div class="climb-ele" onclick="this.children[0].value=1-this.children[0].value; this.children[1].checked=!this.children[1].checked">
-                  <input type="hidden" name="LowClimbFell" value="0">
-                  <input id="LowClimbFell" type="checkbox" class="pure-checkbox" name="LowClimbFell" onclick="this.previousSibling.value=1-this.previousSibling.value; this.checked=!this.checked">
+                  <input type="hidden" name="LowClimbFail" value="0">
+                  <input id="LowClimbFail" type="checkbox" class="pure-checkbox" name="LowClimbFail" onclick="this.previousSibling.value=1-this.previousSibling.value; this.checked=!this.checked">
                   <!-- setting the checkbox to be !checked is a hacky-fix to the checkboxes double flipping when clicked otherwise (both the default behaviour and the parent div. could possibly be done with preventDefault? not sure) -->
                 </div>
                 <div class="climb-ele" onclick="this.children[0].value=1-this.children[0].value; this.children[1].checked=!this.children[1].checked">
-                  <input type="hidden" name="MidClimbFell" value="0">
-                  <input id="MidClimbFell" type="checkbox" class="pure-checkbox" name="MidClimbFell" onclick="this.previousSibling.value=1-this.previousSibling.value; this.checked=!this.checked">
+                  <input type="hidden" name="MidClimbFail" value="0">
+                  <input id="MidClimbFail" type="checkbox" class="pure-checkbox" name="MidClimbFail" onclick="this.previousSibling.value=1-this.previousSibling.value; this.checked=!this.checked">
                 </div>
                 <div class=" climb-ele" onclick="this.children[0].value=1-this.children[0].value; this.children[1].checked=!this.children[1].checked">
-                  <input type="hidden" name="HighClimbFell" value="0">
-                  <input id="HighClimbFell" type="checkbox" class="pure-checkbox" name="HighClimbFell" onclick="this.previousSibling.value=1-this.previousSibling.value; this.checked=!this.checked">
+                  <input type="hidden" name="HighClimbFail" value="0">
+                  <input id="HighClimbFail" type="checkbox" class="pure-checkbox" name="HighClimbFail" onclick="this.previousSibling.value=1-this.previousSibling.value; this.checked=!this.checked">
                 </div>
                 <div class=" climb-ele" onclick="this.children[0].value=1-this.children[0].value; this.children[1].checked=!this.children[1].checked">
-                  <input type="hidden" name="TraversalClimbFell" value="0">
-                  <input id="TraversalClimbFell" type="checkbox" class="pure-checkbox" name="TraversalClimbFell" onclick="this.previousSibling.value=1-this.previousSibling.value; this.checked=!this.checked">
+                  <input type="hidden" name="TraversalClimbFail" value="0">
+                  <input id="TraversalClimbFail" type="checkbox" class="pure-checkbox" name="TraversalClimbFail" onclick="this.previousSibling.value=1-this.previousSibling.value; this.checked=!this.checked">
                 </div>
               </div>
             </div>
