@@ -1,4 +1,4 @@
-const scriptURL = 'https://script.google.com/macros/s/AKfycbwPIPw-gBsy4Xvm8gphykEFKUrG5RGaU7w2MSJwXuup6BRpRHgKvk0B6QvlpOLbxZetCw/exec';
+const scriptURL = 'https://script.google.com/macros/s/AKfycbyHwBTo6BK9zZ0JnHmTy_rJEfhwhO6o3CCuYRII_mayJfYfATRNztKMa2e2A4JuLb0sMA/exec';
 
 const form = document.forms['mainForm'];
 requirements = Array.from(document.querySelectorAll('[required]'));
