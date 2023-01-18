@@ -18,6 +18,7 @@
 
     <body>
         <h1>2485 Scouting Form</h1>
+		<!-- TODO: Navbar -->
         <form name="scouting-form">
             <h3>Match Info</h3>
             <hr />
@@ -85,8 +86,12 @@
                     <td><button type="button" onclick="subtractGamePiece(this)">-</button></td>
                 </tr>
             </table>
-            <input type="radio" name="auto-charge" value="none" checked /><label>None</label> <input type="radio" name="auto-charge" value="docked" /><label>Docked</label>
-            <input type="radio" name="auto-charge" value="engaged" /><label>Docked and Engaged</label>
+			<span>Charge Station:</span><br>
+            <input type="radio" name="auto-charge" value="none" checked /><label>None</label><br>
+            <input type="radio" name="auto-charge" value="attempt" /><label>Attempt + Failure</label><br>
+			<input type="radio" name="auto-charge" value="docked" /><label>Docked</label><br>
+            <input type="radio" name="auto-charge" value="engaged" /><label>Docked and Engaged</label><br>
+			<input type="checkbox" name="auto-engage-attempt" id="auto-engage-attempt"><label for="auto-engage-attempt">Tried to Engage?</label>
             <h3>Tele</h3>
             <hr />
             <table>
@@ -133,6 +138,19 @@
                 </tr>
             </table>
             <br />
+			<h3>End Game</h3>
+			<hr>
+			<span>Charge Station:</span><br>
+            <input type="radio" name="tele-charge" value="none" checked /><label>None</label><br>
+            <input type="radio" name="tele-charge" value="attempted" /><label>Attempt + Fail</label><br>
+			<input type="radio" name="tele-charge" value="docked" /><label>Docked</label><br>
+            <input type="radio" name="tele-charge" value="engaged" /><label>Docked and Engaged</label><br>
+			<br>
+			<input type="checkbox" name="tele-engage-attempt" id="tele-engage-attempt"><label for="tele-engage-attempt">Tried to Engage?</label>
+			<h3>Qualitative</h3>
+			<hr>
+			<!-- TODO: Ratings -->
+			<!-- TODO: Comments (and breakdown) -->
             <button type="submit">Submit</button>
         </form>
     </body>
