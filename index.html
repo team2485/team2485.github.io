@@ -18,116 +18,122 @@
 
     <body>
         <h1>2485 Scouting Form</h1>
-        <h3>Match Info</h3>
-        <hr />
-        <label for="name">Scout Name</label>
-        <input type="text" name="name" />
-        <br />
-        <label for="team">Team #</label>
-        <input type="number" name="team" />
-        <br />
-        <label for="ts">Team Scouted</label>
-        <input type="number" name="ts" />
-        <br />
-        <label for="match">Match #</label>
-        <input type="number" name="match" />
-        <br />
-        <input name="no-show" type="checkbox" value="1" />
-        <label for="no-show">No Show</label>
-        <h3>Auto</h3>
-        <hr />
-        <input name="pre-loaded" type="checkbox" value="1" />
-        <label for="pre-loaded">Pre-Loaded Game Piece</label>
-        <br />
-        <input name="mobility" type="checkbox" value="1" />
-        <label for="mobility">Left Community (Mobility)</label>
-        <table>
-            <thead>
-                <td>Location</td>
-                <td>#</td>
-                <td colspan="2">Actions</td>
-            </thead>
-            <tr>
-                <td><label for="auto-high-cones">High Cones</label></td>
-                <td><input name="auto-high-cones" type="number" value="0" min="0" max="6" /></td>
-                <td><button onclick="addGamePiece(this)">+</button></td>
-                <td><button onclick="subtractGamePiece(this)">-</button></td>
-            </tr>
-            <tr>
-                <td><label for="auto-high-cubes">High Cubes</label></td>
-                <td><input name="auto-high-cubes" type="number" value="0" min="0" max="3" /></td>
-                <td><button onclick="addGamePiece(this)">+</button></td>
-                <td><button onclick="subtractGamePiece(this)">-</button></td>
-            </tr>
-            <tr>
-                <td><label for="auto-mid-cones">Mid Cones</label></td>
-                <td><input name="auto-mid-cones" type="number" value="0" min="0" max="6" /></td>
-                <td><button onclick="addGamePiece(this)">+</button></td>
-                <td><button onclick="subtractGamePiece(this)">-</button></td>
-            </tr>
-            <tr>
-                <td><label for="auto-mid-cubes">Mid Cubes</label></td>
-                <td><input name="auto-mid-cubes" type="number" value="0" min="0" max="3" /></td>
-                <td><button onclick="addGamePiece(this)">+</button></td>
-                <td><button onclick="subtractGamePiece(this)">-</button></td>
-            </tr>
-            <tr>
-                <td><label for="auto-low-cones">Low Cones</label></td>
-                <td><input name="auto-low-cones" type="number" value="0" min="0" max="9" /></td>
-                <td><button onclick="addGamePiece(this)">+</button></td>
-                <td><button onclick="subtractGamePiece(this)">-</button></td>
-            </tr>
-            <tr>
-                <td><label for="auto-low-cubes">Low Cubes</label></td>
-                <td><input name="auto-low-cubes" type="number" value="0" min="0" max="9" /></td>
-                <td><button onclick="addGamePiece(this)">+</button></td>
-                <td><button onclick="subtractGamePiece(this)">-</button></td>
-            </tr>
-        </table>
-        <h3>Tele</h3>
-        <hr />
-        <table>
-            <thead>
-                <td>Location</td>
-                <td>#</td>
-                <td colspan="2">Actions</td>
-            </thead>
-            <tr>
-                <td><label for="auto-high-cones">High Cones</label></td>
-                <td><input name="auto-high-cones" type="number" value="0" min="0" max="6" /></td>
-                <td><button onclick="addGamePiece(this)">+</button></td>
-                <td><button onclick="subtractGamePiece(this)">-</button></td>
-            </tr>
-            <tr>
-                <td><label for="auto-high-cubes">High Cubes</label></td>
-                <td><input name="auto-high-cubes" type="number" value="0" min="0" max="3" /></td>
-                <td><button onclick="addGamePiece(this)">+</button></td>
-                <td><button onclick="subtractGamePiece(this)">-</button></td>
-            </tr>
-            <tr>
-                <td><label for="auto-mid-cones">Mid Cones</label></td>
-                <td><input name="auto-mid-cones" type="number" value="0" min="0" max="6" /></td>
-                <td><button onclick="addGamePiece(this)">+</button></td>
-                <td><button onclick="subtractGamePiece(this)">-</button></td>
-            </tr>
-            <tr>
-                <td><label for="auto-mid-cubes">Mid Cubes</label></td>
-                <td><input name="auto-mid-cubes" type="number" value="0" min="0" max="3" /></td>
-                <td><button onclick="addGamePiece(this)">+</button></td>
-                <td><button onclick="subtractGamePiece(this)">-</button></td>
-            </tr>
-            <tr>
-                <td><label for="auto-low-cones">Low Cones</label></td>
-                <td><input name="auto-low-cones" type="number" value="0" min="0" max="9" /></td>
-                <td><button onclick="addGamePiece(this)">+</button></td>
-                <td><button onclick="subtractGamePiece(this)">-</button></td>
-            </tr>
-            <tr>
-                <td><label for="auto-low-cubes">Low Cubes</label></td>
-                <td><input name="auto-low-cubes" type="number" value="0" min="0" max="9" /></td>
-                <td><button onclick="addGamePiece(this)">+</button></td>
-                <td><button onclick="subtractGamePiece(this)">-</button></td>
-            </tr>
-        </table>
+        <form name="scouting-form">
+            <h3>Match Info</h3>
+            <hr />
+            <label for="name">Scout Name</label>
+            <input type="text" name="name" />
+            <br />
+            <label for="team">Team #</label>
+            <input type="number" name="team" />
+            <br />
+            <label for="ts">Team Scouted</label>
+            <input type="number" name="ts" />
+            <br />
+            <label for="match">Match #</label>
+            <input type="number" name="match" />
+            <br />
+            <input name="no-show" id="no-show" type="checkbox" value="1" />
+            <label for="no-show">No Show</label>
+            <h3>Auto</h3>
+            <hr />
+            <input name="pre-loaded" id="pre-loaded" type="checkbox" value="1" />
+            <label for="pre-loaded">Pre-Loaded Game Piece</label>
+            <br />
+            <input name="mobility" id="mobility" type="checkbox" value="1" />
+            <label for="mobility">Left Community (Mobility)</label>
+            <table>
+                <thead>
+                    <td>Location</td>
+                    <td>#</td>
+                    <td colspan="2">Actions</td>
+                </thead>
+                <tr>
+                    <td><label for="auto-high-cones">High Cones</label></td>
+                    <td><input name="auto-high-cones" type="number" value="0" min="0" max="6" /></td>
+                    <td><button type="button" onclick="addGamePiece(this)">+</button></td>
+                    <td><button type="button" onclick="subtractGamePiece(this)">-</button></td>
+                </tr>
+                <tr>
+                    <td><label for="auto-high-cubes">High Cubes</label></td>
+                    <td><input name="auto-high-cubes" type="number" value="0" min="0" max="3" /></td>
+                    <td><button type="button" onclick="addGamePiece(this)">+</button></td>
+                    <td><button type="button" onclick="subtractGamePiece(this)">-</button></td>
+                </tr>
+                <tr>
+                    <td><label for="auto-mid-cones">Mid Cones</label></td>
+                    <td><input name="auto-mid-cones" type="number" value="0" min="0" max="6" /></td>
+                    <td><button type="button" onclick="addGamePiece(this)">+</button></td>
+                    <td><button type="button" onclick="subtractGamePiece(this)">-</button></td>
+                </tr>
+                <tr>
+                    <td><label for="auto-mid-cubes">Mid Cubes</label></td>
+                    <td><input name="auto-mid-cubes" type="number" value="0" min="0" max="3" /></td>
+                    <td><button type="button" onclick="addGamePiece(this)">+</button></td>
+                    <td><button type="button" onclick="subtractGamePiece(this)">-</button></td>
+                </tr>
+                <tr>
+                    <td><label for="auto-low-cones">Low Cones</label></td>
+                    <td><input name="auto-low-cones" type="number" value="0" min="0" max="9" /></td>
+                    <td><button type="button" onclick="addGamePiece(this)">+</button></td>
+                    <td><button type="button" onclick="subtractGamePiece(this)">-</button></td>
+                </tr>
+                <tr>
+                    <td><label for="auto-low-cubes">Low Cubes</label></td>
+                    <td><input name="auto-low-cubes" type="number" value="0" min="0" max="9" /></td>
+                    <td><button type="button" onclick="addGamePiece(this)">+</button></td>
+                    <td><button type="button" onclick="subtractGamePiece(this)">-</button></td>
+                </tr>
+            </table>
+            <input type="radio" name="auto-charge" value="none" checked /><label>None</label> <input type="radio" name="auto-charge" value="docked" /><label>Docked</label>
+            <input type="radio" name="auto-charge" value="engaged" /><label>Docked and Engaged</label>
+            <h3>Tele</h3>
+            <hr />
+            <table>
+                <thead>
+                    <td>Location</td>
+                    <td>#</td>
+                    <td colspan="2">Actions</td>
+                </thead>
+                <tr>
+                    <td><label for="tele-high-cones">High Cones</label></td>
+                    <td><input name="tele-high-cones" type="number" value="0" min="0" max="6" /></td>
+                    <td><button type="button" onclick="addGamePiece(this)">+</button></td>
+                    <td><button type="button" onclick="subtractGamePiece(this)">-</button></td>
+                </tr>
+                <tr>
+                    <td><label for="tele-high-cubes">High Cubes</label></td>
+                    <td><input name="tele-high-cubes" type="number" value="0" min="0" max="3" /></td>
+                    <td><button type="button" onclick="addGamePiece(this)">+</button></td>
+                    <td><button type="button" onclick="subtractGamePiece(this)">-</button></td>
+                </tr>
+                <tr>
+                    <td><label for="tele-mid-cones">Mid Cones</label></td>
+                    <td><input name="tele-mid-cones" type="number" value="0" min="0" max="6" /></td>
+                    <td><button type="button" onclick="addGamePiece(this)">+</button></td>
+                    <td><button type="button" onclick="subtractGamePiece(this)">-</button></td>
+                </tr>
+                <tr>
+                    <td><label for="tele-mid-cubes">Mid Cubes</label></td>
+                    <td><input name="tele-mid-cubes" type="number" value="0" min="0" max="3" /></td>
+                    <td><button type="button" onclick="addGamePiece(this)">+</button></td>
+                    <td><button type="button" onclick="subtractGamePiece(this)">-</button></td>
+                </tr>
+                <tr>
+                    <td><label for="tele-low-cones">Low Cones</label></td>
+                    <td><input name="tele-low-cones" type="number" value="0" min="0" max="9" /></td>
+                    <td><button type="button" onclick="addGamePiece(this)">+</button></td>
+                    <td><button type="button" onclick="subtractGamePiece(this)">-</button></td>
+                </tr>
+                <tr>
+                    <td><label for="tele-low-cubes">Low Cubes</label></td>
+                    <td><input name="tele-low-cubes" type="number" value="0" min="0" max="9" /></td>
+                    <td><button type="button" onclick="addGamePiece(this)">+</button></td>
+                    <td><button type="button" onclick="subtractGamePiece(this)">-</button></td>
+                </tr>
+            </table>
+            <br />
+            <button type="submit">Submit</button>
+        </form>
     </body>
 </html>
