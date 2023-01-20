@@ -152,7 +152,16 @@
 			<h3>Qualitative</h3>
 			<hr>
 			<!-- TODO: Ratings -->
-			<!-- TODO: Comments (and breakdown) -->
+			<input type="checkbox" id="broke-down" name="broke-down" onchange="breakdownCommentBox.style=this.checked ? '' : 'display:none;'"/>
+			<label for="broke-down">Broke down?</label><br>
+			<div id="breakdownCommentBox" style="display:none"> <!-- only appears when checkbox is checked -->
+				<label for="breakdown-comments">Breakdown Elaboration:</label><br>
+				<textarea name="breakdown-comments"></textarea><br>
+			</div>
+			<label for="genearl-comments">General Comments:</label><br>
+			<textarea name="general-comments"></textarea><br>
+			<label for="defense-comments">Defense Elaboration:</label><br>
+			<textarea name="defense-comments"></textarea><br>
             <button type="submit">Submit</button>
         </form>
     </body>
