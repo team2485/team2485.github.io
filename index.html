@@ -201,8 +201,78 @@
 			<input type="checkbox" name="tele-engage-attempt" id="tele-engage-attempt"><label for="tele-engage-attempt">Tried to Engage?</label>
 			<h3>Qualitative</h3>
 			<hr>
-			<!-- TODO: Ratings -->
-
+			<div>
+				<input id="cone-speed" name="cone-speed" type="hidden" value="-1">
+				<button type="button" onclick="setQualitative(this)" value="1">1</button>
+				<button type="button" onclick="setQualitative(this)" value="2">2</button>
+				<button type="button" onclick="setQualitative(this)" value="3">3</button>
+				<button type="button" onclick="setQualitative(this)" value="4">4</button>
+				<button type="button" onclick="setQualitative(this)" value="-1">Clear</button>
+				<label for="cone-speed">- Cone Speed</label>
+			</div><br>
+			<div>
+				<input id="cube-speed" name="cube-speed" type="hidden" value="-1">
+				<button type="button" onclick="setQualitative(this)" value="1">1</button>
+				<button type="button" onclick="setQualitative(this)" value="2">2</button>
+				<button type="button" onclick="setQualitative(this)" value="3">3</button>
+				<button type="button" onclick="setQualitative(this)" value="4">4</button>
+				<button type="button" onclick="setQualitative(this)" value="-1">Clear</button>
+				<label for="cube-speed">- Cube Speed</label>
+			</div><br>
+			<div>
+				<input id="dock-speed" name="dock-speed" type="hidden" value="-1">
+				<button type="button" onclick="setQualitative(this)" value="1">1</button>
+				<button type="button" onclick="setQualitative(this)" value="2">2</button>
+				<button type="button" onclick="setQualitative(this)" value="3">3</button>
+				<button type="button" onclick="setQualitative(this)" value="4">4</button>
+				<button type="button" onclick="setQualitative(this)" value="-1">Clear</button>
+				<label for="dock-speed">- Dock Speed</label>
+			</div><br>
+			<div>
+				<input id="engage-speed" name="engage-speed" type="hidden" value="-1">
+				<button type="button" onclick="setQualitative(this)" value="1">1</button>
+				<button type="button" onclick="setQualitative(this)" value="2">2</button>
+				<button type="button" onclick="setQualitative(this)" value="3">3</button>
+				<button type="button" onclick="setQualitative(this)" value="4">4</button>
+				<button type="button" onclick="setQualitative(this)" value="-1">Clear</button>
+				<label for="engage-speed">- Engage Speed</label>
+			</div><br>
+			<div>
+				<input id="maneuverability" name="maneuverability" type="hidden" value="-1">
+				<button type="button" onclick="setQualitative(this)" value="1">1</button>
+				<button type="button" onclick="setQualitative(this)" value="2">2</button>
+				<button type="button" onclick="setQualitative(this)" value="3">3</button>
+				<button type="button" onclick="setQualitative(this)" value="4">4</button>
+				<button type="button" onclick="setQualitative(this)" value="-1">Clear</button>
+				<label for="maneuverability">- Maneuverability</label>
+			</div><br>
+			<div>
+				<input id="defense" name="defense" type="hidden" value="-1">
+				<button type="button" onclick="setQualitative(this)" value="1">1</button>
+				<button type="button" onclick="setQualitative(this)" value="2">2</button>
+				<button type="button" onclick="setQualitative(this)" value="3">3</button>
+				<button type="button" onclick="setQualitative(this)" value="4">4</button>
+				<button type="button" onclick="setQualitative(this)" value="-1">Clear</button>
+				<label for="defense">- Defense</label>
+			</div><br>
+			<div>
+				<input id="agression" name="aggression" type="hidden" value="-1">
+				<button type="button" onclick="setQualitative(this)" value="1">1</button>
+				<button type="button" onclick="setQualitative(this)" value="2">2</button>
+				<button type="button" onclick="setQualitative(this)" value="3">3</button>
+				<button type="button" onclick="setQualitative(this)" value="4">4</button>
+				<button type="button" onclick="setQualitative(this)" value="-1">Clear</button>
+				<label for="aggression">- Aggression</label>
+			</div><br>
+			<div>
+				<input id="hazard" name="hazard" type="hidden" value="-1">
+				<button type="button" onclick="setQualitative(this)" value="1">1</button>
+				<button type="button" onclick="setQualitative(this)" value="2">2</button>
+				<button type="button" onclick="setQualitative(this)" value="3">3</button>
+				<button type="button" onclick="setQualitative(this)" value="4">4</button>
+				<button type="button" onclick="setQualitative(this)" value="-1">Clear</button>
+				<label for="hazard">- Hazard</label>
+			</div><br>
 			<input type="checkbox" id="broke-down" name="broke-down" onchange="breakdownCommentBox.style=this.checked ? '' : 'display:none;'"/>
 			<label for="broke-down">Broke down?</label><br>
 			<div id="breakdownCommentBox" style="display:none"> <!-- only appears when checkbox is checked -->

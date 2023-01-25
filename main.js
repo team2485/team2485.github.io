@@ -17,3 +17,14 @@ function subtractGamePiece(e, index) {
     let v = input.value * 1; // times 1 so it copies the number, and not a reference
     input.value = Math.max(input.min, v - 1);
 }
+
+/**
+ * Handles the onclick for setting the hidden input for the qualitative value
+ */
+function setQualitative(e) {
+	let q_row = e.parentElement;
+	let input = q_row.querySelector('input');
+	let value = e.value;
+	input.value = value;
+	//TODO: set styles?
+}
