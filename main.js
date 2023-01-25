@@ -28,3 +28,12 @@ function setQualitative(e) {
 	input.value = value;
 	//TODO: set styles?
 }
+
+const form = document.forms['scouting-form'];
+function submit(e) {
+    e.preventDefault();
+    let data = new FormData(form);
+    console.log([...data.entries()]);
+    //TODO: finish submit
+}
+form.addEventListener('submit', submit);
