@@ -37,7 +37,11 @@ function submit(e) {
     //TODO: make sure data is good
     //TODO: confirm they want to submit
     //TODO: add data for checkboxes and other fields that don't typically exist
-
+    fetch(scriptURL, {
+        method: 'POST',
+        body: data,
+    }) /*TODO: handle response */;
+    //TODO: reset fields (increase match number)
     //TODO: finish submit
 }
 form.addEventListener('submit', submit);
