@@ -34,6 +34,10 @@ function submit(e) {
     e.preventDefault();
     let data = new FormData(form);
     console.log([...data.entries()]);
+    //TODO: make sure data is good
+    //TODO: confirm they want to submit
+    //TODO: add data for checkboxes and other fields that don't typically exist
+
     //TODO: finish submit
 }
 form.addEventListener('submit', submit);
