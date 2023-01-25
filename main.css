@@ -1,0 +1,19 @@
+.navbar {
+    display:flex;
+    flex-direction: row;
+    background-color: black;
+    padding:2px;
+    align-items: center;
+    padding-left:10px;
+}
+.navbar h1 {
+    margin-left: 30px;
+    color:#FFD900;
+    font-family:lato;
+}
+body {
+    margin:0;
+}
+form {
+    padding: 20px;
+}
