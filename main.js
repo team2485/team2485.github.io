@@ -48,6 +48,27 @@ function submit(e) {
         return;
     }
     //TODO: set auto-charge and tele-charge to their sets of data
+    [
+        { time: 'tele', cap: 'Tele' },
+        { time: 'end', cap: 'End' },
+    ].forEach(({ time, cap }) => {
+        let chargeInfo = data.get(time + '-charge'); //has value: none, attempted, docked, engaged
+        let engagedAttempt = data.get(time + '-engage-attempt');
+        //calculating values
+        let dockAttempt = chargeInfo == 'attempted';
+        let dockSuccess = chargeInfo == 'docked';
+        let engagedSuccess = chargeInfo == 'engaged';
+        if (engagedSuccess) {
+            engagedAttempt = true;
+        }
+        //setting new values
+        data.set(time + '-charge', null);
+        data.set(time + '-engage-attempt', null);
+        data.set(cap + 'DockAttempt', dockAttempt || dockSuccess || engagedSuccess ? 1 : 0);
+        data.set(cap + 'DockSuccess', dockSuccess || engagedSuccess ? 1 : 0);
+        data.set(cap + 'EngagedAttempt', engagedAttempt || engagedSuccess ? 1 : 0);
+        data.set(cap + 'EngagedSuccess', engagedSuccess ? 1 : 0);
+    });
     //adding fields that are empty by default
     ['NoShow', 'AutoEngagedAttempt', 'EndEngagedAttempt', 'PreLoaded', 'Mobility', 'Breakdown'].forEach((name) => {
         console.log(!data.get(name));
@@ -64,8 +85,11 @@ function submit(e) {
     [...document.querySelectorAll('input')].forEach((input) => {
         let name = input.name;
         if (!['ScoutName', 'ScoutTeamNum', 'TeamNumScouted', 'MatchNum'].includes(name)) {
-            if (input.type == 'text' || input.type == 'number') {
+            if (input.type == 'text') {
                 input.value = '';
+            }
+            if (input.type == 'number') {
+                input.value = 0;
             }
         }
     });
