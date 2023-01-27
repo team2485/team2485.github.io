@@ -36,10 +36,10 @@ function submit(e) {
     e.preventDefault();
     window.data = new FormData(form);
     //checking data
-    let name = data.get('name');
-    let teamNumber = data.get('team');
-    let teamScouted = data.get('ts');
-    let matchNumber = data.get('match');
+    let name = data.get('ScoutName');
+    let teamNumber = data.get('ScoutTeamNum');
+    let teamScouted = data.get('TeamNumScouted');
+    let matchNumber = data.get('MatchNum');
     if (!name || !teamNumber || !teamScouted || !matchNumber) {
         alert('please make sure you have provided all information (top 4 fields)');
         return;
@@ -47,13 +47,15 @@ function submit(e) {
     if (!confirm('Are you sure you want to submit?')) {
         return;
     }
+    //TODO: set auto-charge and tele-charge to their sets of data
     //adding fields that are empty by default
-    ['no-show', 'auto-engage-attempt', 'tele-engage-attempt', 'pre-loaded', 'mobility', 'broke-down'].forEach((name) => {
+    ['NoShow', 'AutoEngagedAttempt', 'EndEngagedAttempt', 'PreLoaded', 'Mobility', 'Breakdown'].forEach((name) => {
         console.log(!data.get(name));
         if (!data.get(name)) {
             data.set(name, '0');
         }
     });
+    console.log([...data.entries()]);
     fetch(scriptURL, {
         method: 'POST',
         body: data,
@@ -61,7 +63,7 @@ function submit(e) {
     //clearing fields
     [...document.querySelectorAll('input')].forEach((input) => {
         let name = input.name;
-        if (!['ScoutName', 'ScoutTeamNumber', 'TeamNumScouted', 'MatchNum'].includes(name)) {
+        if (!['ScoutName', 'ScoutTeamNum', 'TeamNumScouted', 'MatchNum'].includes(name)) {
             if (input.type == 'text' || input.type == 'number') {
                 input.value = '';
             }
