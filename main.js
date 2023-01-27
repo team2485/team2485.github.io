@@ -58,7 +58,14 @@ function submit(e) {
         method: 'POST',
         body: data,
     }) /*TODO: handle response */;
-    //TODO: reset fields (increase match number)
-    //TODO: finish submit
+    //clearing fields
+    [...document.querySelectorAll('input')].forEach((input) => {
+        let name = input.name;
+        if (!['ScoutName', 'ScoutTeamNumber', 'TeamNumScouted', 'MatchNum'].includes(name)) {
+            if (input.type == 'text' || input.type == 'number') {
+                input.value = '';
+            }
+        }
+    });
 }
 form.addEventListener('submit', submit);
