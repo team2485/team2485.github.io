@@ -32,11 +32,26 @@ function setQualitative(e) {
 const form = document.forms['scouting-form'];
 function submit(e) {
     e.preventDefault();
-    let data = new FormData(form);
-    console.log([...data.entries()]);
-    //TODO: make sure data is good
-    //TODO: confirm they want to submit
-    //TODO: add data for checkboxes and other fields that don't typically exist
+    window.data = new FormData(form);
+    //checking data
+    let name = data.get('name');
+    let teamNumber = data.get('team');
+    let teamScouted = data.get('ts');
+    let matchNumber = data.get('match');
+    if (!name || !teamNumber || !teamScouted || !matchNumber) {
+        alert('please make sure you have provided all information (top 4 fields)');
+        return;
+    }
+    if (!confirm('Are you sure you want to submit?')) {
+        return;
+    }
+    //adding fields that are empty by default
+    ['no-show', 'auto-engage-attempt', 'tele-engage-attempt', 'pre-loaded', 'mobility', 'broke-down'].forEach((name) => {
+        console.log(!data.get(name));
+        if (!data.get(name)) {
+            data.set(name, '0');
+        }
+    });
     fetch(scriptURL, {
         method: 'POST',
         body: data,
