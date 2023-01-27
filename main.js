@@ -1,3 +1,5 @@
+const scriptURL = 'https://script.google.com/a/macros/francisparker.org/s/AKfycbwlk1qG0TwOUQURlfrhIBBNyEcFfOtaThkh_1oEdZd_RoWk5CHagvy35AZNXwT4emzH/exec';
+
 /**
  * Handling the onclick for adding to the game piece count
  */
@@ -22,9 +24,48 @@ function subtractGamePiece(e, index) {
  * Handles the onclick for setting the hidden input for the qualitative value
  */
 function setQualitative(e) {
-	let q_row = e.parentElement;
-	let input = q_row.querySelector('input');
-	let value = e.value;
-	input.value = value;
-	//TODO: set styles?
+    let q_row = e.parentElement;
+    let input = q_row.querySelector('input');
+    let value = e.value;
+    input.value = value;
+    //TODO: set styles?
 }
+
+const form = document.forms['scouting-form'];
+function submit(e) {
+    e.preventDefault();
+    window.data = new FormData(form);
+    //checking data
+    let name = data.get('name');
+    let teamNumber = data.get('team');
+    let teamScouted = data.get('ts');
+    let matchNumber = data.get('match');
+    if (!name || !teamNumber || !teamScouted || !matchNumber) {
+        alert('please make sure you have provided all information (top 4 fields)');
+        return;
+    }
+    if (!confirm('Are you sure you want to submit?')) {
+        return;
+    }
+    //adding fields that are empty by default
+    ['no-show', 'auto-engage-attempt', 'tele-engage-attempt', 'pre-loaded', 'mobility', 'broke-down'].forEach((name) => {
+        console.log(!data.get(name));
+        if (!data.get(name)) {
+            data.set(name, '0');
+        }
+    });
+    fetch(scriptURL, {
+        method: 'POST',
+        body: data,
+    }) /*TODO: handle response */;
+    //clearing fields
+    [...document.querySelectorAll('input')].forEach((input) => {
+        let name = input.name;
+        if (!['ScoutName', 'ScoutTeamNumber', 'TeamNumScouted', 'MatchNum'].includes(name)) {
+            if (input.type == 'text' || input.type == 'number') {
+                input.value = '';
+            }
+        }
+    });
+}
+form.addEventListener('submit', submit);

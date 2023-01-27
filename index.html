@@ -24,27 +24,27 @@
         <form name="scouting-form">
             <h3>Match Info</h3>
             <hr />
-            <label for="name">Scout Name</label>
-            <input type="text" name="name" />
+            <label for="ScoutName">Scout Name</label>
+            <input type="text" name="ScoutName" />
             <br />
-            <label for="team">Team #</label>
-            <input type="number" name="team" />
+            <label for="ScoutTeamNum">Team #</label>
+            <input type="number" name="ScoutTeamNum" />
             <br />
-            <label for="ts">Team Scouted</label>
-            <input type="number" name="ts" />
+            <label for="TeamNumScouted">Team Scouted</label>
+            <input type="number" name="TeamNumScouted" />
             <br />
-            <label for="match">Match #</label>
-            <input type="number" name="match" />
+            <label for="MatchNum">Match #</label>
+            <input type="number" name="MatchNum" />
             <br />
-            <input name="no-show" id="no-show" type="checkbox" value="1" />
-            <label for="no-show">No Show</label>
+            <input name="NoShow" id="NoShow" type="checkbox" value="1" />
+            <label for="NoShow">No Show</label>
             <h3>Auto</h3>
             <hr />
-            <input name="pre-loaded" id="pre-loaded" type="checkbox" value="1" />
-            <label for="pre-loaded">Pre-Loaded Game Piece</label>
+            <input name="PreLoaded" id="PreLoaded" type="checkbox" value="1" />
+            <label for="PreLoaded">Pre-Loaded Game Piece</label>
             <br />
-            <input name="mobility" id="mobility" type="checkbox" value="1" />
-            <label for="mobility">Left Community (Mobility)</label>
+            <input name="Mobility" id="Mobility" type="checkbox" value="1" />
+            <label for="Mobility">Left Community (Mobility)</label>
             <table>
                 <thead>
                     <td>Location</td>
@@ -119,7 +119,7 @@
 			<input type="radio" name="auto-charge" value="docked" /><label>Docked</label><br>
             <input type="radio" name="auto-charge" value="engaged" /><label>Docked and Engaged</label><br>
 			<br>
-			<input type="checkbox" name="auto-engage-attempt" id="auto-engage-attempt"><label for="auto-engage-attempt">Tried to Engage?</label>
+			<input type="checkbox" name="auto-engage-attempt" value="1" id="auto-engage-attempt"><label for="auto-engage-attempt">Tried to Engage?</label>
             <h3>Tele</h3>
             <hr />
             <table>
@@ -198,7 +198,7 @@
 			<input type="radio" name="tele-charge" value="docked" /><label>Docked</label><br>
             <input type="radio" name="tele-charge" value="engaged" /><label>Docked and Engaged</label><br>
 			<br>
-			<input type="checkbox" name="tele-engage-attempt" id="tele-engage-attempt"><label for="tele-engage-attempt">Tried to Engage?</label>
+			<input type="checkbox" name="tele-engage-attempt" value="1" id="tele-engage-attempt"><label for="tele-engage-attempt">Tried to Engage?</label>
 			<h3>Qualitative</h3>
 			<hr>
 			<div>
@@ -273,7 +273,7 @@
 				<button type="button" onclick="setQualitative(this)" value="-1">Clear</button>
 				<label for="hazard">- Hazard</label>
 			</div><br>
-			<input type="checkbox" id="broke-down" name="broke-down" onchange="breakdownCommentBox.style=this.checked ? '' : 'display:none;'"/>
+			<input type="checkbox" id="broke-down" name="broke-down" value="1" onchange="breakdownCommentBox.style=this.checked ? '' : 'display:none;'"/>
 			<label for="broke-down">Broke down?</label><br>
 			<div id="breakdownCommentBox" style="display:none"> <!-- only appears when checkbox is checked -->
 				<label for="breakdown-comments">Breakdown Elaboration:</label><br>
