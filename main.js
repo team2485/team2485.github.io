@@ -1,3 +1,5 @@
+const scriptURL = 'https://script.google.com/a/macros/francisparker.org/s/AKfycbwlk1qG0TwOUQURlfrhIBBNyEcFfOtaThkh_1oEdZd_RoWk5CHagvy35AZNXwT4emzH/exec';
+
 /**
  * Handling the onclick for adding to the game piece count
  */
@@ -22,11 +24,11 @@ function subtractGamePiece(e) {
  * Handles the onclick for setting the hidden input for the qualitative value
  */
 function setQualitative(e) {
-	let q_row = e.parentElement;
-	let input = q_row.querySelector('input');
-	let value = e.value;
-	input.value = value;
-	//TODO: set styles?
+    let q_row = e.parentElement;
+    let input = q_row.querySelector('input');
+    let value = e.value;
+    input.value = value;
+    //TODO: set styles?
 }
 
 const form = document.forms['scouting-form'];
