@@ -67,8 +67,16 @@ function submit(e) {
             }
         }
     });
+    setCookie();
 }
 form.addEventListener('submit', submit);
+
+function setCookie(){
+    let formData = new FormData(form);
+    let name = formData.get("ScoutName");
+    let team = formData.get("ScoutTeamNum");
+    document.cookie = encodeURIComponent("name=" + name + ";team=" + team + ";expires=10000000000000000;path=/")
+}
 
 function displaySavedData(){
     let scoutName = document.querySelector("input[name=ScoutName]");
@@ -76,10 +84,10 @@ function displaySavedData(){
     let decodedCoookie = decodeURIComponent(document.cookie);
     for(element of decodedCoookie.split(';')){
         let [name, value] = element.split("=")
-        if(name == "ScoutName"){
+        if(name == "name"){
             scoutName.value = value;
         }
-        else if(name == "ScoutTeamNum"){
+        else if(name == "team"){
             teamNum.value = value;
         }
     }
