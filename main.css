@@ -17,3 +17,7 @@ body {
 form {
     padding: 20px;
 }
+
+button.starred {
+	background: yellow;
+}
