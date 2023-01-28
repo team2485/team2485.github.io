@@ -1,4 +1,4 @@
-const scriptURL = 'https://script.google.com/a/macros/francisparker.org/s/AKfycbwlk1qG0TwOUQURlfrhIBBNyEcFfOtaThkh_1oEdZd_RoWk5CHagvy35AZNXwT4emzH/exec';
+const scriptURL = 'https://script.google.com/a/macros/francisparker.org/s/AKfycbzqU1pFT8xs-EY1GeMHsYQEQaTnRBeIDDVYX29y0uGQghlLQEEEYXzZs_h4w0im0efL/exec';
 
 /**
  * Handling the onclick for adding to the game piece count
@@ -36,10 +36,10 @@ function submit(e) {
     e.preventDefault();
     window.data = new FormData(form);
     //checking data
-    let name = data.get('name');
-    let teamNumber = data.get('team');
-    let teamScouted = data.get('ts');
-    let matchNumber = data.get('match');
+    let name = data.get('ScoutName');
+    let teamNumber = data.get('ScoutTeamNum');
+    let teamScouted = data.get('TeamNumScouted');
+    let matchNumber = data.get('MatchNum');
     if (!name || !teamNumber || !teamScouted || !matchNumber) {
         alert('please make sure you have provided all information (top 4 fields)');
         return;
@@ -47,13 +47,36 @@ function submit(e) {
     if (!confirm('Are you sure you want to submit?')) {
         return;
     }
+    //TODO: set auto-charge and tele-charge to their sets of data
+    [
+        { time: 'tele', cap: 'Tele' },
+        { time: 'end', cap: 'End' },
+    ].forEach(({ time, cap }) => {
+        let chargeInfo = data.get(time + '-charge'); //has value: none, attempted, docked, engaged
+        let engagedAttempt = data.get(time + '-engage-attempt');
+        //calculating values
+        let dockAttempt = chargeInfo == 'attempted';
+        let dockSuccess = chargeInfo == 'docked';
+        let engagedSuccess = chargeInfo == 'engaged';
+        if (engagedSuccess) {
+            engagedAttempt = true;
+        }
+        //setting new values
+        data.set(time + '-charge', null);
+        data.set(time + '-engage-attempt', null);
+        data.set(cap + 'DockAttempt', dockAttempt || dockSuccess || engagedSuccess ? 1 : 0);
+        data.set(cap + 'DockSuccess', dockSuccess || engagedSuccess ? 1 : 0);
+        data.set(cap + 'EngagedAttempt', engagedAttempt || engagedSuccess ? 1 : 0);
+        data.set(cap + 'EngagedSuccess', engagedSuccess ? 1 : 0);
+    });
     //adding fields that are empty by default
-    ['no-show', 'auto-engage-attempt', 'tele-engage-attempt', 'pre-loaded', 'mobility', 'broke-down'].forEach((name) => {
+    ['NoShow', 'AutoEngagedAttempt', 'EndEngagedAttempt', 'PreLoaded', 'Mobility', 'Breakdown'].forEach((name) => {
         console.log(!data.get(name));
         if (!data.get(name)) {
             data.set(name, '0');
         }
     });
+    console.log([...data.entries()]);
     fetch(scriptURL, {
         method: 'POST',
         body: data,
@@ -61,9 +84,12 @@ function submit(e) {
     //clearing fields
     [...document.querySelectorAll('input')].forEach((input) => {
         let name = input.name;
-        if (!['ScoutName', 'ScoutTeamNumber', 'TeamNumScouted', 'MatchNum'].includes(name)) {
-            if (input.type == 'text' || input.type == 'number') {
+        if (!['ScoutName', 'ScoutTeamNum', 'TeamNumScouted', 'MatchNum'].includes(name)) {
+            if (input.type == 'text') {
                 input.value = '';
+            }
+            if (input.type == 'number') {
+                input.value = 0;
             }
         }
     });
