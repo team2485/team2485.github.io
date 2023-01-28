@@ -107,5 +107,30 @@ function submit(e) {
         .catch((error) => {
             alert('There was a problem... please try again and notify the Team 2485 Analytics department if this happens again.');
         });
+    setCookie();
 }
 form.addEventListener('submit', submit);
+
+function setCookie(){
+    let formData = new FormData(form);
+    let name = formData.get("ScoutName");
+    let team = formData.get("ScoutTeamNum");
+    document.cookie = encodeURIComponent("name=" + name + ";team=" + team + ";expires=10000000000000000;path=/")
+}
+
+function displaySavedData(){
+    let scoutName = document.querySelector("input[name=ScoutName]");
+    let teamNum = document.querySelector("input[name=ScoutTeamNum]");
+    let decodedCoookie = decodeURIComponent(document.cookie);
+    for(element of decodedCoookie.split(';')){
+        let [name, value] = element.split("=")
+        if(name == "name"){
+            scoutName.value = value;
+        }
+        else if(name == "team"){
+            teamNum.value = value;
+        }
+    }
+}
+
+displaySavedData();
