@@ -47,9 +47,9 @@ function submit(e) {
     if (!confirm('Are you sure you want to submit?')) {
         return;
     }
-    //TODO: set auto-charge and tele-charge to their sets of data
+    //disable submit button
     [
-        { time: 'tele', cap: 'Tele' },
+        { time: 'auto', cap: 'Auto' },
         { time: 'end', cap: 'End' },
     ].forEach(({ time, cap }) => {
         let chargeInfo = data.get(time + '-charge'); //has value: none, attempted, docked, engaged
@@ -80,18 +80,32 @@ function submit(e) {
     fetch(scriptURL, {
         method: 'POST',
         body: data,
-    }) /*TODO: handle response */;
-    //clearing fields
-    [...document.querySelectorAll('input')].forEach((input) => {
-        let name = input.name;
-        if (!['ScoutName', 'ScoutTeamNum', 'TeamNumScouted', 'MatchNum'].includes(name)) {
-            if (input.type == 'text') {
-                input.value = '';
+    })
+        .then((response) => {
+            console.log(response);
+            if (response.status !== 200) {
+                alert('There was a problem submitting... please try again.');
+                return;
             }
-            if (input.type == 'number') {
-                input.value = 0;
-            }
-        }
-    });
+            alert('Thank you!');
+            //clearing fields
+            [...document.querySelectorAll('input')].forEach((input) => {
+                let name = input.name;
+                if (!['ScoutName', 'ScoutTeamNum', 'TeamNumScouted', 'MatchNum'].includes(name)) {
+                    if (input.type == 'text') {
+                        input.value = '';
+                    }
+                    if (input.type == 'number') {
+                        input.value = 0;
+                    }
+                    if (input.type == 'checkbox') {
+                        input.checked = false;
+                    }
+                }
+            });
+        })
+        .catch((error) => {
+            alert('There was a problem... please try again and notify the Team 2485 Analytics department if this happens again.');
+        });
 }
 form.addEventListener('submit', submit);
