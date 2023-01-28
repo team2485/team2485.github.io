@@ -28,7 +28,18 @@ function setQualitative(e) {
     let input = q_row.querySelector('input');
     let value = e.value;
     input.value = value;
-    //TODO: set styles?
+    //styling
+    let before = true;
+    [...q_row.querySelectorAll('button')].forEach((input) => {
+        input.className = '';
+        if (e.value == -1) return;
+        if (before) {
+            input.className = 'starred';
+        }
+        if (input == e) {
+            before = false;
+        }
+    });
 }
 
 const form = document.forms['scouting-form'];
