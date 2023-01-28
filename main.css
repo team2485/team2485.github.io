@@ -8,12 +8,69 @@
 }
 .navbar h1 {
     margin-left: 30px;
+    margin-top:8px;
+    margin-bottom:8px;
     color:#FFD900;
-    font-family:lato;
+    font-size:+50px;
+    font-family: 'Teko', sans-serif;
 }
 body {
     margin:0;
 }
 form {
     padding: 20px;
+    font-family: 'Teko', sans-serif;
+}
+input {
+    background-color: #e2faff;
+    border-radius: 5px;
+    border-color:#3b3b3b;
+    font-family: 'Teko', sans-serif;
+    font-size: +15px;
+    text-align: center;
+}
+button {
+    border-color:#3b3b3b;
+    font-family: 'Teko', sans-serif;
+    font-size: +15px;
+}
+button.add {
+    background-color: #b6ffc1;
+    border-radius: 10px;
+    width:20px;
+    height:20px;
+    padding:2px;
+}
+button.add:hover {
+    background-color: #92ee9f;
+}
+button.subtract {
+    background-color:#ffc7c7;
+    border-radius:10px;
+    width:20px;
+    height:20px;
+    padding:.1px;
+}
+button.subtract:hover {
+    background-color:#f39d9d;
+}
+button.star {
+    background-color:#e2faff;
+    border-radius:5px;
+}
+button.clear {
+    background-color:#ffc7c7;
+    border-radius:5px;
+}
+button.clear:hover {
+    background-color: #f39d9d;
+}
+button.star:hover {
+    background-color: #fffb8b;
+}
+textarea {
+    background-color: #e2faff;
+}
+h3 {
+    font-size: +25px;
 }

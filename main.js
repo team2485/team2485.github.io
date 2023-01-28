@@ -29,6 +29,9 @@ function setQualitative(e) {
     let value = e.value;
     input.value = value;
     //TODO: set styles?
+function buttonColor() {
+    document.getElementById("button").style.backgroundColor= '#911';
+}
 }
 
 const form = document.forms['scouting-form'];
