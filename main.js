@@ -69,3 +69,20 @@ function submit(e) {
     });
 }
 form.addEventListener('submit', submit);
+
+function displaySavedData(){
+    let scoutName = document.querySelector("input[name=ScoutName]");
+    let teamNum = document.querySelector("input[name=ScoutTeamNum]");
+    let decodedCoookie = decodeURIComponent(document.cookie);
+    for(element of decodedCoookie.split(';')){
+        let [name, value] = element.split("=")
+        if(name == "ScoutName"){
+            scoutName.value = value;
+        }
+        else if(name == "ScoutTeamNum"){
+            teamNum.value = value;
+        }
+    }
+}
+
+displaySavedData();
