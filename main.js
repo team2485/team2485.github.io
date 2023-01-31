@@ -4,8 +4,6 @@ const scriptURL = 'https://script.google.com/a/macros/francisparker.org/s/AKfycb
  * Handling the onclick for adding to the game piece count
  */
 
-cookieDisplay();
-
 function addGamePiece(e, index) {
     let row = e.parentElement.parentElement;
     let input = row.querySelectorAll('input')[index];
@@ -163,12 +161,12 @@ function submit(e) {
             let matchNum = document.querySelector('input[name=MatchNum]');
             matchNum.value ++;
             showInputs();
+            setLocalStorage();
         })
         .catch((error) => {
             console.log(error);
             alert('There was a problem... please try again and notify the Team 2485 Analytics department if this happens again.');
         });
-    setCookie();
 }
 form.addEventListener('submit', submit);
 
@@ -176,15 +174,19 @@ function setLocalStorage(){
     let formData = new FormData(form);
     let name = formData.get("ScoutName");
     let team = formData.get("ScoutTeamNum");
+    let matchNum = formData.get("MatchNum")
     localStorage.setItem("name", name);
     localStorage.setItem("team", team);
+    localStorage.setItem("match", matchNum)
 }
 
 function displaySavedData(){
     let scoutName = document.querySelector("input[name=ScoutName]");
     let teamNum = document.querySelector("input[name=ScoutTeamNum]");
+    let matchNum = document.querySelector("input[name=MatchNum");
     scoutName.value = localStorage.getItem("name");
     teamNum.value = localStorage.getItem("team");
+    matchNum.value = localStorage.getItem("match");
 }
 
 displaySavedData();
