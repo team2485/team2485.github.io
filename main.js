@@ -31,6 +31,54 @@ function setQualitative(e) {
     //TODO: set styles?
 }
 
+/**
+ * Function to delete inputs upon submission
+ */
+function clearInputs(){
+    [...document.querySelectorAll('input')].forEach((input) => {
+        let name = input.name;
+        if (!['ScoutName', 'ScoutTeamNum', 'TeamNumScouted', 'MatchNum'].includes(name)) {
+            if (input.type == 'text') {
+                input.value = '';
+            }
+            if (input.type == 'number') {
+                input.value = 0;
+            }
+            if (input.type == 'checkbox') {
+                input.checked = false;
+            }
+        }
+    });
+}
+
+function hideInputs(){
+    let input = document.querySelector('div.not-no-show');
+    input.style = "display:none";
+}
+
+function showInputs(){
+    let input = document.querySelector('div.not-no-show');
+    input.style = "";
+    clearInputs();
+}
+
+/**
+ * Used for the NoShow input
+ * Clears form elements if NoShow clicked
+ */
+function toggleNoShowDeletions(e){
+    let input = document.querySelector('input[name=NoShow]');
+    if(input.checked == true){
+        hideInputs();
+    }
+    else{
+        showInputs();
+    }
+}
+
+let noShow = document.querySelector('input[name=NoShow]');
+noShow.addEventListener('change', toggleNoShowDeletions);
+
 const form = document.forms['scouting-form'];
 function submit(e) {
     e.preventDefault();
@@ -41,7 +89,7 @@ function submit(e) {
     let teamScouted = data.get('TeamNumScouted');
     let matchNumber = data.get('MatchNum');
     if (!name || !teamNumber || !teamScouted || !matchNumber) {
-        alert('please make sure you have provided all information (top 4 fields)');
+        alert('Please make sure you have provided all information (top 4 fields)');
         return;
     }
     if (!confirm('Are you sure you want to submit?')) {
@@ -88,23 +136,17 @@ function submit(e) {
                 return;
             }
             alert('Thank you!');
-            //clearing fields
-            [...document.querySelectorAll('input')].forEach((input) => {
-                let name = input.name;
-                if (!['ScoutName', 'ScoutTeamNum', 'TeamNumScouted', 'MatchNum'].includes(name)) {
-                    if (input.type == 'text') {
-                        input.value = '';
-                    }
-                    if (input.type == 'number') {
-                        input.value = 0;
-                    }
-                    if (input.type == 'checkbox') {
-                        input.checked = false;
-                    }
-                }
-            });
+            //resets the form
+            clearInputs();
+            //a little clunky, may edit in the (not in the foreseeable foture)
+            let teamNumScouted = document.querySelector('input[name=TeamNumScouted]');
+            teamNumScouted.value = "";
+            let matchNum = document.querySelector('input[name=MatchNum]');
+            matchNum.value ++;
+            showInputs();
         })
         .catch((error) => {
+            console.log(error);
             alert('There was a problem... please try again and notify the Team 2485 Analytics department if this happens again.');
         });
     setCookie();
