@@ -48,7 +48,7 @@ function setQualitative(e) {
 function clearInputs(){
     [...document.querySelectorAll('input')].forEach((input) => {
         let name = input.name;
-        if (!['ScoutName', 'ScoutTeamNum', 'TeamNumScouted', 'MatchNum'].includes(name)) {
+        if (!['ScoutName', 'ScoutTeamNum', 'TeamNumScouted', 'MatchNum', 'NoShow'].includes(name)) {
             if (input.type == 'text') {
                 input.value = '';
             }
