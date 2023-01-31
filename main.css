@@ -8,10 +8,10 @@
 }
 .navbar h1 {
     margin-left: 30px;
-    margin-top:8px;
-    margin-bottom:8px;
+    margin-top:6px;
+    margin-bottom:6px;
     color:#FFD900;
-    font-size:+50px;
+    font-size:+60px;
     font-family: 'Teko', sans-serif;
 }
 body {
@@ -26,33 +26,13 @@ input {
     border-radius: 5px;
     border-color:#3b3b3b;
     font-family: 'Teko', sans-serif;
-    font-size: +15px;
+    font-size: +25px;
     text-align: center;
 }
 button {
     border-color:#3b3b3b;
     font-family: 'Teko', sans-serif;
-    font-size: +15px;
-}
-button.add {
-    background-color: #b6ffc1;
-    border-radius: 10px;
-    width:20px;
-    height:20px;
-    padding:2px;
-}
-button.add:hover {
-    background-color: #92ee9f;
-}
-button.subtract {
-    background-color:#ffc7c7;
-    border-radius:10px;
-    width:20px;
-    height:20px;
-    padding:.1px;
-}
-button.subtract:hover {
-    background-color:#f39d9d;
+    font-size: +30px;
 }
 button.star {
     background-color:#e2faff;
@@ -72,5 +52,52 @@ textarea {
     background-color: #e2faff;
 }
 h3 {
+    font-size: +40px;
+    margin-top:50px;
+    margin-bottom:10px;
+    margin-left:10px;
+    margin-right: 10px;
+}
+.svg {
+    width:auto;
+    height:30px;
+    max-height: 30px;
+    max-width: 30px;
+    cursor:pointer;
+    vertical-align:middle;
+    float:right;
+}
+.MatchInfo {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+.MatchInfo div{
+    vertical-align: middle;
+    font-size: +30px;
+}
+.success {
+    background-color: #adffb9;
+}
+.failure {
+    background-color: #ffc7c7;
+}
+tr {
+    font-size: +30px; 
+    padding-right:15px;
+    padding-left:15px;
+}
+td {
+    padding-right:2px;
+    padding-left:2px;
+}
+label {
+    font-size: +25px;
+}
+table {
+    margin-top:20px;
+}
+span {
     font-size: +25px;
 }
