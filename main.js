@@ -144,7 +144,6 @@ function submit(e) {
             alert('Thank you!');
             //resets the form
             clearInputs();
-            //a little clunky, may edit in the (not in the foreseeable foture)
             let teamNumScouted = document.querySelector('input[name=TeamNumScouted]');
             teamNumScouted.value = "";
             let matchNum = document.querySelector('input[name=MatchNum]');
