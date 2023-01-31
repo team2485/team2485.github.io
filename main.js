@@ -51,22 +51,28 @@ function clearInputs(){
     });
 }
 
+/**
+ * Sets display to none; clears values
+ */
 function hideInputs(){
     let input = document.querySelector('div.not-no-show');
     input.style = "display:none";
+    clearInputs();
 }
 
+/**
+ * shows all inputs.
+ */
 function showInputs(){
     let input = document.querySelector('div.not-no-show');
     input.style = "";
-    clearInputs();
 }
 
 /**
  * Used for the NoShow input
  * Clears form elements if NoShow clicked
  */
-function toggleNoShowDeletions(e){
+function noShowToggleHandler(e){
     let input = document.querySelector('input[name=NoShow]');
     if(input.checked == true){
         hideInputs();
@@ -77,7 +83,7 @@ function toggleNoShowDeletions(e){
 }
 
 let noShow = document.querySelector('input[name=NoShow]');
-noShow.addEventListener('change', toggleNoShowDeletions);
+noShow.addEventListener('change', noShowToggleHandler);
 
 const form = document.forms['scouting-form'];
 function submit(e) {
