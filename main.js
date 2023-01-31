@@ -3,6 +3,9 @@ const scriptURL = 'https://script.google.com/a/macros/francisparker.org/s/AKfycb
 /**
  * Handling the onclick for adding to the game piece count
  */
+
+cookieDisplay();
+
 function addGamePiece(e, index) {
     let row = e.parentElement.parentElement;
     let input = row.querySelectorAll('input')[index];
@@ -169,26 +172,19 @@ function submit(e) {
 }
 form.addEventListener('submit', submit);
 
-function setCookie(){
+function setLocalStorage(){
     let formData = new FormData(form);
     let name = formData.get("ScoutName");
     let team = formData.get("ScoutTeamNum");
-    document.cookie = encodeURIComponent("name=" + name + ";team=" + team + ";expires=10000000000000000;path=/")
+    localStorage.setItem("name", name);
+    localStorage.setItem("team", team);
 }
 
 function displaySavedData(){
     let scoutName = document.querySelector("input[name=ScoutName]");
     let teamNum = document.querySelector("input[name=ScoutTeamNum]");
-    let decodedCoookie = decodeURIComponent(document.cookie);
-    for(element of decodedCoookie.split(';')){
-        let [name, value] = element.split("=")
-        if(name == "name"){
-            scoutName.value = value;
-        }
-        else if(name == "team"){
-            teamNum.value = value;
-        }
-    }
+    scoutName.value = localStorage.getItem("name");
+    teamNum.value = localStorage.getItem("team");
 }
 
 displaySavedData();
