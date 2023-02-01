@@ -64,33 +64,34 @@ function clearInputs(){
 }
 
 /**
- * Sets display to none; clears values
- */
-function hideInputs(){
-    let input = document.querySelector('div.not-no-show');
-    input.style = "display:none";
-    clearInputs();
-}
-
-/**
- * shows all inputs.
- */
-function showInputs(){
-    let input = document.querySelector('div.not-no-show');
-    input.style = "";
-}
-
-/**
  * Used for the NoShow input
  * Clears form elements if NoShow clicked
  */
 function noShowToggleHandler(e){
-    let input = document.querySelector('input[name=NoShow]');
-    if(input.checked == true){
-        hideInputs();
+    let input = document.querySelector('div.not-no-show');
+    let inputCheckbox = document.querySelector('input[name=NoShow]');
+    if(inputCheckbox.checked == true){
+        input.style = "display:none";
+        //saves the data needed
+        let info = {};
+        [...document.querySelectorAll('input')].forEach(input =>{
+            info[input.name] = input.value;
+        })
+        let finalizedInfo = JSON.stringify(info);
+        localStorage.setItem("form", finalizedInfo);
+        clearInputs();
     }
     else{
-        showInputs();
+        input.style = "";
+        //displays saved data
+        let dataInfo = localStorage.getItem("form");
+        let finalizedDataInfo = JSON.parse(dataInfo);
+        
+        for(let name in finalizedDataInfo){
+            let queryString = "input[name=" + name + "]";
+            let dataValue = document.querySelector(queryString);
+            dataValue.value = finalizedDataInfo[name];
+        }
     }
 }
 
@@ -160,7 +161,8 @@ function submit(e) {
             teamNumScouted.value = "";
             let matchNum = document.querySelector('input[name=MatchNum]');
             matchNum.value ++;
-            showInputs();
+            let input = document.querySelector('div.not-no-show');
+            input.style = "";
             setLocalStorage();
         })
         .catch((error) => {
