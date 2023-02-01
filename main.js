@@ -161,8 +161,6 @@ function submit(e) {
             teamNumScouted.value = "";
             let matchNum = document.querySelector('input[name=MatchNum]');
             matchNum.value ++;
-            let input = document.querySelector('div.not-no-show');
-            input.style = "";
             setLocalStorage();
         })
         .catch((error) => {
