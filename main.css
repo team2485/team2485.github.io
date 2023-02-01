@@ -19,10 +19,29 @@ input {
     text-align: center;
     width: 20vw;
 }
-
+input[type=checkbox], input[type=radio] {
+	width: auto;
+}
 textarea {
     background-color: #e2faff;
 }
+@media (max-width: 700px) {
+	input {
+		width: auto;
+	}	
+}
+.check-super-box {
+	display: inline-block;
+    background-color: #eee;
+    padding: 5px 15px;
+    margin: 0 50px;
+    border-radius: 8px;
+    border: 2px solid gray;
+}
+.check-super-box:hover {
+	background-color: #ddd;
+}
+
 button {
     border-color: #3b3b3b;
     font-family: 'Teko', sans-serif;

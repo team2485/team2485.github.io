@@ -98,3 +98,8 @@ function submit(e) {
     });
 }
 form.addEventListener('submit', submit);
+
+//check-super-box code
+[...document.querySelectorAll(".check-super-box")].forEach(csb => csb.addEventListener('click', (e) => {
+	e.target.querySelector('input').checked = !e.target.querySelector('input').checked;
+}))
