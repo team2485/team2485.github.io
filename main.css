@@ -1,82 +1,101 @@
-.navbar {
-    display:flex;
-    flex-direction: row;
-    background-color: black;
-    padding:2px;
-    align-items: center;
-    padding-left:10px;
-}
-.navbar h1 {
-    margin-left: 30px;
-    margin-top:6px;
-    margin-bottom:6px;
-    color:#FFD900;
-    font-size:+60px;
-    font-family: 'Teko', sans-serif;
-}
+/* Default Styles */
+html,
 body {
-    margin:0;
+    margin: 0;
+    padding: 0;
 }
+
 form {
     padding: 20px;
     font-family: 'Teko', sans-serif;
 }
+
 input {
     background-color: #e2faff;
     border-radius: 5px;
-    border-color:#3b3b3b;
+    border-color: #3b3b3b;
     font-family: 'Teko', sans-serif;
-    font-size: +25px;
+    font-size: 25px;
     text-align: center;
+    width: 20vw;
 }
-button {
-    border-color:#3b3b3b;
-    font-family: 'Teko', sans-serif;
-    font-size: +30px;
-}
-button.star {
-    background-color:#e2faff;
-    border-radius:5px;
-}
-button.clear {
-    background-color:#ffc7c7;
-    border-radius:5px;
-}
-button.clear:hover {
-    background-color: #f39d9d;
-}
-button.star:hover {
-    background-color: #fffb8b;
-}
+
 textarea {
     background-color: #e2faff;
 }
+button {
+    border-color: #3b3b3b;
+    font-family: 'Teko', sans-serif;
+    font-size: 30px;
+}
+
 h3 {
-    font-size: +40px;
-    margin-top:50px;
-    margin-bottom:10px;
-    margin-left:10px;
+    font-size: 40px;
+    margin-top: 50px;
+    margin-bottom: 10px;
+    margin-left: 10px;
     margin-right: 10px;
 }
+
 .svg {
-    width:auto;
-    height:30px;
+    width: auto;
+    height: 30px;
     max-height: 30px;
     max-width: 30px;
-    cursor:pointer;
-    vertical-align:middle;
-    float:right;
+    cursor: pointer;
+    vertical-align: middle;
+    float: right;
 }
-.MatchInfo {
+/* Navbar styles */
+.navbar {
+    display: flex;
+    flex-direction: row;
+    background-color: black;
+    padding: 2px;
+    align-items: center;
+    padding-left: 10px;
+}
+
+.navbar h1 {
+    margin-left: 30px;
+    margin-top: 6px;
+    margin-bottom: 6px;
+    color: #ffd900;
+    font-size: +60px;
+    font-family: 'Teko', sans-serif;
+}
+
+/* Qualitative Styles */
+button.star {
+    background-color: #e2faff;
+    border-radius: 5px;
+}
+
+button.clear {
+    background-color: #ffc7c7;
+    border-radius: 5px;
+}
+
+button.clear:hover {
+    background-color: #f39d9d;
+}
+
+button.star:hover {
+    background-color: #fffb8b;
+}
+
+/* Match Info */
+.match-info {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: space-evenly;
 }
-.MatchInfo div{
-    vertical-align: middle;
-    font-size: +30px;
+.match-info > div {
+    display: flex;
+    flex-direction: column;
 }
+/* Game Piece Input Table */
 .success {
     background-color: #adffb9;
 }
@@ -84,19 +103,19 @@ h3 {
     background-color: #ffc7c7;
 }
 tr {
-    font-size: +30px; 
-    padding-right:15px;
-    padding-left:15px;
+    font-size: 30px;
+    padding-right: 15px;
+    padding-left: 15px;
 }
 td {
-    padding-right:2px;
-    padding-left:2px;
+    padding-right: 2px;
+    padding-left: 2px;
 }
 label {
     font-size: +25px;
 }
 table {
-    margin-top:20px;
+    margin-top: 20px;
 }
 span {
     font-size: +25px;
