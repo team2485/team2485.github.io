@@ -157,6 +157,10 @@ function submit(e) {
             alert('Thank you!');
             //resets the form
             clearInputs();
+            let noShow = document.querySelector('input[name=NoShow]');
+            noShow.checked = false;
+            localStorage.removeItem("form");
+            noShowToggleHandler();
             let teamNumScouted = document.querySelector('input[name=TeamNumScouted]');
             teamNumScouted.value = "";
             let matchNum = document.querySelector('input[name=MatchNum]');
