@@ -100,12 +100,21 @@ function submit(e) {
 form.addEventListener('submit', submit);
 
 //check-super-box code
-[...document.querySelectorAll(".check-super-box")].forEach(csb => csb.addEventListener('click', (e) => {
-	e.target.querySelector('input').checked = !e.target.querySelector('input').checked;
-}))
+[...document.querySelectorAll('.check-super-box')].forEach((csb) =>
+    csb.addEventListener('click', (e) => {
+        let input = csb.querySelector('input');
+        input.checked = !input.checked;
+        csb.className = input.checked ? 'check-super-box checked' : 'check-super-box';
+    })
+);
 //radio-super-box
+//TODO: select both
 let radioButtonBoxes = document.querySelector('.radio-super-box').children;
-[...radioButtonBoxes].forEach(button => button.addEventListener('click', e => {
-	let input = e.target.querySelector('input');
-	input.checked = !input.checked;
-}));
+[...radioButtonBoxes].forEach((button) =>
+    button.addEventListener('click', (e) => {
+        let input = button.querySelector('input');
+        input.checked = true;
+        [...radioButtonBoxes].forEach((b) => (b.className = ''));
+        input.parentElement.className = 'checked';
+    })
+);

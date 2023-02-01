@@ -132,7 +132,7 @@
 			<br>
 			<span>Charge Station:</span><br>
 			<div class="radio-super-box">
-				<div>
+				<div class="checked">
 					<input type="radio" name="auto-charge" id="auto-charge-none" value="none" checked />
 					<label for="auto-charge-none">None</label>
 				</div>
@@ -227,10 +227,24 @@
 			<h3>End Game</h3>
 			<hr>
 			<span>Charge Station:</span><br>
-            <input type="radio" name="end-charge" value="none" checked /><label>None</label><br>
-            <input type="radio" name="end-charge" value="attempted" /><label>Attempt + Fail</label><br>
-			<input type="radio" name="end-charge" value="docked" /><label>Docked</label><br>
-            <input type="radio" name="end-charge" value="engaged" /><label>Docked and Engaged</label><br>
+			<div class="radio-super-box">
+				<div class="checked">
+					<input type="radio" name="end-charge" id="end-charge-none" value="none" checked />
+					<label for="end-charge-none">None</label>
+				</div>
+				<div>
+					<input type="radio" name="end-charge" id="end-charge-attempted" value="attempted" />
+					<label for="end-charge-attempted">Attempt + Fail</label>
+				</div>
+				<div>
+					<input type="radio" name="end-charge" id="end-charge-docked" value="docked" />
+					<label for="end-charge-docked">Docked</label>
+				</div>
+				<div>
+					<input type="radio" name="end-charge" id="end-charge-engaged" value="engaged" />
+					<label for="end-charge-engaged">Docked and Engaged</label>
+				</div>
+			</div>
 			<br>
 			<input type="checkbox" name="end-engage-attempt" value="1" id="end-engage-attempt"><label for="end-engage-attempt">Tried to Engage?</label>
 			<h3>Qualitative</h3>
