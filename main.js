@@ -103,3 +103,9 @@ form.addEventListener('submit', submit);
 [...document.querySelectorAll(".check-super-box")].forEach(csb => csb.addEventListener('click', (e) => {
 	e.target.querySelector('input').checked = !e.target.querySelector('input').checked;
 }))
+//radio-super-box
+let radioButtonBoxes = document.querySelector('.radio-super-box').children;
+[...radioButtonBoxes].forEach(button => button.addEventListener('click', e => {
+	let input = e.target.querySelector('input');
+	input.checked = !input.checked;
+}));

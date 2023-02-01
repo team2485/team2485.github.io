@@ -52,11 +52,14 @@
 			</div>
             <h3>Auto</h3>
             <hr />
-            <input name="PreLoaded" id="PreLoaded" type="checkbox" value="1" />
-            <label for="PreLoaded">Pre-Loaded Game Piece</label>
-            <br />
-            <input name="Mobility" id="Mobility" type="checkbox" value="1" />
-            <label for="Mobility">Left Community (Mobility)</label>
+			<div class="check-super-box">
+				<input name="PreLoaded" id="PreLoaded" type="checkbox" value="1" />
+				<label for="PreLoaded">Pre-Loaded Game Piece</label>
+			</div>
+			<div class="check-super-box">
+				<input name="Mobility" id="Mobility" type="checkbox" value="1" />
+				<label for="Mobility">Left Community (Mobility)</label>
+			</div>
             <br>
             <table>
                 <thead>
@@ -128,12 +131,29 @@
             </table>
 			<br>
 			<span>Charge Station:</span><br>
-            <input type="radio" name="auto-charge" value="none" checked /><label>None</label><br>
-            <input type="radio" name="auto-charge" value="attempt" /><label>Attempt + Failure</label><br>
-			<input type="radio" name="auto-charge" value="docked" /><label>Docked</label><br>
-            <input type="radio" name="auto-charge" value="engaged" /><label>Docked and Engaged</label><br>
+			<div class="radio-super-box">
+				<div>
+					<input type="radio" name="auto-charge" id="auto-charge-none" value="none" checked />
+					<label for="auto-charge-none">None</label>
+				</div>
+				<div>
+					<input type="radio" name="auto-charge" id="auto-charge-attempt" value="attempt" />
+					<label for="auto-charge-attempt">Attempt + Failure</label>
+				</div>
+				<div>
+					<input type="radio" name="auto-charge" id="auto-charge-docked" value="docked" />
+					<label for="auto-charge-docked">Docked</label>
+				</div>
+				<div>
+					<input type="radio" name="auto-charge" id="auto-charge-engaged" value="engaged" />
+					<label for="auto-charge-engaged">Docked and Engaged</label>
+				</div>
+			</div>
 			<br>
-			<input type="checkbox" name="auto-engage-attempt" value="1" id="auto-engage-attempt"><label for="auto-engage-attempt">Tried to Engage?</label>
+			<div class="check-super-box">
+				<input type="checkbox" name="auto-engage-attempt" value="1" id="auto-engage-attempt">
+				<label for="auto-engage-attempt">Tried to Engage?</label>
+			</div>
             <h3>Tele</h3>
             <hr />
             <table>

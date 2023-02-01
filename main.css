@@ -34,12 +34,29 @@ textarea {
 	display: inline-block;
     background-color: #eee;
     padding: 5px 15px;
-    margin: 0 50px;
+    margin: 5px 50px;
     border-radius: 8px;
     border: 2px solid gray;
 }
 .check-super-box:hover {
 	background-color: #ddd;
+}
+.radio-super-box {
+	display: flex;
+	flex-direction: row;
+    border-radius: 8px;
+	padding: 5px;
+    border: 2px solid gray;
+	justify-content: space-evenly;
+}
+.radio-super-box > div {
+	border: 2px solid gray;
+	background: #eee;
+	border-radius: 5px;
+	padding: 7px;
+}
+div:has(input:checked) {
+	background: green;
 }
 
 button {
