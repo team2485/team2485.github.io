@@ -75,7 +75,14 @@ function noShowToggleHandler(e){
         //saves the data needed
         let info = {};
         [...document.querySelectorAll('input')].forEach(input =>{
-            info[input.name] = input.value;
+            if(input.name != "NoShow"){
+                if(input.type == "checkbox" || input.type == "radio"){
+                    info[input.name] = input.checked;
+                }
+                else{
+                    info[input.name] = input.value;
+                }
+            }
         })
         let finalizedInfo = JSON.stringify(info);
         localStorage.setItem("form", finalizedInfo);
@@ -90,7 +97,12 @@ function noShowToggleHandler(e){
         for(let name in finalizedDataInfo){
             let queryString = "input[name=" + name + "]";
             let dataValue = document.querySelector(queryString);
-            dataValue.value = finalizedDataInfo[name];
+            if(dataValue.type == "radio" || dataValue.type == "checkbox"){
+                dataValue.checked = finalizedDataInfo[name];
+            }
+            else{
+                dataValue.value = finalizedDataInfo[name];
+            }
         }
     }
 }
