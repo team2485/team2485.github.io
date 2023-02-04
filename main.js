@@ -29,11 +29,11 @@ function setQualitative(e) {
     input.value = value;
     //styling
     let before = true;
-    [...q_row.querySelectorAll('button')].forEach((input) => {
-        input.className = '';
+    [...q_row.querySelectorAll('div')].forEach((input) => {
+        input.className = 'star';
         if (e.value == -1) return;
         if (before) {
-            input.className = 'starred';
+            input.className = 'star starred';
         }
         if (input == e) {
             before = false;
