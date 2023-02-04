@@ -13,11 +13,17 @@ form {
 input {
     background-color: #e2faff;
     border-radius: 5px;
-    border-color: #3b3b3b;
+    border: 2px solid #3b3b3b;
     font-family: 'Teko', sans-serif;
     font-size: 25px;
     text-align: center;
-    width: 20vw;
+}
+input:focus {
+	border-color: rgb(87, 171, 254);
+	outline: none;
+}
+input:focus:invalid {
+	border-color: rgb(184, 0, 0);
 }
 
 input[type=checkbox], input[type=radio] {
@@ -25,11 +31,6 @@ input[type=checkbox], input[type=radio] {
 }
 textarea {
     background-color: #e2faff;
-}
-@media (max-width: 700px) {
-	input {
-		width: auto;
-	}	
 }
 .check-super-box {
 	display: inline-block;
@@ -50,14 +51,15 @@ textarea {
 	display: flex;
 	flex-direction: row;
     border-radius: 8px;
-	padding: 5px;
-    border: 2px solid gray;
+	background: #eee;
 	justify-content: space-evenly;
+	padding: 2px;
+	gap: 3px;
 }
 .radio-super-box > div {
 	border: 2px solid gray;
-	background: #eee;
-	border-radius: 5px;
+	flex-grow: 1;
+	border-radius: 2px;
 	padding: 7px;
 }
 .radio-super-box > div.checked {
@@ -110,14 +112,18 @@ h3 {
 }
 
 /* Qualitative Styles */
-button.star {
-    background-color: #e2faff;
-    border-radius: 5px;
+div.star {
+	display: inline-block;
+	font-size: 48px;
 }
 
 button.clear {
     background-color: #ffc7c7;
     border-radius: 5px;
+	vertical-align: super;
+}
+button.clear~label{
+	vertical-align: super;
 }
 
 button.clear:hover {
