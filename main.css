@@ -13,10 +13,17 @@ form {
 input {
     background-color: #e2faff;
     border-radius: 5px;
-    border-color: #3b3b3b;
+    border: 2px solid #3b3b3b;
     font-family: 'Teko', sans-serif;
     font-size: 25px;
     text-align: center;
+}
+input:focus {
+	border-color: rgb(87, 171, 254);
+	outline: none;
+}
+input:focus:invalid {
+	border-color: rgb(184, 0, 0);
 }
 input[type=checkbox], input[type=radio] {
 	width: auto;
