@@ -324,8 +324,11 @@
 				<button type="button" class="clear" onclick="setQualitative(this)" value="-1">Clear</button>
 				<label for="Hazard">- Hazard</label>
 			</div><br>
-			<input type="checkbox" id="broke-down" name="broke-down" value="1" onchange="breakdownCommentBox.style=this.checked ? '' : 'display:none;'"/>
-			<label for="broke-down">Broke down?</label><br>
+			<div class="check-super-box">
+				<input type="checkbox" id="broke-down" name="broke-down" value="1" onchange="breakdownCommentBox.style=this.checked ? '' : 'display:none;'"/>
+				<label for="broke-down">Broke down?</label>
+			</div>
+			<br>
 			<div id="breakdownCommentBox" style="display:none"> <!-- only appears when checkbox is checked -->
 				<label for="BreakdownCom">Breakdown Elaboration:</label><br>
 				<textarea name="BreakdownCom"></textarea><br>
