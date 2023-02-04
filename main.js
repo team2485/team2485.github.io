@@ -25,7 +25,7 @@ function subtractGamePiece(e, index) {
 function setQualitative(e) {
     let q_row = e.parentElement;
     let input = q_row.querySelector('input');
-    let value = e.value;
+    let value = e.getAttribute('value');
     input.value = value;
     //styling
     let before = true;
@@ -44,7 +44,7 @@ function setQualitative(e) {
 /**
  * Function to delete inputs upon submission
  */
-function clearInputs(){
+function clearInputs() {
     [...document.querySelectorAll('input')].forEach((input) => {
         let name = input.name;
         if (!['ScoutName', 'ScoutTeamNum', 'TeamNumScouted', 'MatchNum', 'NoShow'].includes(name)) {
@@ -64,30 +64,29 @@ function clearInputs(){
 /**
  * Sets display to none; clears values
  */
-function hideInputs(){
+function hideInputs() {
     let input = document.querySelector('div.not-no-show');
-    input.style = "display:none";
+    input.style = 'display:none';
     clearInputs();
 }
 
 /**
  * shows all inputs.
  */
-function showInputs(){
+function showInputs() {
     let input = document.querySelector('div.not-no-show');
-    input.style = "";
+    input.style = '';
 }
 
 /**
  * Used for the NoShow input
  * Clears form elements if NoShow clicked
  */
-function noShowToggleHandler(e){
+function noShowToggleHandler(e) {
     let input = document.querySelector('input[name=NoShow]');
-    if(input.checked == true){
+    if (input.checked == true) {
         hideInputs();
-    }
-    else{
+    } else {
         showInputs();
     }
 }
@@ -155,9 +154,9 @@ function submit(e) {
             //resets the form
             clearInputs();
             let teamNumScouted = document.querySelector('input[name=TeamNumScouted]');
-            teamNumScouted.value = "";
+            teamNumScouted.value = '';
             let matchNum = document.querySelector('input[name=MatchNum]');
-            matchNum.value ++;
+            matchNum.value++;
             showInputs();
         })
         .catch((error) => {
@@ -168,26 +167,46 @@ function submit(e) {
 }
 form.addEventListener('submit', submit);
 
-function setCookie(){
+function setCookie() {
     let formData = new FormData(form);
-    let name = formData.get("ScoutName");
-    let team = formData.get("ScoutTeamNum");
-    document.cookie = encodeURIComponent("name=" + name + ";team=" + team + ";expires=10000000000000000;path=/")
+    let name = formData.get('ScoutName');
+    let team = formData.get('ScoutTeamNum');
+    document.cookie = encodeURIComponent('name=' + name + ';team=' + team + ';expires=10000000000000000;path=/');
 }
 
-function displaySavedData(){
-    let scoutName = document.querySelector("input[name=ScoutName]");
-    let teamNum = document.querySelector("input[name=ScoutTeamNum]");
+function displaySavedData() {
+    let scoutName = document.querySelector('input[name=ScoutName]');
+    let teamNum = document.querySelector('input[name=ScoutTeamNum]');
     let decodedCoookie = decodeURIComponent(document.cookie);
-    for(element of decodedCoookie.split(';')){
-        let [name, value] = element.split("=")
-        if(name == "name"){
+    for (element of decodedCoookie.split(';')) {
+        let [name, value] = element.split('=');
+        if (name == 'name') {
             scoutName.value = value;
-        }
-        else if(name == "team"){
+        } else if (name == 'team') {
             teamNum.value = value;
         }
     }
 }
 
 displaySavedData();
+
+//check-super-box code
+[...document.querySelectorAll('.check-super-box')].forEach((csb) =>
+    csb.addEventListener('click', (e) => {
+        let input = csb.querySelector('input');
+        input.checked = !input.checked;
+        csb.className = input.checked ? 'check-super-box checked' : 'check-super-box';
+    })
+);
+//radio-super-box
+document.querySelectorAll('.radio-super-box').forEach((radioSuperBoxes) => {
+    let radioButtonBoxes = radioSuperBoxes.children;
+    [...radioButtonBoxes].forEach((button) =>
+        button.addEventListener('click', (e) => {
+            let input = button.querySelector('input');
+            input.checked = true;
+            [...radioButtonBoxes].forEach((b) => (b.className = ''));
+            input.parentElement.className = 'checked';
+        })
+    );
+});
