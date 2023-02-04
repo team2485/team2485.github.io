@@ -104,14 +104,18 @@ h3 {
 }
 
 /* Qualitative Styles */
-button.star {
-    background-color: #e2faff;
-    border-radius: 5px;
+div.star {
+	display: inline-block;
+	font-size: 48px;
 }
 
 button.clear {
     background-color: #ffc7c7;
     border-radius: 5px;
+	vertical-align: super;
+}
+button.clear~label{
+	vertical-align: super;
 }
 
 button.clear:hover {

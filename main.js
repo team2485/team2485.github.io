@@ -26,12 +26,9 @@ function subtractGamePiece(e, index) {
 function setQualitative(e) {
     let q_row = e.parentElement;
     let input = q_row.querySelector('input');
-    let value = e.value;
+    let value = e.getAttribute('value');
     input.value = value;
     //TODO: set styles?
-function buttonColor() {
-    document.getElementById("button").style.backgroundColor= '#911';
-}
 }
 
 const form = document.forms['scouting-form'];
