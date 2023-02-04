@@ -1,5 +1,4 @@
 const scriptURL = 'https://script.google.com/a/macros/francisparker.org/s/AKfycbzqU1pFT8xs-EY1GeMHsYQEQaTnRBeIDDVYX29y0uGQghlLQEEEYXzZs_h4w0im0efL/exec';
-
 /**
  * Handling the onclick for adding to the game piece count
  */

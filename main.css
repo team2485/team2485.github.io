@@ -1,3 +1,98 @@
+/* Default Styles */
+html,
+body {
+    margin: 0;
+    padding: 0;
+}
+
+form {
+    padding: 20px;
+    font-family: 'Teko', sans-serif;
+}
+
+input {
+    background-color: #e2faff;
+    border-radius: 5px;
+    border: 2px solid #3b3b3b;
+    font-family: 'Teko', sans-serif;
+    font-size: 25px;
+    text-align: center;
+}
+input:focus {
+	border-color: rgb(87, 171, 254);
+	outline: none;
+}
+input:focus:invalid {
+	border-color: rgb(184, 0, 0);
+}
+
+input[type=checkbox], input[type=radio] {
+	width: auto;
+}
+textarea {
+    background-color: #e2faff;
+}
+.check-super-box {
+	display: inline-block;
+    background-color: #eee;
+    padding: 5px 15px;
+    margin: 5px 50px;
+    border-radius: 8px;
+    border: 2px solid gray;
+}
+.check-super-box:hover {
+	background-color: #ddd;
+}
+.check-super-box.checked {
+	background: #adffb9;
+}
+
+.radio-super-box {
+	display: flex;
+	flex-direction: row;
+    border-radius: 8px;
+	background: #eee;
+	justify-content: space-evenly;
+	padding: 2px;
+	gap: 3px;
+}
+.radio-super-box > div {
+	border: 2px solid gray;
+	flex-grow: 1;
+	border-radius: 2px;
+	padding: 7px;
+}
+.radio-super-box > div.checked {
+	background: #adffb9;
+}
+.radio-super-box > div:hover:not(.checked) {
+	background: #ddd;
+}
+
+button {
+    border-color: #3b3b3b;
+    font-family: 'Teko', sans-serif;
+    font-size: 30px;
+}
+
+h3 {
+    font-size: 40px;
+    margin-top: 50px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.svg {
+    width: auto;
+    height: 30px;
+    max-height: 30px;
+    max-width: 30px;
+    cursor: pointer;
+    vertical-align: middle;
+    float: right;
+}
+/* Navbar styles */
 .navbar {
     display:flex;
     flex-direction: row;
