@@ -28,8 +28,73 @@ function setQualitative(e) {
     let input = q_row.querySelector('input');
     let value = e.getAttribute('value');
     input.value = value;
-    //TODO: set styles?
+    //styling
+    let before = true;
+    [...q_row.querySelectorAll('button')].forEach((input) => {
+        input.className = '';
+        if (e.value == -1) return;
+        if (before) {
+            input.className = 'starred';
+        }
+        if (input == e) {
+            before = false;
+        }
+    });
 }
+
+/**
+ * Function to delete inputs upon submission
+ */
+function clearInputs(){
+    [...document.querySelectorAll('input')].forEach((input) => {
+        let name = input.name;
+        if (!['ScoutName', 'ScoutTeamNum', 'TeamNumScouted', 'MatchNum', 'NoShow'].includes(name)) {
+            if (input.type == 'text') {
+                input.value = '';
+            }
+            if (input.type == 'number') {
+                input.value = 0;
+            }
+            if (input.type == 'checkbox') {
+                input.checked = false;
+            }
+        }
+    });
+}
+
+/**
+ * Sets display to none; clears values
+ */
+function hideInputs(){
+    let input = document.querySelector('div.not-no-show');
+    input.style = "display:none";
+    clearInputs();
+}
+
+/**
+ * shows all inputs.
+ */
+function showInputs(){
+    let input = document.querySelector('div.not-no-show');
+    input.style = "";
+}
+
+/**
+ * Used for the NoShow input
+ * Clears form elements if NoShow clicked
+ */
+function noShowToggleHandler(e){
+    let input = document.querySelector('input[name=NoShow]');
+    if(input.checked == true){
+        hideInputs();
+    }
+    else{
+        showInputs();
+    }
+}
+
+let noShow = document.querySelector('input[name=NoShow]');
+noShow.addEventListener('change', noShowToggleHandler);
 
 const form = document.forms['scouting-form'];
 function submit(e) {
@@ -41,15 +106,15 @@ function submit(e) {
     let teamScouted = data.get('TeamNumScouted');
     let matchNumber = data.get('MatchNum');
     if (!name || !teamNumber || !teamScouted || !matchNumber) {
-        alert('please make sure you have provided all information (top 4 fields)');
+        alert('Please make sure you have provided all information (top 4 fields)');
         return;
     }
     if (!confirm('Are you sure you want to submit?')) {
         return;
     }
-    //TODO: set auto-charge and tele-charge to their sets of data
+    //disable submit button
     [
-        { time: 'tele', cap: 'Tele' },
+        { time: 'auto', cap: 'Auto' },
         { time: 'end', cap: 'End' },
     ].forEach(({ time, cap }) => {
         let chargeInfo = data.get(time + '-charge'); //has value: none, attempted, docked, engaged
@@ -80,19 +145,27 @@ function submit(e) {
     fetch(scriptURL, {
         method: 'POST',
         body: data,
-    }) /*TODO: handle response */;
-    //clearing fields
-    [...document.querySelectorAll('input')].forEach((input) => {
-        let name = input.name;
-        if (!['ScoutName', 'ScoutTeamNum', 'TeamNumScouted', 'MatchNum'].includes(name)) {
-            if (input.type == 'text') {
-                input.value = '';
+    })
+        .then((response) => {
+            console.log(response);
+            if (response.status !== 200) {
+                alert('There was a problem submitting... please try again.');
+                return;
             }
-            if (input.type == 'number') {
-                input.value = 0;
-            }
-        }
-    });
+            alert('Thank you!');
+            //resets the form
+            clearInputs();
+            let teamNumScouted = document.querySelector('input[name=TeamNumScouted]');
+            teamNumScouted.value = "";
+            let matchNum = document.querySelector('input[name=MatchNum]');
+            matchNum.value ++;
+            showInputs();
+        })
+        .catch((error) => {
+            console.log(error);
+            alert('There was a problem... please try again and notify the Team 2485 Analytics department if this happens again.');
+        });
+    setCookie();
 }
 form.addEventListener('submit', submit);
 
@@ -116,3 +189,26 @@ document.querySelectorAll('.radio-super-box').forEach((radioSuperBoxes) => {
         })
     );
 });
+function setCookie(){
+    let formData = new FormData(form);
+    let name = formData.get("ScoutName");
+    let team = formData.get("ScoutTeamNum");
+    document.cookie = encodeURIComponent("name=" + name + ";team=" + team + ";expires=10000000000000000;path=/")
+}
+
+function displaySavedData(){
+    let scoutName = document.querySelector("input[name=ScoutName]");
+    let teamNum = document.querySelector("input[name=ScoutTeamNum]");
+    let decodedCoookie = decodeURIComponent(document.cookie);
+    for(element of decodedCoookie.split(';')){
+        let [name, value] = element.split("=")
+        if(name == "name"){
+            scoutName.value = value;
+        }
+        else if(name == "team"){
+            teamNum.value = value;
+        }
+    }
+}
+
+displaySavedData();
