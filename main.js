@@ -80,6 +80,7 @@ function submit(e) {
         method: 'POST',
         body: data,
     }) /*TODO: handle response */;
+    // test
     //clearing fields
     [...document.querySelectorAll('input')].forEach((input) => {
         let name = input.name;
@@ -94,7 +95,6 @@ function submit(e) {
     });
 }
 form.addEventListener('submit', submit);
-// test
 
 //check-super-box code
 [...document.querySelectorAll('.check-super-box')].forEach((csb) =>
