@@ -108,13 +108,14 @@ form.addEventListener('submit', submit);
     })
 );
 //radio-super-box
-//TODO: select both
-let radioButtonBoxes = document.querySelector('.radio-super-box').children;
-[...radioButtonBoxes].forEach((button) =>
-    button.addEventListener('click', (e) => {
-        let input = button.querySelector('input');
-        input.checked = true;
-        [...radioButtonBoxes].forEach((b) => (b.className = ''));
-        input.parentElement.className = 'checked';
-    })
-);
+document.querySelectorAll('.radio-super-box').forEach((radioSuperBoxes) => {
+    let radioButtonBoxes = radioSuperBoxes.children;
+    [...radioButtonBoxes].forEach((button) =>
+        button.addEventListener('click', (e) => {
+            let input = button.querySelector('input');
+            input.checked = true;
+            [...radioButtonBoxes].forEach((b) => (b.className = ''));
+            input.parentElement.className = 'checked';
+        })
+    );
+});

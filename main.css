@@ -17,18 +17,12 @@ input {
     font-family: 'Teko', sans-serif;
     font-size: 25px;
     text-align: center;
-    width: 20vw;
 }
 input[type=checkbox], input[type=radio] {
 	width: auto;
 }
 textarea {
     background-color: #e2faff;
-}
-@media (max-width: 700px) {
-	input {
-		width: auto;
-	}	
 }
 .check-super-box {
 	display: inline-block;
@@ -49,14 +43,15 @@ textarea {
 	display: flex;
 	flex-direction: row;
     border-radius: 8px;
-	padding: 5px;
-    border: 2px solid gray;
+	background: #eee;
 	justify-content: space-evenly;
+	padding: 2px;
+	gap: 3px;
 }
 .radio-super-box > div {
 	border: 2px solid gray;
-	background: #eee;
-	border-radius: 5px;
+	flex-grow: 1;
+	border-radius: 2px;
 	padding: 7px;
 }
 .radio-super-box > div.checked {
