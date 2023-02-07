@@ -3,7 +3,6 @@ const scriptURL = 'https://script.google.com/a/macros/francisparker.org/s/AKfycb
 /**
  * Handling the onclick for adding to the game piece count
  */
-
 function addGamePiece(e, index) {
     let row = e.parentElement.parentElement;
     let input = row.querySelectorAll('input')[index];
@@ -49,18 +48,24 @@ function setQualitative(e) {
 function clearInputs(){
     [...document.querySelectorAll('input')].forEach((input) => {
         let name = input.name;
-        if (!['ScoutName', 'ScoutTeamNum', 'TeamNumScouted', 'MatchNum', 'NoShow'].includes(name)) {
+        if (!['ScoutName', 'ScoutTeamNum', 'MatchNum', 'NoShow'].includes(name)) {
             if (input.type == 'text') {
                 input.value = '';
             }
-            if (input.type == 'number') {
+            else if (input.type == 'number') {
                 input.value = 0;
             }
-            if (input.type == 'checkbox') {
+            else if (input.type == 'checkbox') {
                 input.checked = false;
+            }
+            else if(input.type == 'hidden'){
+                input.value = -1;
             }
         }
     });
+    [...document.querySelectorAll('.starred')].forEach((starredButton) =>{
+        starredButton.classList.remove('starred');
+    })
 }
 
 /**
@@ -85,13 +90,13 @@ function noShowToggleHandler(e){
             }
         })
         let finalizedInfo = JSON.stringify(info);
-        localStorage.setItem("form", finalizedInfo);
+        localStorage.setItem("inGameData", finalizedInfo);
         clearInputs();
     }
     else{
         input.style = "";
         //displays saved data
-        let dataInfo = localStorage.getItem("form");
+        let dataInfo = localStorage.getItem("inGameData");
         let finalizedDataInfo = JSON.parse(dataInfo);
         
         for(let name in finalizedDataInfo){
@@ -171,10 +176,8 @@ function submit(e) {
             clearInputs();
             let noShow = document.querySelector('input[name=NoShow]');
             noShow.checked = false;
-            localStorage.removeItem("form");
+            localStorage.removeItem("inGameData");
             noShowToggleHandler();
-            let teamNumScouted = document.querySelector('input[name=TeamNumScouted]');
-            teamNumScouted.value = "";
             let matchNum = document.querySelector('input[name=MatchNum]');
             matchNum.value ++;
             setLocalStorage();
