@@ -113,9 +113,18 @@ h3 {
 }
 
 /* Qualitative Styles */
+.star {
+	color: black;
+}
+div.starred {
+	color: #ffd900;
+}
 div.star {
 	display: inline-block;
 	font-size: 48px;
+}
+div.star:hover {
+	color: #ffea00;
 }
 
 button.clear {
@@ -178,6 +187,7 @@ table {
 span {
     font-size: 25px;
 }
+/* Other */
 button[type=submit] {
 	padding: 3px 15px;
 	border-radius: 5px;
