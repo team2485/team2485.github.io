@@ -43,12 +43,12 @@ function setQualitative(e) {
 }
 
 /**
- * Function to delete inputs upon submission
+ * Function to delete inputs upon submission and no show toggle
  */
 function clearInputs(){
     [...document.querySelectorAll('input')].forEach((input) => {
         let name = input.name;
-        if (!['ScoutName', 'ScoutTeamNum', 'MatchNum', 'NoShow'].includes(name)) {
+        if (!['ScoutName', 'ScoutTeamNum', 'TeamNumScouted', 'MatchNum', 'NoShow'].includes(name)) {
             if (input.type == 'text') {
                 input.value = '';
             }
@@ -178,6 +178,8 @@ function submit(e) {
             noShow.checked = false;
             localStorage.removeItem("inGameData");
             noShowToggleHandler();
+            let teamNumScouted = document.querySelector('input[name=TeamNumScouted]');
+            teamNumScouted.value = "";
             let matchNum = document.querySelector('input[name=MatchNum]');
             matchNum.value ++;
             setLocalStorage();
