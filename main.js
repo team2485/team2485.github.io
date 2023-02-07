@@ -85,8 +85,13 @@ function noShowToggleHandler(e){
         let info = {};
         [...document.querySelectorAll('input')].forEach(input =>{
             if(input.name != "NoShow"){
-                if(input.type == "checkbox" || input.type == "radio"){
+                if(input.type == "checkbox"){
                     info[input.name] = input.checked;
+                }
+                else if(input.type == "radio"){
+                    if(input.checked == true){
+                        info[input.name] = input.value;
+                    }
                 }
                 else{
                     info[input.name] = input.value;
@@ -106,18 +111,29 @@ function noShowToggleHandler(e){
         for(let name in finalizedDataInfo){
             let queryString = "input[name=" + name + "]";
             let dataValue = document.querySelector(queryString);
-            if(dataValue.type == "radio" || dataValue.type == "checkbox"){
+            if(dataValue.type == "checkbox"){
                 dataValue.checked = finalizedDataInfo[name];
+            }
+            else if(dataValue.type == "radio"){
+                let checkedRadioButton = document.querySelector("[value=" + finalizedDataInfo[name] + "]");
+                console.log(checkedRadioButton.checked);
+                checkedRadioButton.checked = true;
+                console.log(checkedRadioButton.checked);
             }
             else{
                 dataValue.value = finalizedDataInfo[name];
             }
         }
+        
     }
 }
 
 let noShow = document.querySelector('input[name=NoShow]');
 noShow.addEventListener('change', noShowToggleHandler);
+
+let radioButton = document.querySelector('input[value=engaged]');
+console.log(radioButton);
+radioButton.addEventListener('checked', () => console.log("changed!"));
 
 const form = document.forms['scouting-form'];
 function submit(e) {
