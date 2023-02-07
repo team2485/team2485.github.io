@@ -66,6 +66,10 @@ function clearInputs(){
     [...document.querySelectorAll('.starred')].forEach((starredButton) =>{
         starredButton.classList.remove('starred');
     })
+    let checkedRadioAuto = document.querySelector('#auto-charge-none');
+    let checkedRadioEndgame = document.querySelector('#end-charge-none');
+    checkedRadioAuto.checked = true;
+    checkedRadioEndgame.checked = true;
 }
 
 /**
