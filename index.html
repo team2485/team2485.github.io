@@ -66,46 +66,57 @@
                         <label for="Mobility">Left Community (Mobility)</label>
                     </div>
                     <br />
-                    <!-- TODO: Rearrange Table -->
                     <div class="h-flex">
                         <div>
                             <h3><span class="cone">⧍</span>Cones<span class="cone">⧍</span></h3>
                             <hr />
                             <table>
                                 <thead>
-                                    <td>Spot</td>
-                                    <td colspan="3">Success</td>
-                                    <td colspan="3">Failure</td>
+                                    <td>Row</td>
+                                    <td>Success</td>
+                                    <td>Failure</td>
                                 </thead>
                                 <tr>
                                     <td><label for="HighAutoConeSuccess">High</label></td>
                                     <label hidden for="HighAutoConeFailure">High</label>
-                                    <td><input name="HighAutoConeSuccess" type="number" class="success" value="0" min="0" max="6" /></td>
-                                    <td><img src="resources/plus.svg" class="add svg" onclick="addGamePiece(this,0)" width="20px" height="20px" /></td>
-                                    <td><img src="resources/minus.svg" class="subtract svg" onclick="subtractGamePiece(this,0)" width="20px" height="20px" /></td>
-                                    <td><input name="HighAutoConeFailure" type="number" class="failure" value="0" min="0" max="6" /></td>
-                                    <td><img src="resources/plus.svg" class="add svg" onclick="addGamePiece(this,1)" width="20px" height="20px" /></td>
-                                    <td><img src="resources/minus.svg" class="subtract svg" onclick="subtractGamePiece(this,1)" width="20px" height="20px" /></td>
+                                    <td>
+                                        <img src="resources/minus.svg" class="subtract svg" onclick="subtractGamePiece(this,0)" width="20px" height="20px" />
+                                        <input name="HighAutoConeSuccess" type="number" class="success" value="0" min="0" max="6" />
+                                        <img src="resources/plus.svg" class="add svg" onclick="addGamePiece(this,0)" width="20px" height="20px" />
+                                    </td>
+                                    <td>
+                                        <img src="resources/minus.svg" class="subtract svg" onclick="subtractGamePiece(this,1)" width="20px" height="20px" />
+                                        <input name="HighAutoConeFailure" type="number" class="failure" value="0" min="0" max="6" />
+                                        <img src="resources/plus.svg" class="add svg" onclick="addGamePiece(this,1)" width="20px" height="20px" />
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td><label for="MidAutoConeSuccess">Mid</label></td>
                                     <label hidden for="MidAutoConeFailure">Mid</label>
-                                    <td><input name="MidAutoConeSuccess" type="number" class="success" value="0" min="0" max="6" /></td>
-                                    <td><img src="resources/plus.svg" class="add svg" onclick="addGamePiece(this,0)" /></td>
-                                    <td><img src="resources/minus.svg" class="subtract svg" onclick="subtractGamePiece(this,0)" /></td>
-                                    <td><input name="MidAutoConeFailure" type="number" class="failure" value="0" min="0" max="6" /></td>
-                                    <td><img src="resources/plus.svg" class="add svg" onclick="addGamePiece(this,1)" /></td>
-                                    <td><img src="resources/minus.svg" class="subtract svg" onclick="subtractGamePiece(this,1)" /></td>
+                                    <td>
+                                        <img src="resources/minus.svg" class="subtract svg" onclick="subtractGamePiece(this,0)" />
+                                        <input name="MidAutoConeSuccess" type="number" class="success" value="0" min="0" max="6" />
+                                        <img src="resources/plus.svg" class="add svg" onclick="addGamePiece(this,0)" />
+                                    </td>
+                                    <td>
+                                        <img src="resources/minus.svg" class="subtract svg" onclick="subtractGamePiece(this,1)" />
+                                        <input name="MidAutoConeFailure" type="number" class="failure" value="0" min="0" max="6" />
+                                        <img src="resources/plus.svg" class="add svg" onclick="addGamePiece(this,1)" />
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td><label for="LowAutoConeSuccess">Low</label></td>
                                     <label hidden for="LowAutoConeFailure">Low</label>
-                                    <td><input name="LowAutoConeSuccess" type="number" class="success" value="0" min="0" max="9" /></td>
-                                    <td><img src="resources/plus.svg" class="add svg" onclick="addGamePiece(this,0)" /></td>
-                                    <td><img src="resources/minus.svg" class="subtract svg" onclick="subtractGamePiece(this,0)" /></td>
-                                    <td><input name="LowAutoConeFailure" type="number" class="failure" value="0" min="0" max="9" /></td>
-                                    <td><img src="resources/plus.svg" class="add svg" onclick="addGamePiece(this,1)" /></td>
-                                    <td><img src="resources/minus.svg" class="subtract svg" onclick="subtractGamePiece(this,1)" /></td>
+                                    <td>
+                                        <img src="resources/minus.svg" class="subtract svg" onclick="subtractGamePiece(this,0)" />
+                                        <input name="LowAutoConeSuccess" type="number" class="success" value="0" min="0" max="9" />
+                                        <img src="resources/plus.svg" class="add svg" onclick="addGamePiece(this,0)" />
+                                    </td>
+                                    <td>
+                                        <img src="resources/minus.svg" class="subtract svg" onclick="subtractGamePiece(this,1)" />
+                                        <input name="LowAutoConeFailure" type="number" class="failure" value="0" min="0" max="9" />
+                                        <img src="resources/plus.svg" class="add svg" onclick="addGamePiece(this,1)" />
+                                    </td>
                                 </tr>
                             </table>
                         </div>
@@ -114,9 +125,9 @@
                             <hr />
                             <table>
                                 <thead>
-                                    <td>Spot</td>
-                                    <td colspan="1">Success</td>
-                                    <td colspan="1">Failure</td>
+                                    <td>Row</td>
+                                    <td>Success</td>
+                                    <td>Failure</td>
                                 </thead>
                                 <tr>
                                     <td><label for="HighAutoCubeFailure">High</label></td>
@@ -197,6 +208,7 @@
                         <div>
                             <h3><span class="cone">⧍</span>Cones<span class="cone">⧍</span></h3>
                             <hr />
+                    <!-- TODO: Rearrange Table -->
                             <table>
                                 <thead>
                                     <td>Location</td>
