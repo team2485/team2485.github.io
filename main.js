@@ -104,7 +104,7 @@ function noShowToggleHandler(e){
     }
     else{
         input.style = "";
-        //displays saved data
+        //displays saved data [ISSUE]
         let dataInfo = localStorage.getItem("inGameData");
         let finalizedDataInfo = JSON.parse(dataInfo);
         
@@ -114,11 +114,9 @@ function noShowToggleHandler(e){
             if(dataValue.type == "checkbox"){
                 dataValue.checked = finalizedDataInfo[name];
             }
-            else if(dataValue.type == "radio"){
+            else if(dataValue.type == "radio"){ // ISSUE HERE!
                 let checkedRadioButton = document.querySelector("[value=" + finalizedDataInfo[name] + "]");
-                console.log(checkedRadioButton.checked);
                 checkedRadioButton.checked = true;
-                console.log(checkedRadioButton.checked);
             }
             else{
                 dataValue.value = finalizedDataInfo[name];
