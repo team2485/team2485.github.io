@@ -110,7 +110,8 @@ function submit(e) {
     if (!confirm('Are you sure you want to submit?')) {
         return;
     }
-    //disable submit button
+    let submitButton = document.querySelector ("#submit")
+    submitButton.disabled = true;
     [
         { time: 'auto', cap: 'Auto' },
         { time: 'end', cap: 'End' },
@@ -152,6 +153,7 @@ function submit(e) {
             }
             alert('Thank you!');
             //resets the form
+            submitButton.disabled = false;
             clearInputs();
             let teamNumScouted = document.querySelector('input[name=TeamNumScouted]');
             teamNumScouted.value = '';
