@@ -47,9 +47,11 @@
                     </div>
                 </div>
                 <br />
-                <div class="check-super-box">
-                    <input name="NoShow" id="NoShow" type="checkbox" value="1" />
-                    <label for="NoShow">No Show</label>
+                <div class="h-flex">
+                    <div class="check-super-box">
+                        <input name="NoShow" id="NoShow" type="checkbox" value="1" />
+                        <label for="NoShow">No Show</label>
+                    </div>
                 </div>
             </div>
             <div class="not-no-show">
@@ -57,13 +59,15 @@
                 <div class="big-box" id="auto-info">
                     <h3>Auto</h3>
                     <hr />
-                    <div class="check-super-box">
-                        <input name="PreLoaded" id="PreLoaded" type="checkbox" value="1" />
-                        <label for="PreLoaded">Pre-Loaded Game Piece</label>
-                    </div>
-                    <div class="check-super-box">
-                        <input name="Mobility" id="Mobility" type="checkbox" value="1" />
-                        <label for="Mobility">Left Community (Mobility)</label>
+                    <div class="h-flex">
+                        <div class="check-super-box">
+                            <input name="PreLoaded" id="PreLoaded" type="checkbox" value="1" />
+                            <label for="PreLoaded">Pre-Loaded Game Piece</label>
+                        </div>
+                        <div class="check-super-box">
+                            <input name="Mobility" id="Mobility" type="checkbox" value="1" />
+                            <label for="Mobility">Left Community (Mobility)</label>
+                        </div>
                     </div>
                     <br />
                     <div class="h-flex">
@@ -169,154 +173,186 @@
                                         <img src="resources/minus.svg" class="subtract svg" onclick="subtractGamePiece(this,1)" />
                                         <input name="LowAutoCubeFailure" type="number" class="failure" value="0" min="0" max="9" />
                                         <img src="resources/plus.svg" class="add svg" onclick="addGamePiece(this,1)" />
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div>
+                            <span>Charge Station:</span><br />
+                            <div class="radio-super-box">
+                                <div class="checked">
+                                    <input type="radio" name="auto-charge" id="auto-charge-none" value="none" checked />
+                                    <label for="auto-charge-none">None</label>
+                                </div>
+                                <div>
+                                    <input type="radio" name="auto-charge" id="auto-charge-attempt" value="attempt" />
+                                    <label for="auto-charge-attempt">Attempt + Failure</label>
+                                </div>
+                                <div>
+                                    <input type="radio" name="auto-charge" id="auto-charge-docked" value="docked" />
+                                    <label for="auto-charge-docked">Docked</label>
+                                </div>
+                                <div>
+                                    <input type="radio" name="auto-charge" id="auto-charge-engaged" value="engaged" />
+                                    <label for="auto-charge-engaged">Docked and Engaged</label>
+                                </div>
+                            </div>
+                            <div class="h-flex">
+                                <div class="check-super-box">
+                                    <input type="checkbox" name="auto-engage-attempt" value="1" id="auto-engage-attempt" />
+                                    <label for="auto-engage-attempt">Tried to Engage?</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="h-flex">
+                    <!-- Tele Info -->
+                    <div class="big-box" id="tele-info">
+                        <h3>Tele</h3>
+                        <hr />
+                        <div class="h-flex">
+                            <div>
+                                <h3><span class="cone">⧍</span>Cones<span class="cone">⧍</span></h3>
+                                <hr />
+                                <table>
+                                    <thead>
+                                        <td>Row</td>
+                                        <td>Success</td>
+                                        <td>Failure</td>
+                                    </thead>
+                                    <tr>
+                                        <td><label for="HighTeleConeSuccess">High</label></td>
+                                        <label hidden for="HighTeleConeFailure">High</label>
+                                        <td>
+                                            <img src="resources/minus.svg" class="subtract svg" onclick="subtractGamePiece(this,0)" width="20px" height="20px" />
+                                            <input name="HighTeleConeSuccess" type="number" class="success" value="0" min="0" max="6" />
+                                            <img src="resources/plus.svg" class="add svg" onclick="addGamePiece(this,0)" width="20px" height="20px" />
+                                        </td>
+                                        <td>
+                                            <img src="resources/minus.svg" class="subtract svg" onclick="subtractGamePiece(this,1)" width="20px" height="20px" />
+                                            <input name="HighTeleConeFailure" type="number" class="failure" value="0" min="0" max="15" />
+                                            <img src="resources/plus.svg" class="add svg" onclick="addGamePiece(this,1)" width="20px" height="20px" />
+                                        </td>
                                     </tr>
-                                </tr>
-                            </table>
+                                    <tr>
+                                        <td><label for="MidTeleConeSuccess">Mid</label></td>
+                                        <label hidden for="MidTeleConeFailure">Mid</label>
+                                        <td>
+                                            <img src="resources/minus.svg" class="subtract svg" onclick="subtractGamePiece(this,0)" />
+                                            <input name="MidTeleConeSuccess" type="number" class="success" value="0" min="0" max="6" />
+                                            <img src="resources/plus.svg" class="add svg" onclick="addGamePiece(this,0)" />
+                                        </td>
+                                        <td>
+                                            <img src="resources/minus.svg" class="subtract svg" onclick="subtractGamePiece(this,1)" />
+                                            <input name="MidTeleConeFailure" type="number" class="failure" value="0" min="0" max="15" />
+                                            <img src="resources/plus.svg" class="add svg" onclick="addGamePiece(this,1)" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><label for="LowTeleConeSuccess">Low</label></td>
+                                        <label hidden for="LowTeleConeFailure">Low</label>
+                                        <td>
+                                            <img src="resources/minus.svg" class="subtract svg" onclick="subtractGamePiece(this,0)" />
+                                            <input name="LowTeleConeSuccess" type="number" class="success" value="0" min="0" max="9" />
+                                            <img src="resources/plus.svg" class="add svg" onclick="addGamePiece(this,0)" />
+                                        </td>
+                                        <td>
+                                            <img src="resources/minus.svg" class="subtract svg" onclick="subtractGamePiece(this,1)" />
+                                            <input name="LowTeleConeFailure" type="number" class="failure" value="0" min="0" max="15" />
+                                            <img src="resources/plus.svg" class="add svg" onclick="addGamePiece(this,1)" />
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div>
+                                <h3>🟪Cubes🟪</h3>
+                                <hr />
+                                <table>
+                                    <thead>
+                                        <td>Row</td>
+                                        <td>Success</td>
+                                        <td>Failure</td>
+                                    </thead>
+                                    <tr>
+                                        <td><label for="HighTeleCubeSuccess">High</label></td>
+                                        <label hidden for="HighTeleCubeFailure">High</label>
+                                        <td>
+                                            <img src="resources/minus.svg" class="subtract svg" onclick="subtractGamePiece(this,0)" />
+                                            <input name="HighTeleCubeSuccess" type="number" class="success" value="0" min="0" max="3" />
+                                            <img src="resources/plus.svg" class="add svg" onclick="addGamePiece(this,0)" />
+                                        </td>
+                                        <td>
+                                            <img src="resources/minus.svg" class="subtract svg" onclick="subtractGamePiece(this,1)" />
+                                            <input name="HighTeleCubeFailure" type="number" class="failure" value="0" min="0" max="15" />
+                                            <img src="resources/plus.svg" class="add svg" onclick="addGamePiece(this,1)" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><label for="MidTeleCubeSuccess">Mid</label></td>
+                                        <label hidden for="MidTeleCubeFailure">Mid</label>
+                                        <td>
+                                            <img src="resources/minus.svg" class="subtract svg" onclick="subtractGamePiece(this,0)" />
+                                            <input name="MidTeleCubeSuccess" type="number" class="success" value="0" min="0" max="3" />
+                                            <img src="resources/plus.svg" class="add svg" onclick="addGamePiece(this,0)" />
+                                        </td>
+                                        <td>
+                                            <img src="resources/minus.svg" class="subtract svg" onclick="subtractGamePiece(this,1)" />
+                                            <input name="MidTeleCubeFailure" type="number" class="failure" value="0" min="0" max="15" />
+                                            <img src="resources/plus.svg" class="add svg" onclick="addGamePiece(this,1)" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><label for="LowTeleCubeSuccess">Low</label></td>
+                                        <label hidden for="LowTeleCubeFailure">Low</label>
+                                        <td>
+                                            <img src="resources/minus.svg" class="subtract svg" onclick="subtractGamePiece(this,0)" />
+                                            <input name="LowTeleCubeSuccess" type="number" class="success" value="0" min="0" max="9" />
+                                            <img src="resources/plus.svg" class="add svg" onclick="addGamePiece(this,0)" />
+                                        </td>
+                                        <td>
+                                            <img src="resources/minus.svg" class="subtract svg" onclick="subtractGamePiece(this,1)" />
+                                            <input name="LowTeleCubeFailure" type="number" class="failure" value="0" min="0" max="15" />
+                                            <img src="resources/plus.svg" class="add svg" onclick="addGamePiece(this,1)" />
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
                         </div>
                     </div>
-                    <br />
-                    <span>Charge Station:</span><br />
-                    <div class="radio-super-box">
-                        <div class="checked">
-                            <input type="radio" name="auto-charge" id="auto-charge-none" value="none" checked />
-                            <label for="auto-charge-none">None</label>
+                    <!-- End Info -->
+                    <div class="big-box" id="end-info">
+                        <h3>End Game</h3>
+                        <hr />
+                        <span>Charge Station:</span><br />
+                        <div class="radio-super-box">
+                            <div class="checked">
+                                <input type="radio" name="end-charge" id="end-charge-none" value="none" checked />
+                                <label for="end-charge-none">None</label>
+                            </div>
+                            <div>
+                                <input type="radio" name="end-charge" id="end-charge-attempted" value="attempted" />
+                                <label for="end-charge-attempted">Attempt + Fail</label>
+                            </div>
+                            <div>
+                                <input type="radio" name="end-charge" id="end-charge-docked" value="docked" />
+                                <label for="end-charge-docked">Docked</label>
+                            </div>
+                            <div>
+                                <input type="radio" name="end-charge" id="end-charge-engaged" value="engaged" />
+                                <label for="end-charge-engaged">Docked and Engaged</label>
+                            </div>
                         </div>
-                        <div>
-                            <input type="radio" name="auto-charge" id="auto-charge-attempt" value="attempt" />
-                            <label for="auto-charge-attempt">Attempt + Failure</label>
+                        <div class="h-flex">
+                            <div class="check-super-box">
+                                <input type="checkbox" name="end-engage-attempt" value="1" id="end-engage-attempt" />
+                                <label for="end-engage-attempt">Tried to Engage?</label>
+                            </div>
+                            <div class="check-super-box">
+                                <input type="checkbox" id="Parked" name="Parked" value="1" />
+                                <label for="Parked">Parked?</label>
+                            </div>
                         </div>
-                        <div>
-                            <input type="radio" name="auto-charge" id="auto-charge-docked" value="docked" />
-                            <label for="auto-charge-docked">Docked</label>
-                        </div>
-                        <div>
-                            <input type="radio" name="auto-charge" id="auto-charge-engaged" value="engaged" />
-                            <label for="auto-charge-engaged">Docked and Engaged</label>
-                        </div>
-                    </div>
-                    <br />
-                    <div class="check-super-box">
-                        <input type="checkbox" name="auto-engage-attempt" value="1" id="auto-engage-attempt" />
-                        <label for="auto-engage-attempt">Tried to Engage?</label>
-                    </div>
-                </div>
-                <!-- Tele Info -->
-                <div class="big-box" id="tele-info">
-                    <h3>Tele</h3>
-                    <hr />
-                    <div class="h-flex">
-                        <div>
-                            <h3><span class="cone">⧍</span>Cones<span class="cone">⧍</span></h3>
-                            <hr />
-                    <!-- TODO: Rearrange Table -->
-                            <table>
-                                <thead>
-                                    <td>Location</td>
-                                    <td colspan="3">Success</td>
-                                    <td colspan="3">Failure</td>
-                                </thead>
-                                <tr>
-                                    <td><label for="HighTeleConeSuccess">High</label></td>
-                                    <label hidden for="HighTeleConeFailure">High</label>
-                                    <td><input name="HighTeleConeSuccess" type="number" class="success" value="0" min="0" max="6" /></td>
-                                    <td><img src="resources/plus.svg" class="add svg" onclick="addGamePiece(this,0)" width="20px" height="20px" /></td>
-                                    <td><img src="resources/minus.svg" class="subtract svg" onclick="subtractGamePiece(this,0)" width="20px" height="20px" /></td>
-                                    <td><input name="HighTeleConeFailure" type="number" class="failure" value="0" min="0" max="15" /></td>
-                                    <td><img src="resources/plus.svg" class="add svg" onclick="addGamePiece(this,1)" width="20px" height="20px" /></td>
-                                    <td><img src="resources/minus.svg" class="subtract svg" onclick="subtractGamePiece(this,1)" width="20px" height="20px" /></td>
-                                </tr>
-                                <tr>
-                                    <td><label for="MidTeleConeSuccess">Mid</label></td>
-                                    <label hidden for="MidTeleConeFailure">Mid</label>
-                                    <td><input name="MidTeleConeSuccess" type="number" class="success" value="0" min="0" max="6" /></td>
-                                    <td><img src="resources/plus.svg" class="add svg" onclick="addGamePiece(this,0)" /></td>
-                                    <td><img src="resources/minus.svg" class="subtract svg" onclick="subtractGamePiece(this,0)" /></td>
-                                    <td><input name="MidTeleConeFailure" type="number" class="failure" value="0" min="0" max="15" /></td>
-                                    <td><img src="resources/plus.svg" class="add svg" onclick="addGamePiece(this,1)" /></td>
-                                    <td><img src="resources/minus.svg" class="subtract svg" onclick="subtractGamePiece(this,1)" /></td>
-                                </tr>
-                                <tr>
-                                    <td><label for="LowTeleConeSuccess">Low</label></td>
-                                    <label hidden for="LowTeleConeFailure">Low</label>
-                                    <td><input name="LowTeleConeSuccess" type="number" class="success" value="0" min="0" max="9" /></td>
-                                    <td><img src="resources/plus.svg" class="add svg" onclick="addGamePiece(this,0)" /></td>
-                                    <td><img src="resources/minus.svg" class="subtract svg" onclick="subtractGamePiece(this,0)" /></td>
-                                    <td><input name="LowTeleConeFailure" type="number" class="failure" value="0" min="0" max="15" /></td>
-                                    <td><img src="resources/plus.svg" class="add svg" onclick="addGamePiece(this,1)" /></td>
-                                    <td><img src="resources/minus.svg" class="subtract svg" onclick="subtractGamePiece(this,1)" /></td>
-                                </tr>
-                            </table>
-                        </div>
-                        <div>
-                            <h3>🟪Cubes🟪</h3>
-                            <hr />
-                            <table>
-                                <thead>
-                                    <td>Location</td>
-                                    <td colspan="3">Success</td>
-                                    <td colspan="3">Failure</td>
-                                </thead>
-                                <tr>
-                                    <td><label for="HighTeleCubeSuccess">High</label></td>
-                                    <label hidden for="HighTeleCubeFailure">High</label>
-                                    <td><input name="HighTeleCubeSuccess" type="number" class="success" value="0" min="0" max="3" /></td>
-                                    <td><img src="resources/plus.svg" class="add svg" onclick="addGamePiece(this,0)" /></td>
-                                    <td><img src="resources/minus.svg" class="subtract svg" onclick="subtractGamePiece(this,0)" /></td>
-                                    <td><input name="HighTeleCubeFailure" type="number" class="failure" value="0" min="0" max="15" /></td>
-                                    <td><img src="resources/plus.svg" class="add svg" onclick="addGamePiece(this,1)" /></td>
-                                    <td><img src="resources/minus.svg" class="subtract svg" onclick="subtractGamePiece(this,1)" /></td>
-                                </tr>
-                                <tr>
-                                    <td><label for="MidTeleCubeSuccess">Mid</label></td>
-                                    <label hidden for="MidTeleCubeFailure">Mid</label>
-                                    <td><input name="MidTeleCubeSuccess" type="number" class="success" value="0" min="0" max="3" /></td>
-                                    <td><img src="resources/plus.svg" class="add svg" onclick="addGamePiece(this,0)" /></td>
-                                    <td><img src="resources/minus.svg" class="subtract svg" onclick="subtractGamePiece(this,0)" /></td>
-                                    <td><input name="MidTeleCubeFailure" type="number" class="failure" value="0" min="0" max="15" /></td>
-                                    <td><img src="resources/plus.svg" class="add svg" onclick="addGamePiece(this,1)" /></td>
-                                    <td><img src="resources/minus.svg" class="subtract svg" onclick="subtractGamePiece(this,1)" /></td>
-                                </tr>
-                                <tr>
-                                    <td><label for="LowTeleCubeSuccess">Low</label></td>
-                                    <label hidden for="LowTeleCubeFailure">Low</label>
-                                    <td><input name="LowTeleCubeSuccess" type="number" class="success" value="0" min="0" max="9" /></td>
-                                    <td><img src="resources/plus.svg" class="add svg" onclick="addGamePiece(this,0)" /></td>
-                                    <td><img src="resources/minus.svg" class="subtract svg" onclick="subtractGamePiece(this,0)" /></td>
-                                    <td><input name="LowTeleCubeFailure" type="number" class="failure" value="0" min="0" max="15" /></td>
-                                    <td><img src="resources/plus.svg" class="add svg" onclick="addGamePiece(this,1)" /></td>
-                                    <td><img src="resources/minus.svg" class="subtract svg" onclick="subtractGamePiece(this,1)" /></td>
-                                </tr>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-                <!-- End Info -->
-                <div class="big-box" id="end-info">
-                    <h3>End Game</h3>
-                    <hr />
-                    <span>Charge Station:</span><br />
-                    <div class="radio-super-box">
-                        <div class="checked">
-                            <input type="radio" name="end-charge" id="end-charge-none" value="none" checked />
-                            <label for="end-charge-none">None</label>
-                        </div>
-                        <div>
-                            <input type="radio" name="end-charge" id="end-charge-attempted" value="attempted" />
-                            <label for="end-charge-attempted">Attempt + Fail</label>
-                        </div>
-                        <div>
-                            <input type="radio" name="end-charge" id="end-charge-docked" value="docked" />
-                            <label for="end-charge-docked">Docked</label>
-                        </div>
-                        <div>
-                            <input type="radio" name="end-charge" id="end-charge-engaged" value="engaged" />
-                            <label for="end-charge-engaged">Docked and Engaged</label>
-                        </div>
-                    </div>
-                    <br />
-                    <div class="check-super-box">
-                        <input type="checkbox" name="end-engage-attempt" value="1" id="end-engage-attempt" />
-                        <label for="end-engage-attempt">Tried to Engage?</label>
                     </div>
                 </div>
                 <!-- Qual Info -->
@@ -408,10 +444,6 @@
                         </div>
                     </div>
                     <br />
-                    <div class="check-super-box">
-                        <input type="checkbox" id="Parked" name="Parked" value="1" />
-                        <label for="Parked">Parked?</label>
-                    </div>
                     <div class="check-super-box">
                         <input type="checkbox" id="broke-down" name="broke-down" value="1" onchange="breakdownCommentBox.style=this.checked ? '' : 'display:none;'" />
                         <label for="broke-down">Broke down?</label>
