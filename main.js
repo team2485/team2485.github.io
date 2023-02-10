@@ -154,6 +154,7 @@ function submit(e) {
             alert('Thank you!');
             //resets the form
             submitButton.disabled = false;
+            document.body.scrollTop = document.documentElement.scrollTop = 0;
             clearInputs();
             let teamNumScouted = document.querySelector('input[name=TeamNumScouted]');
             teamNumScouted.value = '';
