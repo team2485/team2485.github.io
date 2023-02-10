@@ -238,10 +238,13 @@ span {
 }
 /* Other */
 button[type=submit] {
-	padding: 3px 15px;
+	padding: 3px 30px;
 	border-radius: 5px;
 	border: 3px solid black;
     background: #ffd900;
+	position: relative;
+	left: 50%;
+	transform: translate(-50%);
 }
 button[type=submit]:hover {
 	background: black;
