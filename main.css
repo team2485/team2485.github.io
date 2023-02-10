@@ -54,7 +54,7 @@ textarea {
 
 .radio-super-box {
 	display: flex;
-	flex-direction: row;
+	flex-direction: column; 
     border-radius: 8px;
 	background: #eee;
 	justify-content: space-evenly;
@@ -96,6 +96,9 @@ h3 {
 .big-box > h3 {
 	font-size: 75px;
     margin-bottom: -30px;
+}
+.big-box > div > div > h3 {
+	height: 43px;
 }
 
 hr {
@@ -265,4 +268,8 @@ button[type=submit]:hover {
 	flex-direction: row;
 	flex-wrap: wrap;
 	justify-content: space-evenly;
+	gap: 10px;
+}
+#tele-info {
+	flex-grow: 1;
 }
