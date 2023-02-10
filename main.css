@@ -265,7 +265,7 @@ button[type=submit]:hover {
 button[type=submit][disabled] {
     border-color:#3b3b3b;
     background-color: #eee;
-    
+    color:rgba(16, 16, 16, 0.3)
 }
 
 .match-data-fields {
