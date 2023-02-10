@@ -110,7 +110,7 @@ function submit(e) {
     if (!confirm('Are you sure you want to submit?')) {
         return;
     }
-    let submitButton = document.querySelector ("#submit")
+    let submitButton = document.querySelector("#submit");
     submitButton.disabled = true;
     [
         { time: 'auto', cap: 'Auto' },
