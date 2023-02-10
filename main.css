@@ -185,6 +185,18 @@ textarea {
     height:50px;
     border-width: 2px;
 }
+.qual {
+    height: 150px;
+    width:315px;
+    text-align: center;
+}
+.qual label {
+    margin-bottom:-10px;
+    display:block;
+}
+.star, .clear {
+    margin-top:-15px;
+}
 
 /* Match Info */
 .match-info {
