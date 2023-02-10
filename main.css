@@ -37,15 +37,19 @@ textarea {
 	display: inline-block;
     background-color: #eee;
     padding: 5px 15px;
-    margin: 5px 50px;
+	margin: 5px 0;
     border-radius: 8px;
     border: 2px solid gray;
+	cursor: pointer;
 }
 .check-super-box:hover {
 	background-color: #ddd;
 }
 .check-super-box.checked {
 	background: #adffb9;
+}
+.check-super-box * {
+	cursor: pointer;
 }
 
 .radio-super-box {
@@ -68,6 +72,9 @@ textarea {
 }
 .radio-super-box > div:hover:not(.checked) {
 	background: #ddd;
+}
+.radio-super-box * {
+	cursor: pointer;
 }
 
 button {
