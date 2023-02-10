@@ -11,7 +11,7 @@ form {
     font-family: 'Teko', sans-serif;
 }
 
-input {
+input, textarea {
     background-color: #e2faff;
     border-radius: 5px;
     border: 2px solid #3b3b3b;
@@ -19,11 +19,11 @@ input {
     font-size: 25px;
     text-align: center;
 }
-input:focus {
+input:focus, textarea:focus {
 	border-color: rgb(87, 171, 254);
 	outline: none;
 }
-input:focus:invalid {
+input:focus:invalid, textarea:focus:invalid {
 	border-color: rgb(184, 0, 0);
 }
 
@@ -31,7 +31,8 @@ input[type=checkbox], input[type=radio] {
 	width: auto;
 }
 textarea {
-    background-color: #e2faff;
+	font-size: 1.5em;
+	text-align: left;
 }
 .check-super-box {
 	display: inline-block;
@@ -196,8 +197,7 @@ textarea {
     border-width: 2px;
 }
 .qual {
-    height: 150px;
-    width:315px;
+    width: 315px;
     text-align: center;
 }
 .qual label {

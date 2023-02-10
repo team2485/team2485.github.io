@@ -194,7 +194,10 @@ displaySavedData();
 [...document.querySelectorAll('.check-super-box')].forEach((csb) =>
     csb.addEventListener('click', (e) => {
         let input = csb.querySelector('input');
-        input.checked = !input.checked;
+        // input.checked = !input.checked;
+        if (e.target.tagName == 'DIV') {
+            input.click();
+        }
         csb.className = input.checked ? 'check-super-box checked' : 'check-super-box';
     })
 );
