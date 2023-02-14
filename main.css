@@ -202,6 +202,16 @@ input::-webkit-inner-spin-button {
         display: none;
     }
 }
+#help:hover {
+    border-color: #ffd900;
+    background-color: black;
+    color: #ffd900;
+}
+#help-media:hover {
+    border-color: #ffd900;
+    background-color: black;
+    color: #ffd900;
+}
 
 /* Qualitative Styles */
 .star {
