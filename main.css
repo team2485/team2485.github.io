@@ -10,6 +10,9 @@ form {
     padding: 5px 40px;
     font-family: 'Teko', sans-serif;
 }
+form[name=scouting-form] {
+    margin-top: 70px;
+}
 
 input, textarea {
     background-color: #e2faff;
@@ -139,11 +142,15 @@ input::-webkit-inner-spin-button {
 }
 /* Navbar styles */
 .navbar {
+    width:100%;
     display: flex;
     flex-direction: row;
     background-color: black;
     align-items: center;
     padding-left: 10px;
+    position:fixed;
+    top: 0;
+    z-index: 1;
 }
 
 .navbar h1 {
@@ -157,6 +164,51 @@ input::-webkit-inner-spin-button {
 	width: 40px;
 	height: 40px;
 	margin: auto 0;
+}
+@media (max-width: 700px) {
+    #help {
+        display: none;
+    }
+}
+
+#help {
+    border-radius: 5px;
+    border-color: #3b3b3b;
+    background-color: #ffd900;
+    width: 120px;
+    height: 40px;
+    text-align: center;
+    position: relative;
+    margin-left: auto;
+    margin-right: 30px;
+}
+
+#help-media {
+    border-radius: 20px;
+    height: 40px;
+    width: 40px;
+    background-color: #ffd900;
+    text-align: center;
+    position: relative;
+    margin-left: auto;
+    margin-right: 30px;
+    font-size: 25px;
+    text-align: center;
+}
+@media (min-width: 701px) {
+    #help-media {
+        display: none;
+    }
+}
+#help:hover {
+    border-color: #ffd900;
+    background-color: black;
+    color: #ffd900;
+}
+#help-media:hover {
+    border-color: #ffd900;
+    background-color: black;
+    color: #ffd900;
 }
 
 /* Qualitative Styles */
