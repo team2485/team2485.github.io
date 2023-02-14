@@ -206,6 +206,7 @@ textarea {
 }
 .star, .clear {
     margin-top: -15px;
+	cursor: pointer;
 }
 
 /* Match Info */
