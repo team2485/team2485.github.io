@@ -128,13 +128,13 @@ function submit(e) {
         //setting new values
         data.set(time + '-charge', null);
         data.set(time + '-engage-attempt', null);
-        data.set(cap + 'DockAttempt', dockAttempt || dockSuccess || engagedSuccess ? 1 : 0);
-        data.set(cap + 'DockSuccess', dockSuccess || engagedSuccess ? 1 : 0);
+        data.set(cap + 'DockedAttempt', dockAttempt || dockSuccess || engagedSuccess ? 1 : 0);
+        data.set(cap + 'DockedSuccess', dockSuccess || engagedSuccess ? 1 : 0);
         data.set(cap + 'EngagedAttempt', engagedAttempt || engagedSuccess ? 1 : 0);
         data.set(cap + 'EngagedSuccess', engagedSuccess ? 1 : 0);
     });
     //adding fields that are empty by default
-    ['NoShow', 'AutoEngagedAttempt', 'EndEngagedAttempt', 'PreLoaded', 'Mobility', 'Breakdown'].forEach((name) => {
+    ['NoShow', 'AutoEngagedAttempt', 'EndEngagedAttempt', 'PreLoaded', 'Mobility', 'Breakdown', 'Parked'].forEach((name) => {
         console.log(!data.get(name));
         if (!data.get(name)) {
             data.set(name, '0');
