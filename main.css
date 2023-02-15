@@ -14,7 +14,8 @@ form[name=scouting-form] {
     margin-top: 70px;
 }
 
-input, textarea {
+input,
+textarea {
     background-color: #e2faff;
     border-radius: 5px;
     border: 2px solid #3b3b3b;
@@ -22,63 +23,66 @@ input, textarea {
     font-size: 25px;
     text-align: center;
 }
-input:focus, textarea:focus {
-	border-color: rgb(87, 171, 254);
-	outline: none;
+input:focus,
+textarea:focus {
+    border-color: rgb(87, 171, 254);
+    outline: none;
 }
-input:focus:invalid, textarea:focus:invalid {
-	border-color: rgb(184, 0, 0);
+input:focus:invalid,
+textarea:focus:invalid {
+    border-color: rgb(184, 0, 0);
 }
 
-input[type=checkbox], input[type=radio] {
-	width: auto;
+input[type='checkbox'],
+input[type='radio'] {
+    width: auto;
 }
 textarea {
-	font-size: 1.5em;
-	text-align: left;
+    font-size: 1.5em;
+    text-align: left;
 }
 .check-super-box {
-	display: inline-block;
+    display: inline-block;
     background-color: #eee;
     padding: 5px 15px;
-	margin: 5px 0;
+    margin: 5px 0;
     border-radius: 8px;
     border: 2px solid gray;
-	cursor: pointer;
+    cursor: pointer;
 }
 .check-super-box:hover {
-	background-color: #ddd;
+    background-color: #ddd;
 }
 .check-super-box.checked {
-	background: #adffb9;
+    background: #adffb9;
 }
 .check-super-box * {
-	cursor: pointer;
+    cursor: pointer;
 }
 
 .radio-super-box {
-	display: flex;
-	flex-direction: column; 
+    display: flex;
+    flex-direction: column;
     border-radius: 8px;
-	background: #eee;
-	justify-content: space-evenly;
-	padding: 2px;
-	gap: 3px;
+    background: #eee;
+    justify-content: space-evenly;
+    padding: 2px;
+    gap: 3px;
 }
 .radio-super-box > div {
-	border: 2px solid gray;
-	flex-grow: 1;
-	border-radius: 2px;
-	padding: 7px;
+    border: 2px solid gray;
+    flex-grow: 1;
+    border-radius: 2px;
+    padding: 7px;
 }
 .radio-super-box > div.checked {
-	background: #adffb9;
+    background: #adffb9;
 }
 .radio-super-box > div:hover:not(.checked) {
-	background: #ddd;
+    background: #ddd;
 }
 .radio-super-box * {
-	cursor: pointer;
+    cursor: pointer;
 }
 
 button {
@@ -93,21 +97,21 @@ h3 {
     margin-bottom: -10px;
     margin-left: 5px;
     margin-right: 5px;
-	text-align: center;
-	font-weight: 900;
+    text-align: center;
+    font-weight: 900;
 }
 
 .big-box > h3 {
-	font-size: 75px;
+    font-size: 75px;
     margin-bottom: -30px;
 }
 .big-box > div > div > h3 {
-	height: 43px;
+    height: 43px;
 }
 
 hr {
-	background: black;
-	height: 1px;
+    background: black;
+    height: 1px;
 }
 
 .svg {
@@ -119,26 +123,27 @@ hr {
     vertical-align: middle;
 }
 .svg.add {
-	transform: translateX(-3px);
+    transform: translateX(-3px);
 }
 .svg.subtract {
-	transform: translateX(3px);
+    transform: translateX(3px);
 }
 .svg:hover {
-	color: yellow;
-	filter: invert(72%) sepia(59%) saturate(691%) hue-rotate(1deg) brightness(106%) contrast(107%);
+    color: yellow;
+    filter: invert(72%) sepia(59%) saturate(691%) hue-rotate(1deg) brightness(106%) contrast(107%);
 }
 thead td {
-	text-align: center;
+    text-align: center;
 }
-.success, .failure {
-	width: 1em;
-	text-align: center;
+.success,
+.failure {
+    width: 1em;
+    text-align: center;
 }
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+    -webkit-appearance: none;
+    margin: 0;
 }
 /* Navbar styles */
 .navbar {
@@ -154,16 +159,16 @@ input::-webkit-inner-spin-button {
 }
 
 .navbar h1 {
-	margin: 3px 30px;
+    margin: 3px 30px;
     color: #ffd900;
     font-size: 35px;
     font-family: 'Teko', sans-serif;
 }
 
 .navbar img {
-	width: 40px;
-	height: 40px;
-	margin: auto 0;
+    width: 40px;
+    height: 40px;
+    margin: auto 0;
 }
 @media (max-width: 700px) {
     #help {
@@ -213,26 +218,26 @@ input::-webkit-inner-spin-button {
 
 /* Qualitative Styles */
 .star {
-	color: black;
+    color: black;
 }
 div.starred {
-	color: #ffd900;
+    color: #ffd900;
 }
 div.star {
-	display: inline-block;
-	font-size: 48px;
+    display: inline-block;
+    font-size: 48px;
 }
 div.star:hover {
-	color: #ffea00;
+    color: #ffea00;
 }
 
 button.clear {
     background-color: #ffc7c7;
     border-radius: 5px;
-	vertical-align: super;
+    vertical-align: super;
 }
-button.clear~label{
-	vertical-align: super;
+button.clear ~ label {
+    vertical-align: super;
 }
 
 button.clear:hover {
@@ -256,8 +261,10 @@ textarea {
     margin-bottom: -10px;
     display: block;
 }
-.star, .clear {
+.star,
+.clear {
     margin-top: -15px;
+    cursor: pointer;
 }
 
 /* Match Info */
@@ -272,7 +279,7 @@ textarea {
     flex-direction: column;
 }
 .match-info label {
-	margin-bottom: -5px;
+    margin-bottom: -5px;
 }
 
 /* Game Piece Input Table */
@@ -301,47 +308,47 @@ span {
     font-size: 25px;
 }
 /* Other */
-button[type=submit] {
-	padding: 3px 30px;
-	border-radius: 5px;
-	border: 3px solid black;
+button[type='submit'] {
+    padding: 3px 30px;
+    border-radius: 5px;
+    border: 3px solid black;
     background: #ffd900;
-	position: relative;
-	left: 50%;
-	transform: translate(-50%);
+    position: relative;
+    left: 50%;
+    transform: translate(-50%);
 }
-button[type=submit]:hover {
-	background: black;
-	color: #ffd900;
+button[type='submit']:hover {
+    background: black;
+    color: #ffd900;
 }
-button[type=submit][disabled] {
+button[type='submit'][disabled] {
     border-color: #3b3b3b;
     background-color: #eee;
     color: rgba(16, 16, 16, 0.3);
 }
 
 .match-data-fields {
-	display: flex;
-	flex-direction: row;
-	flex-wrap: wrap;
-	justify-content: space-evenly;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
 }
 .match-data-fields > * {
-	width: 40%;
+    width: 40%;
 }
 
 .cone {
-	color: orange;
-	font-size: 30px;
+    color: orange;
+    font-size: 30px;
 }
 
 .h-flex {
-	display: flex;
-	flex-direction: row;
-	flex-wrap: wrap;
-	justify-content: space-evenly;
-	gap: 10px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    gap: 10px;
 }
 #tele-info {
-	flex-grow: 1;
+    flex-grow: 1;
 }
