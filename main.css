@@ -353,3 +353,35 @@ button[type='submit'][disabled] {
 #tele-info {
     flex-grow: 1;
 }
+/* Confetti */
+.confetti {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	display: none;
+}
+.confetti.go {
+	display: flex;
+}
+.confetti > * > *::before {
+	content: "🌈";
+}
+.confetti > * > * {
+	display: inline;
+	position: absolute;
+}
+.confetti.go > * {
+	position: static;
+	animation: confetti-fun-box;
+	animation-duration: 3s;
+	width: 2.5vw;
+}
+@keyframes confetti-fun-box {
+	0% {
+		transform: translate(0, 0);
+	}
+	100% {
+		transform: translate(0, 100vh) rotateY(500deg);
+	}
+}

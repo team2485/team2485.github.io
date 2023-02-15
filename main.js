@@ -1,4 +1,4 @@
-const scriptURL = 'https://script.google.com/a/macros/francisparker.org/s/AKfycbzqU1pFT8xs-EY1GeMHsYQEQaTnRBeIDDVYX29y0uGQghlLQEEEYXzZs_h4w0im0efL/exec';
+const scriptURL = 'https://script.google.com/macros/s/AKfycbyr8woNmi1zLBQkzC52Wl92rTT9RO5lxsAIYQxcXJ30ITt6JRKr-tdKwZXwe-524v6i/exec';
 /**
  * Handling the onclick for adding to the game piece count
  */
@@ -110,7 +110,7 @@ function submit(e) {
     if (!confirm('Are you sure you want to submit?')) {
         return;
     }
-    let submitButton = document.querySelector("#submit");
+    let submitButton = document.querySelector('#submit');
     submitButton.disabled = true;
     [
         { time: 'auto', cap: 'Auto' },
@@ -161,6 +161,11 @@ function submit(e) {
             let matchNum = document.querySelector('input[name=MatchNum]');
             matchNum.value++;
             showInputs();
+            //confetti
+            document.querySelector('.confetti').classList.add('go');
+            setTimeout(() => {
+                document.querySelector('.go').classList.remove('go');
+            }, 3000);
         })
         .catch((error) => {
             console.log(error);
