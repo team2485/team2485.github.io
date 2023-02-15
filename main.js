@@ -63,13 +63,22 @@ function clearInputs(){
             }
         }
     });
+    //removing stars and radio buttons
     [...document.querySelectorAll('.starred')].forEach((starredButton) =>{
         starredButton.classList.remove('starred');
     })
-    let checkedRadioAuto = document.querySelector('#auto-charge-none');
-    let checkedRadioEndgame = document.querySelector('#end-charge-none');
-    checkedRadioAuto.checked = true;
-    checkedRadioEndgame.checked = true;
+    // let checkedRadioAuto = document.querySelector('#auto-charge-none');
+    // let checkedRadioEndgame = document.querySelector('#end-charge-none');
+    // checkedRadioAuto.checked = true;
+    // checkedRadioEndgame.checked = true;
+
+    //removing text boxes
+    let breakdownElab = document.querySelector('[name=BreakdownCom]');
+    let generalComments = document.querySelector('[name=GeneralCom]');
+    let defenseCom = document.querySelector('[name=DefenseCom]');
+    breakdownElab.value = '';
+    generalComments.value = '';
+    defenseCom.value = '';
 }
 
 /**
@@ -97,7 +106,13 @@ function noShowToggleHandler(e){
                     info[input.name] = input.value;
                 }
             }
-        })
+        });
+
+        [...document.querySelectorAll('textarea')].forEach(input =>{
+            info[input.name] = input.value;
+            console.count("textarea");
+        });
+        
         let finalizedInfo = JSON.stringify(info);
         localStorage.setItem("inGameData", finalizedInfo);
         clearInputs();
@@ -109,7 +124,7 @@ function noShowToggleHandler(e){
         let finalizedDataInfo = JSON.parse(dataInfo);
         
         for(let name in finalizedDataInfo){
-            let queryString = "input[name=" + name + "]";
+            let queryString = "input[name=" + name + "],textarea[name=" + name + "]";
             let dataValue = document.querySelector(queryString);
             if(dataValue.type == "checkbox"){
                 dataValue.checked = finalizedDataInfo[name];
@@ -128,10 +143,6 @@ function noShowToggleHandler(e){
 
 let noShow = document.querySelector('input[name=NoShow]');
 noShow.addEventListener('change', noShowToggleHandler);
-
-let radioButton = document.querySelector('input[value=engaged]');
-console.log(radioButton);
-radioButton.addEventListener('checked', () => console.log("changed!"));
 
 const form = document.forms['scouting-form'];
 function submit(e) {
