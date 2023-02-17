@@ -238,17 +238,18 @@ div.star:hover {
 }
 
 button.clear {
-    background-color: #ffc7c7;
+    background: linear-gradient(160deg, #f66, #f55, #e33);
     border-radius: 5px;
     vertical-align: super;
+	color: white;
 }
 button.clear ~ label {
     vertical-align: super;
 }
 
 button.clear:hover {
-    background-color: #f39d9d;
-	box-shadow: 0px 0px 10px rgba(255,0,0,0.3);
+    background: linear-gradient(-20deg, #f66, #f55, #e33);
+	box-shadow: 0px 0px 10px rgba(255,0,0,0.6);
 }
 
 button.star:hover {
@@ -390,5 +391,21 @@ button[type='submit'][disabled] {
 	}
 	100% {
 		transform: translate(0, 100vh) rotateY(500deg);
+	}
+}
+
+.spin {
+	animation: spin;
+	animation-duration: 1s;
+}
+@keyframes spin {
+	0% {
+		transform: scale(1) rotate(0deg);
+	}
+	50% {
+		transform: translateX(-50%) scale(3) rotate(180deg);
+	}
+	100% {
+		transform: translateX(-50%) scale(1) rotate(-1deg);
 	}
 }
