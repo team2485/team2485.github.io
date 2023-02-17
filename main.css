@@ -54,6 +54,7 @@ textarea {
 }
 .check-super-box.checked {
     background: #adffb9;
+	border: 2px solid green;
 }
 .check-super-box * {
     cursor: pointer;
@@ -65,7 +66,7 @@ textarea {
     border-radius: 8px;
     background: #eee;
     justify-content: space-evenly;
-    padding: 2px;
+    padding: 4px;
     gap: 3px;
 }
 .radio-super-box > div {
@@ -76,6 +77,8 @@ textarea {
 }
 .radio-super-box > div.checked {
     background: #adffb9;
+	border: 2px solid green;
+	box-shadow: 0px 0px 5px green;
 }
 .radio-super-box > div:hover:not(.checked) {
     background: #ddd;
@@ -85,6 +88,7 @@ textarea {
 }
 
 button {
+	color: black;
     border-color: #3b3b3b;
     font-family: 'Teko', sans-serif;
     font-size: 30px;
@@ -110,7 +114,9 @@ h3 {
 
 hr {
     background: black;
-    height: 1px;
+    height: 2px;
+	border: none;
+	box-shadow: 0px 2px 4px rgba(0,0,0,0.5);
 }
 
 .svg {
@@ -366,6 +372,7 @@ button[type='submit'][disabled] {
 }
 .confetti > * > *::before {
 	content: "🌈";
+	font-size: 50px;
 }
 .confetti > * > * {
 	display: inline;

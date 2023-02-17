@@ -221,3 +221,7 @@ document.querySelectorAll('.radio-super-box').forEach((radioSuperBoxes) => {
         })
     );
 });
+//information buttons
+[...document.querySelectorAll('#help,#help-media')].forEach(button => button.addEventListener('click', e => {
+	window.open('https://docs.google.com/presentation/d/1A_ah3rh98wCnLV53Md-9dFzIz7zg2KHp60l6SF2APA0/edit?usp=sharing');
+}))
