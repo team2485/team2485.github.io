@@ -221,3 +221,20 @@ document.querySelectorAll('.radio-super-box').forEach((radioSuperBoxes) => {
         })
     );
 });
+//popups
+function showConfirm(message, callbackOnConfirmed, callbackOnCancelled) {
+    let confirmPopup = document.querySelector('.confirm');
+    let paragraph = document.querySelector('#confirm-message');
+    paragraph.innerText = message;
+    let yesButton = document.querySelector('#yes');
+    let noButton = document.querySelector('#no');
+    yesButton.addEventListener("click", (e) => {
+        confirmPopup.style = "display: none;"
+        callbackOnConfirmed();
+    })
+    noButton.addEventListener("click", (e) => {
+        confirmPopup.style = "display: none;"
+        callbackOnCancelled();
+    })
+    element.style = "";
+}

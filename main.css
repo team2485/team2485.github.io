@@ -385,3 +385,10 @@ button[type='submit'][disabled] {
 		transform: translate(0, 100vh) rotateY(500deg);
 	}
 }
+/* Popups */
+.confirm, .alert {
+    background-color: yellow;
+    position: fixed;
+    width: 300px;
+    height: 100px;
+}
