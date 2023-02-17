@@ -485,8 +485,18 @@
                             <div class="star" onclick="setQualitative(this)" value="4">★</div>
                             <button type="button" class="clear" onclick="setQualitative(this)" value="-1">Clear</button>
                         </div>
+						<div class="qual">
+							<label for="DefenseEvade">Defense Evasion</label>
+							<hr>
+							<input id="DefenseEvade" name="DefenseEvade" type="hidden" value="-1" />
+							<div class="star" onclick="setQualitative(this)" value="1">★</div>
+							<div class="star" onclick="setQualitative(this)" value="2">★</div>
+							<div class="star" onclick="setQualitative(this)" value="3">★</div>
+							<div class="star" onclick="setQualitative(this)" value="4">★</div>
+							<button type="button" class="clear" onclick="setQualitative(this)" value="-1">Clear</button>
+						</div>
                     </div>
-                    <br />
+					<br />
                     <div class="check-super-box">
                         <input type="checkbox" id="broke-down" name="broke-down" value="1" onchange="breakdownCommentBox.style=this.checked ? '' : 'display:none;'" />
                         <label for="broke-down">Broke down?</label>

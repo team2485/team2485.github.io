@@ -105,6 +105,7 @@ function submit(e) {
     let matchNumber = data.get('MatchNum');
     if (!name || !teamNumber || !teamScouted || !matchNumber) {
         alert('Please make sure you have provided all information (top 4 fields)');
+        //TODO: @Michael, add scroll to top here
         return;
     }
     if (!confirm('Are you sure you want to submit?')) {
@@ -135,12 +136,10 @@ function submit(e) {
     });
     //adding fields that are empty by default
     ['NoShow', 'AutoEngagedAttempt', 'EndEngagedAttempt', 'PreLoaded', 'Mobility', 'Breakdown', 'Parked'].forEach((name) => {
-        console.log(!data.get(name));
         if (!data.get(name)) {
             data.set(name, '0');
         }
     });
-    console.log([...data.entries()]);
     fetch(scriptURL, {
         method: 'POST',
         body: data,
@@ -172,6 +171,11 @@ function submit(e) {
             alert('There was a problem... please try again and notify the Team 2485 Analytics department if this happens again.');
         });
     setCookie();
+    //barrel roll
+    document.querySelector('#submit').classList.add('spin');
+    setTimeout(() => {
+        document.querySelector('#submit').classList.remove('spin');
+    }, 1000);
 }
 form.addEventListener('submit', submit);
 
@@ -221,3 +225,7 @@ document.querySelectorAll('.radio-super-box').forEach((radioSuperBoxes) => {
         })
     );
 });
+//information buttons
+[...document.querySelectorAll('#help,#help-media')].forEach(button => button.addEventListener('click', e => {
+	window.open('https://docs.google.com/presentation/d/1A_ah3rh98wCnLV53Md-9dFzIz7zg2KHp60l6SF2APA0/edit?usp=sharing');
+}))
