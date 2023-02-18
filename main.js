@@ -71,7 +71,7 @@ function hideInputs() {
 }
 
 /**
- * shows all inputs.
+ * Shows all inputs
  */
 function showInputs() {
     let input = document.querySelector('div.not-no-show');
