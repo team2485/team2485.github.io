@@ -42,6 +42,11 @@ function setQualitative(e) {
     });
 }
 
+onchange="breakdownCommentBox.style=this.checked ? '' : 'display:none;'"
+
+let breakdownCheckbox = document.querySelector("input[name=Breakdown]");
+breakdownCheckbox.addEventListener('change')
+
 /**
  * Function to delete inputs upon submission and no show toggle
  */
@@ -137,6 +142,12 @@ function noShowToggleHandler(e){
                 dataValue.value = finalizedDataInfo[name];
             }
         }
+
+        //adds classes to starred elements
+        [...document.querySelectorAll(".qual")].forEach(element =>{
+            let input = element.querySelector('input');
+            setQualitative(input);
+        })
         
     }
 }
