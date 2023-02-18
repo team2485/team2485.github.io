@@ -41,8 +41,24 @@ function setQualitative(e) {
     });
 }
 
+let breakdownCheckbox = document.querySelector("input[name=Breakdown]");
+breakdownCheckbox.addEventListener('change', (e)=>{
+    let breakdownElab = document.querySelector('#breakdownCommentBox')
+    let breakdownBox = document.querySelector('textarea[name=BreakdownCom]')
+    if(breakdownCheckbox.checked == true){
+        let newValue = localStorage.getItem('breakdown')
+        breakdownBox.value = newValue;
+        breakdownElab.style = "";
+    }
+    else{
+        breakdownElab.style = 'display:none';
+        localStorage.setItem("breakdown", breakdownBox.value)
+        breakdownBox.value = ''
+    }
+})
+
 /**
- * Function to delete inputs upon submission
+ * Function to delete inputs upon submission and no show toggle
  */
 function clearInputs() {
     [...document.querySelectorAll('input')].forEach((input) => {
@@ -51,43 +67,98 @@ function clearInputs() {
             if (input.type == 'text') {
                 input.value = '';
             }
-            if (input.type == 'number') {
+            else if (input.type == 'number') {
                 input.value = 0;
             }
-            if (input.type == 'checkbox') {
+            else if (input.type == 'checkbox') {
                 input.checked = false;
+            }
+            else if(input.type == 'hidden'){
+                input.value = -1;
             }
         }
     });
-}
+    //removing stars and radio buttons
+    [...document.querySelectorAll('.starred')].forEach((starredButton) =>{
+        starredButton.classList.remove('starred');
+    })
+    let checkedRadioAuto = document.querySelector('#auto-charge-none');
+    let checkedRadioEndgame = document.querySelector('#end-charge-none');
+    checkedRadioAuto.checked = true;
+    checkedRadioEndgame.checked = true;
 
-/**
- * Sets display to none; clears values
- */
-function hideInputs() {
-    let input = document.querySelector('div.not-no-show');
-    input.style = 'display:none';
-    clearInputs();
-}
-
-/**
- * shows all inputs.
- */
-function showInputs() {
-    let input = document.querySelector('div.not-no-show');
-    input.style = '';
+    //removing text boxes
+    let breakdownElab = document.querySelector('[name=BreakdownCom]');
+    let generalComments = document.querySelector('[name=GeneralCom]');
+    let defenseCom = document.querySelector('[name=DefenseCom]');
+    breakdownElab.value = '';
+    generalComments.value = '';
+    defenseCom.value = '';
 }
 
 /**
  * Used for the NoShow input
  * Clears form elements if NoShow clicked
  */
-function noShowToggleHandler(e) {
-    let input = document.querySelector('input[name=NoShow]');
-    if (input.checked == true) {
-        hideInputs();
-    } else {
-        showInputs();
+function noShowToggleHandler(e){
+    let input = document.querySelector('div.not-no-show');
+    let inputCheckbox = document.querySelector('input[name=NoShow]');
+    if(inputCheckbox.checked == true){
+        input.style = "display:none";
+        //saves the data needed
+        let info = {};
+        [...document.querySelectorAll('input')].forEach(input =>{
+            if(input.name != "NoShow"){
+                if(input.type == "checkbox"){
+                    info[input.name] = input.checked;
+                }
+                else if(input.type == "radio"){
+                    if(input.checked == true){
+                        info[input.name] = input.value;
+                    }
+                }
+                else{
+                    info[input.name] = input.value;
+                }
+            }
+        });
+
+        [...document.querySelectorAll('textarea')].forEach(input =>{
+            info[input.name] = input.value;
+            console.count("textarea");
+        });
+        
+        let finalizedInfo = JSON.stringify(info);
+        localStorage.setItem("inGameData", finalizedInfo);
+        clearInputs();
+    }
+    else{
+        input.style = "";
+        //displays saved data
+        let dataInfo = localStorage.getItem("inGameData");
+        let finalizedDataInfo = JSON.parse(dataInfo);
+        
+        for(let name in finalizedDataInfo){
+            let queryString = "input[name=" + name + "],textarea[name=" + name + "]";
+            let dataValue = document.querySelector(queryString);
+            if(dataValue.type == "checkbox"){
+                dataValue.checked = finalizedDataInfo[name];
+            }
+            else if(dataValue.type == "radio"){
+                let checkedRadioButton = document.querySelector("[value=" + finalizedDataInfo[name] + "][name=" + name + "]");
+                checkedRadioButton.checked = true;
+            }
+            else{
+                dataValue.value = finalizedDataInfo[name];
+            }
+        }
+
+        //adds classes to starred elements
+        [...document.querySelectorAll(".qual")].forEach(element =>{
+            let input = element.querySelector('input');
+            let checkedStar = element.querySelector('button[value="' + input.value + '"],div[value="' + input.value + '"]');
+            setQualitative(checkedStar);
+        })
     }
 }
 
@@ -155,11 +226,15 @@ function submit(e) {
             submitButton.disabled = false;
             document.body.scrollTop = document.documentElement.scrollTop = 0;
             clearInputs();
+            let noShow = document.querySelector('input[name=NoShow]');
+            noShow.checked = false;
+            localStorage.removeItem("inGameData");
+            noShowToggleHandler();
             let teamNumScouted = document.querySelector('input[name=TeamNumScouted]');
             teamNumScouted.value = '';
             let matchNum = document.querySelector('input[name=MatchNum]');
             matchNum.value++;
-            showInputs();
+            setLocalStorage();
             //confetti
             document.querySelector('.confetti').classList.add('go');
             setTimeout(() => {
@@ -170,34 +245,31 @@ function submit(e) {
             console.log(error);
             alert('There was a problem... please try again and notify the Team 2485 Analytics department if this happens again.');
         });
-    setCookie();
-    //barrel roll
-    document.querySelector('#submit').classList.add('spin');
-    setTimeout(() => {
-        document.querySelector('#submit').classList.remove('spin');
-    }, 1000);
+        //barrel roll
+        document.querySelector('#submit').classList.add('spin');
+        setTimeout(() => {
+            document.querySelector('#submit').classList.remove('spin');
+        }, 1000);
 }
 form.addEventListener('submit', submit);
 
-function setCookie() {
+function setLocalStorage(){
     let formData = new FormData(form);
-    let name = formData.get('ScoutName');
-    let team = formData.get('ScoutTeamNum');
-    document.cookie = encodeURIComponent('name=' + name + ';team=' + team + ';expires=10000000000000000;path=/');
+    let name = formData.get("ScoutName");
+    let team = formData.get("ScoutTeamNum");
+    let matchNum = formData.get("MatchNum")
+    localStorage.setItem("name", name);
+    localStorage.setItem("team", team);
+    localStorage.setItem("match", matchNum)
 }
 
-function displaySavedData() {
-    let scoutName = document.querySelector('input[name=ScoutName]');
-    let teamNum = document.querySelector('input[name=ScoutTeamNum]');
-    let decodedCoookie = decodeURIComponent(document.cookie);
-    for (element of decodedCoookie.split(';')) {
-        let [name, value] = element.split('=');
-        if (name == 'name') {
-            scoutName.value = value;
-        } else if (name == 'team') {
-            teamNum.value = value;
-        }
-    }
+function displaySavedData(){
+    let scoutName = document.querySelector("input[name=ScoutName]");
+    let teamNum = document.querySelector("input[name=ScoutTeamNum]");
+    let matchNum = document.querySelector("input[name=MatchNum");
+    scoutName.value = localStorage.getItem("name");
+    teamNum.value = localStorage.getItem("team");
+    matchNum.value = localStorage.getItem("match");
 }
 
 displaySavedData();
