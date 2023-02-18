@@ -107,71 +107,77 @@ function submit(e) {
         alert('Please make sure you have provided all information (top 4 fields)');
         return;
     }
-    if (!confirm('Are you sure you want to submit?')) {
-        return;
-    }
-    let submitButton = document.querySelector('#submit');
-    submitButton.disabled = true;
-    [
-        { time: 'auto', cap: 'Auto' },
-        { time: 'end', cap: 'End' },
-    ].forEach(({ time, cap }) => {
-        let chargeInfo = data.get(time + '-charge'); //has value: none, attempted, docked, engaged
-        let engagedAttempt = data.get(time + '-engage-attempt');
-        //calculating values
-        let dockAttempt = chargeInfo == 'attempted';
-        let dockSuccess = chargeInfo == 'docked';
-        let engagedSuccess = chargeInfo == 'engaged';
-        if (engagedSuccess) {
-            engagedAttempt = true;
+    showConfirm(
+        'Are you sure you want to submit?',
+        () => {
+            //Hit yes
+            let submitButton = document.querySelector('#submit');
+            submitButton.disabled = true;
+            [
+                { time: 'auto', cap: 'Auto' },
+                { time: 'end', cap: 'End' },
+            ].forEach(({ time, cap }) => {
+                let chargeInfo = data.get(time + '-charge'); //has value: none, attempted, docked, engaged
+                let engagedAttempt = data.get(time + '-engage-attempt');
+                //calculating values
+                let dockAttempt = chargeInfo == 'attempted';
+                let dockSuccess = chargeInfo == 'docked';
+                let engagedSuccess = chargeInfo == 'engaged';
+                if (engagedSuccess) {
+                    engagedAttempt = true;
+                }
+                //setting new values
+                data.set(time + '-charge', null);
+                data.set(time + '-engage-attempt', null);
+                data.set(cap + 'DockedAttempt', dockAttempt || dockSuccess || engagedSuccess ? 1 : 0);
+                data.set(cap + 'DockedSuccess', dockSuccess || engagedSuccess ? 1 : 0);
+                data.set(cap + 'EngagedAttempt', engagedAttempt || engagedSuccess ? 1 : 0);
+                data.set(cap + 'EngagedSuccess', engagedSuccess ? 1 : 0);
+            });
+            //adding fields that are empty by default
+            ['NoShow', 'AutoEngagedAttempt', 'EndEngagedAttempt', 'PreLoaded', 'Mobility', 'Breakdown', 'Parked'].forEach((name) => {
+                console.log(!data.get(name));
+                if (!data.get(name)) {
+                    data.set(name, '0');
+                }
+            });
+            console.log([...data.entries()]);
+            fetch(scriptURL, {
+                method: 'POST',
+                body: data,
+            })
+                .then((response) => {
+                    console.log(response);
+                    if (response.status !== 200) {
+                        alert('There was a problem submitting... please try again.');
+                        return;
+                    }
+                    alert('Thank you!');
+                    //resets the form
+                    submitButton.disabled = false;
+                    document.body.scrollTop = document.documentElement.scrollTop = 0;
+                    clearInputs();
+                    let teamNumScouted = document.querySelector('input[name=TeamNumScouted]');
+                    teamNumScouted.value = '';
+                    let matchNum = document.querySelector('input[name=MatchNum]');
+                    matchNum.value++;
+                    showInputs();
+                    //confetti
+                    document.querySelector('.confetti').classList.add('go');
+                    setTimeout(() => {
+                        document.querySelector('.go').classList.remove('go');
+                    }, 3000);
+                })
+                .catch((error) => {
+                    console.log(error);
+                    alert('There was a problem... please try again and notify the Team 2485 Analytics department if this happens again.');
+                });
+            setCookie();
+        },
+        () => {
+            /* Hit no */
         }
-        //setting new values
-        data.set(time + '-charge', null);
-        data.set(time + '-engage-attempt', null);
-        data.set(cap + 'DockedAttempt', dockAttempt || dockSuccess || engagedSuccess ? 1 : 0);
-        data.set(cap + 'DockedSuccess', dockSuccess || engagedSuccess ? 1 : 0);
-        data.set(cap + 'EngagedAttempt', engagedAttempt || engagedSuccess ? 1 : 0);
-        data.set(cap + 'EngagedSuccess', engagedSuccess ? 1 : 0);
-    });
-    //adding fields that are empty by default
-    ['NoShow', 'AutoEngagedAttempt', 'EndEngagedAttempt', 'PreLoaded', 'Mobility', 'Breakdown', 'Parked'].forEach((name) => {
-        console.log(!data.get(name));
-        if (!data.get(name)) {
-            data.set(name, '0');
-        }
-    });
-    console.log([...data.entries()]);
-    fetch(scriptURL, {
-        method: 'POST',
-        body: data,
-    })
-        .then((response) => {
-            console.log(response);
-            if (response.status !== 200) {
-                alert('There was a problem submitting... please try again.');
-                return;
-            }
-            alert('Thank you!');
-            //resets the form
-            submitButton.disabled = false;
-            document.body.scrollTop = document.documentElement.scrollTop = 0;
-            clearInputs();
-            let teamNumScouted = document.querySelector('input[name=TeamNumScouted]');
-            teamNumScouted.value = '';
-            let matchNum = document.querySelector('input[name=MatchNum]');
-            matchNum.value++;
-            showInputs();
-            //confetti
-            document.querySelector('.confetti').classList.add('go');
-            setTimeout(() => {
-                document.querySelector('.go').classList.remove('go');
-            }, 3000);
-        })
-        .catch((error) => {
-            console.log(error);
-            alert('There was a problem... please try again and notify the Team 2485 Analytics department if this happens again.');
-        });
-    setCookie();
+    );
 }
 form.addEventListener('submit', submit);
 
@@ -222,19 +228,33 @@ document.querySelectorAll('.radio-super-box').forEach((radioSuperBoxes) => {
     );
 });
 //popups
+/**
+ * The function to make a yes/no confirm popup
+ * @param {String} message The message to display
+ * @param {function} callbackOnConfirmed The function to call when 'yes' is clicked
+ * @param {function} callbackOnCancelled The function to call when 'no' is clicked
+ */
 function showConfirm(message, callbackOnConfirmed, callbackOnCancelled) {
-    let confirmPopup = document.querySelector('.confirm');
-    let paragraph = document.querySelector('#confirm-message');
+    console.log('running');
+    let confirmPopup = document.querySelector('.popup');
+    let paragraph = document.querySelector('#popup-message');
     paragraph.innerText = message;
     let yesButton = document.querySelector('#yes');
     let noButton = document.querySelector('#no');
-    yesButton.addEventListener("click", (e) => {
-        confirmPopup.style = "display: none;"
+    function handleYes(e) {
+        confirmPopup.style = 'display: none;';
         callbackOnConfirmed();
-    })
-    noButton.addEventListener("click", (e) => {
-        confirmPopup.style = "display: none;"
+        noButton.removeEventListener('click', handleNo);
+        yesButton.removeEventListener('click', handleYes);
+    }
+    function handleNo(e) {
+        confirmPopup.style = 'display: none;';
         callbackOnCancelled();
-    })
-    element.style = "";
+        noButton.removeEventListener('click', handleNo);
+        yesButton.removeEventListener('click', handleYes);
+    }
+    yesButton.addEventListener('click', handleYes);
+    noButton.addEventListener('click', handleNo);
+    confirmPopup.style = '';
+    console.log('ran');
 }
