@@ -235,6 +235,14 @@ function submit(e) {
             let matchNum = document.querySelector('input[name=MatchNum]');
             matchNum.value++;
             setLocalStorage();
+            document.querySelectorAll('.check-super-box').forEach(csb =>{
+                csb.classList.remove('checked');
+            });
+            let checkedRadioAuto = document.querySelector('#auto-charge-none');
+            let checkedRadioEndgame = document.querySelector('#end-charge-none');
+            checkedRadioAuto.click();
+            checkedRadioEndgame.click();
+            
             //confetti
             document.querySelector('.confetti').classList.add('go');
             setTimeout(() => {
