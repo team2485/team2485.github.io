@@ -48,13 +48,13 @@ breakdownCheckbox.addEventListener('change', (e)=>{
     let breakdownBox = document.querySelector('textarea[name=BreakdownCom]')
     if(breakdownCheckbox.checked == true){
         let newValue = localStorage.getItem('breakdown')
-        breakdownElab.value = newValue;
+        breakdownBox.value = newValue;
         breakdownElab.style = "";
     }
     else{
         breakdownElab.style = 'display:none';
         localStorage.setItem("breakdown", breakdownBox.value)
-        breakdownElab.value = ''
+        breakdownBox.value = ''
     }
 })
 
