@@ -42,10 +42,21 @@ function setQualitative(e) {
     });
 }
 
-onchange="breakdownCommentBox.style=this.checked ? '' : 'display:none;'"
-
 let breakdownCheckbox = document.querySelector("input[name=Breakdown]");
-breakdownCheckbox.addEventListener('change')
+breakdownCheckbox.addEventListener('change', (e)=>{
+    let breakdownElab = document.querySelector('#breakdownCommentBox')
+    let breakdownBox = document.querySelector('textarea[name=BreakdownCom]')
+    if(breakdownCheckbox.checked == true){
+        let newValue = localStorage.getItem('breakdown')
+        breakdownElab.value = newValue;
+        breakdownElab.style = "";
+    }
+    else{
+        breakdownElab.style = 'display:none';
+        localStorage.setItem("breakdown", breakdownBox.value)
+        breakdownElab.value = ''
+    }
+})
 
 /**
  * Function to delete inputs upon submission and no show toggle
@@ -135,7 +146,7 @@ function noShowToggleHandler(e){
                 dataValue.checked = finalizedDataInfo[name];
             }
             else if(dataValue.type == "radio"){
-                let checkedRadioButton = document.querySelector("[value=" + finalizedDataInfo[name] + "]");
+                let checkedRadioButton = document.querySelector("[value=" + finalizedDataInfo[name] + "][name=" + name + "]");
                 checkedRadioButton.checked = true;
             }
             else{
@@ -146,7 +157,8 @@ function noShowToggleHandler(e){
         //adds classes to starred elements
         [...document.querySelectorAll(".qual")].forEach(element =>{
             let input = element.querySelector('input');
-            setQualitative(input);
+            let checkedStar = element.querySelector('button[value="' + input.value + '"],div[value="' + input.value + '"]');
+            setQualitative(checkedStar);
         })
         
     }
