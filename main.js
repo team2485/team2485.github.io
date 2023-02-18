@@ -1,5 +1,4 @@
-const scriptURL = 'https://script.google.com/a/macros/francisparker.org/s/AKfycbzqU1pFT8xs-EY1GeMHsYQEQaTnRBeIDDVYX29y0uGQghlLQEEEYXzZs_h4w0im0efL/exec';
-
+const scriptURL = 'https://script.google.com/macros/s/AKfycbyr8woNmi1zLBQkzC52Wl92rTT9RO5lxsAIYQxcXJ30ITt6JRKr-tdKwZXwe-524v6i/exec';
 /**
  * Handling the onclick for adding to the game piece count
  */
@@ -26,15 +25,15 @@ function subtractGamePiece(e, index) {
 function setQualitative(e) {
     let q_row = e.parentElement;
     let input = q_row.querySelector('input');
-    let value = e.value;
+    let value = e.getAttribute('value');
     input.value = value;
     //styling
     let before = true;
-    [...q_row.querySelectorAll('button')].forEach((input) => {
-        input.className = '';
+    [...q_row.querySelectorAll('div')].forEach((input) => {
+        input.className = 'star';
         if (e.value == -1) return;
         if (before) {
-            input.className = 'starred';
+            input.className = 'star starred';
         }
         if (input == e) {
             before = false;
@@ -61,7 +60,7 @@ breakdownCheckbox.addEventListener('change', (e)=>{
 /**
  * Function to delete inputs upon submission and no show toggle
  */
-function clearInputs(){
+function clearInputs() {
     [...document.querySelectorAll('input')].forEach((input) => {
         let name = input.name;
         if (!['ScoutName', 'ScoutTeamNum', 'TeamNumScouted', 'MatchNum', 'NoShow'].includes(name)) {
@@ -83,10 +82,10 @@ function clearInputs(){
     [...document.querySelectorAll('.starred')].forEach((starredButton) =>{
         starredButton.classList.remove('starred');
     })
-    // let checkedRadioAuto = document.querySelector('#auto-charge-none');
-    // let checkedRadioEndgame = document.querySelector('#end-charge-none');
-    // checkedRadioAuto.checked = true;
-    // checkedRadioEndgame.checked = true;
+    let checkedRadioAuto = document.querySelector('#auto-charge-none');
+    let checkedRadioEndgame = document.querySelector('#end-charge-none');
+    checkedRadioAuto.checked = true;
+    checkedRadioEndgame.checked = true;
 
     //removing text boxes
     let breakdownElab = document.querySelector('[name=BreakdownCom]');
@@ -160,7 +159,6 @@ function noShowToggleHandler(e){
             let checkedStar = element.querySelector('button[value="' + input.value + '"],div[value="' + input.value + '"]');
             setQualitative(checkedStar);
         })
-        
     }
 }
 
@@ -178,12 +176,14 @@ function submit(e) {
     let matchNumber = data.get('MatchNum');
     if (!name || !teamNumber || !teamScouted || !matchNumber) {
         alert('Please make sure you have provided all information (top 4 fields)');
+        //TODO: @Michael, add scroll to top here
         return;
     }
     if (!confirm('Are you sure you want to submit?')) {
         return;
     }
-    //disable submit button
+    let submitButton = document.querySelector('#submit');
+    submitButton.disabled = true;
     [
         { time: 'auto', cap: 'Auto' },
         { time: 'end', cap: 'End' },
@@ -200,19 +200,17 @@ function submit(e) {
         //setting new values
         data.set(time + '-charge', null);
         data.set(time + '-engage-attempt', null);
-        data.set(cap + 'DockAttempt', dockAttempt || dockSuccess || engagedSuccess ? 1 : 0);
-        data.set(cap + 'DockSuccess', dockSuccess || engagedSuccess ? 1 : 0);
+        data.set(cap + 'DockedAttempt', dockAttempt || dockSuccess || engagedSuccess ? 1 : 0);
+        data.set(cap + 'DockedSuccess', dockSuccess || engagedSuccess ? 1 : 0);
         data.set(cap + 'EngagedAttempt', engagedAttempt || engagedSuccess ? 1 : 0);
         data.set(cap + 'EngagedSuccess', engagedSuccess ? 1 : 0);
     });
     //adding fields that are empty by default
-    ['NoShow', 'AutoEngagedAttempt', 'EndEngagedAttempt', 'PreLoaded', 'Mobility', 'Breakdown'].forEach((name) => {
-        console.log(!data.get(name));
+    ['NoShow', 'AutoEngagedAttempt', 'EndEngagedAttempt', 'PreLoaded', 'Mobility', 'Breakdown', 'Parked'].forEach((name) => {
         if (!data.get(name)) {
             data.set(name, '0');
         }
     });
-    console.log([...data.entries()]);
     fetch(scriptURL, {
         method: 'POST',
         body: data,
@@ -225,21 +223,33 @@ function submit(e) {
             }
             alert('Thank you!');
             //resets the form
+            submitButton.disabled = false;
+            document.body.scrollTop = document.documentElement.scrollTop = 0;
             clearInputs();
             let noShow = document.querySelector('input[name=NoShow]');
             noShow.checked = false;
             localStorage.removeItem("inGameData");
             noShowToggleHandler();
             let teamNumScouted = document.querySelector('input[name=TeamNumScouted]');
-            teamNumScouted.value = "";
+            teamNumScouted.value = '';
             let matchNum = document.querySelector('input[name=MatchNum]');
-            matchNum.value ++;
+            matchNum.value++;
             setLocalStorage();
+            //confetti
+            document.querySelector('.confetti').classList.add('go');
+            setTimeout(() => {
+                document.querySelector('.go').classList.remove('go');
+            }, 3000);
         })
         .catch((error) => {
             console.log(error);
             alert('There was a problem... please try again and notify the Team 2485 Analytics department if this happens again.');
         });
+        //barrel roll
+        document.querySelector('#submit').classList.add('spin');
+        setTimeout(() => {
+            document.querySelector('#submit').classList.remove('spin');
+        }, 1000);
 }
 form.addEventListener('submit', submit);
 
@@ -263,3 +273,31 @@ function displaySavedData(){
 }
 
 displaySavedData();
+
+//check-super-box code
+[...document.querySelectorAll('.check-super-box')].forEach((csb) =>
+    csb.addEventListener('click', (e) => {
+        let input = csb.querySelector('input');
+        // input.checked = !input.checked;
+        if (e.target.tagName == 'DIV') {
+            input.click();
+        }
+        csb.className = input.checked ? 'check-super-box checked' : 'check-super-box';
+    })
+);
+//radio-super-box
+document.querySelectorAll('.radio-super-box').forEach((radioSuperBoxes) => {
+    let radioButtonBoxes = radioSuperBoxes.children;
+    [...radioButtonBoxes].forEach((button) =>
+        button.addEventListener('click', (e) => {
+            let input = button.querySelector('input');
+            input.checked = true;
+            [...radioButtonBoxes].forEach((b) => (b.className = ''));
+            input.parentElement.className = 'checked';
+        })
+    );
+});
+//information buttons
+[...document.querySelectorAll('#help,#help-media')].forEach(button => button.addEventListener('click', e => {
+	window.open('https://docs.google.com/presentation/d/1A_ah3rh98wCnLV53Md-9dFzIz7zg2KHp60l6SF2APA0/edit?usp=sharing');
+}))
