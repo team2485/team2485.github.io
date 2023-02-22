@@ -19,6 +19,36 @@ function subtractGamePiece(e, index) {
     input.value = Math.max(input.min, v - 1);
 }
 
+// Charge Station Methods
+function toggleChargeStation(e){
+    let autoDock = document.querySelector("#auto-charge-docked");
+    let endgameDock = document.querySelector("#end-charge-docked");
+    let endgameEngage = document.querySelector("#end-charge-engaged");
+    let autoEngagedAttempt = document.querySelector("div[name=engage-attempt-auto]")
+    let endgameEngagedAttempt = document.querySelector("#end-engage");
+    let endgamePark = document.querySelector("#end-park");
+    if(autoDock.checked == true){
+        autoEngagedAttempt.style = "";
+    }
+    else{
+        autoEngagedAttempt.style = "display: none"
+    }
+
+    if(endgameDock.checked == true){
+        endgameEngagedAttempt.style = '';
+    }
+    else{
+        endgameEngagedAttempt.style = "display: none";
+    }
+
+    if(endgameEngage.checked == true){
+        endgamePark.style = '';
+    }
+    else{
+        endgamePark.style = "display: none";
+    }
+}
+
 /**
  * Handles the onclick for setting the hidden input for the qualitative value
  */
@@ -229,6 +259,7 @@ function submit(e) {
             let noShow = document.querySelector('input[name=NoShow]');
             noShow.checked = false;
             localStorage.removeItem("inGameData");
+            localStorage.removeItem("breakdown");
             noShowToggleHandler();
             let teamNumScouted = document.querySelector('input[name=TeamNumScouted]');
             teamNumScouted.value = '';
@@ -302,6 +333,7 @@ document.querySelectorAll('.radio-super-box').forEach((radioSuperBoxes) => {
             input.checked = true;
             [...radioButtonBoxes].forEach((b) => (b.className = ''));
             input.parentElement.className = 'checked';
+            toggleChargeStation();
         })
     );
 });

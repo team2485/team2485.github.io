@@ -241,7 +241,7 @@
                                     <label for="auto-charge-engaged">Docked and Engaged</label>
                                 </div>
                             </div>
-                            <div class="h-flex">
+                            <div name="engage-attempt-auto" class="h-flex" style="display: none">
                                 <div class="check-super-box">
                                     <input type="checkbox" name="auto-engage-attempt" value="1" id="auto-engage-attempt" />
                                     <label for="auto-engage-attempt">Tried to Engage?</label>
@@ -388,11 +388,11 @@
                             </div>
                         </div>
                         <div class="h-flex">
-                            <div class="check-super-box">
+                            <div class="check-super-box" id="end-engage" style="display: none">
                                 <input type="checkbox" name="end-engage-attempt" value="1" id="end-engage-attempt" />
                                 <label for="end-engage-attempt">Tried to Engage?</label>
                             </div>
-                            <div class="check-super-box">
+                            <div class="check-super-box" id="end-park" style="display: none">
                                 <input type="checkbox" id="Parked" name="Parked" value="1" />
                                 <label for="Parked">Parked?</label>
                             </div>
