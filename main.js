@@ -49,6 +49,16 @@ function toggleChargeStation(e){
     }
 }
 
+//back to top
+let backToTop = document.querySelector("#back-to-top");
+backToTop.addEventListener('click', () => {
+    window.scrollTo({
+        top: 0, 
+        left: 0,
+        behavior: 'smooth',
+    });
+});
+
 /**
  * Handles the onclick for setting the hidden input for the qualitative value
  */
@@ -206,7 +216,11 @@ function submit(e) {
     let matchNumber = data.get('MatchNum');
     if (!name || !teamNumber || !teamScouted || !matchNumber) {
         alert('Please make sure you have provided all information (top 4 fields)');
-        //TODO: @Michael, add scroll to top here
+        window.scrollTo({
+            top: 0, 
+            left: 0,
+            behavior: 'smooth',
+        });
         return;
     }
     if (!confirm('Are you sure you want to submit?')) {
@@ -254,7 +268,11 @@ function submit(e) {
             alert('Thank you!');
             //resets the form
             submitButton.disabled = false;
-            document.body.scrollTop = document.documentElement.scrollTop = 0;
+            window.scrollTo({
+                top: 0, 
+                left: 0,
+                behavior: 'smooth',
+            });
             clearInputs();
             let noShow = document.querySelector('input[name=NoShow]');
             noShow.checked = false;
