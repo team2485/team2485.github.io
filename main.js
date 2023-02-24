@@ -104,7 +104,7 @@ function submit(e) {
     let teamScouted = data.get('TeamNumScouted');
     let matchNumber = data.get('MatchNum');
     if (!name || !teamNumber || !teamScouted || !matchNumber) {
-        alert('Please make sure you have provided all information (top 4 fields)');
+        showAlert('Please make sure you have provided all information (top 4 fields)');
         return;
     }
     showConfirm(
@@ -149,10 +149,10 @@ function submit(e) {
                 .then((response) => {
                     console.log(response);
                     if (response.status !== 200) {
-                        alert('There was a problem submitting... please try again.');
+                        showAlert('There was a problem submitting... please try again.');
                         return;
                     }
-                    alert('Thank you!');
+                    showAlert('Thank you!');
                     //resets the form
                     submitButton.disabled = false;
                     document.body.scrollTop = document.documentElement.scrollTop = 0;
@@ -170,7 +170,7 @@ function submit(e) {
                 })
                 .catch((error) => {
                     console.log(error);
-                    alert('There was a problem... please try again and notify the Team 2485 Analytics department if this happens again.');
+                    showAlert('There was a problem... please try again and notify the Team 2485 Analytics department if this happens again.');
                 });
             setCookie();
         },
@@ -236,11 +236,15 @@ document.querySelectorAll('.radio-super-box').forEach((radioSuperBoxes) => {
  */
 function showConfirm(message, callbackOnConfirmed, callbackOnCancelled) {
     console.log('running');
-    let confirmPopup = document.querySelector('.popup');
-    let paragraph = document.querySelector('#popup-message');
-    paragraph.innerText = message;
+    let okayButton = document.querySelector('#okay');
+    okayButton.style = 'display: none;';
     let yesButton = document.querySelector('#yes');
     let noButton = document.querySelector('#no');
+    yesButton.style = '';
+    noButton.style = '';
+    let confirmPopup = document.querySelector('.transparent');
+    let paragraph = document.querySelector('#popup-message');
+    paragraph.innerText = message;
     function handleYes(e) {
         confirmPopup.style = 'display: none;';
         callbackOnConfirmed();
@@ -256,5 +260,28 @@ function showConfirm(message, callbackOnConfirmed, callbackOnCancelled) {
     yesButton.addEventListener('click', handleYes);
     noButton.addEventListener('click', handleNo);
     confirmPopup.style = '';
+    console.log('ran');
+}
+/**
+ * The function to make a alert popup
+ * @param {String} message The message to display
+ */
+function showAlert(message) {
+    console.log('running');
+    let yesButton = document.querySelector('#yes');
+    let noButton = document.querySelector('#no');
+    yesButton.style = 'display: none;';
+    noButton.style = 'display: none;';
+    let okayButton = document.querySelector('#okay');
+    okayButton.style = '';
+    let alertPopup = document.querySelector('.transparent');
+    let paragraph = document.querySelector('#popup-message');
+    paragraph.innerText = message;
+    function handleOkay(e) {
+        alertPopup.style = 'display: none;';
+        okayButton.removeEventListener('click', handleOkay);
+    }
+    okayButton.addEventListener('click', handleOkay);
+    alertPopup.style = '';
     console.log('ran');
 }
