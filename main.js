@@ -20,6 +20,36 @@ function subtractGamePiece(e, index) {
 }
 
 /**
+ * Updates the charge station to display the correct checkboxes
+ */
+function updateChargeStationCheckboxes(){
+	// Getting Data
+	let data = new FormData(document.forms['scouting-form']);
+	// Auto
+	let autoChargeStationState = data.get('auto-charge');
+    let autoEngagedAttempt = document.querySelector("#engage-attempt-auto");
+
+	autoEngagedAttempt.style = autoChargeStationState == 'docked' ? "" : "display: none;";
+	// End
+	let endChargeStationState = data.get('end-charge');
+    let endEngagedAttempt = document.querySelector("#end-engage");
+    let endPark = document.querySelector("#end-park");
+
+	endEngagedAttempt.style = endChargeStationState == 'docked' ? "" : "display: none;";
+	endPark.style = endChargeStationState == 'none' ? "" : "display: none;";
+}
+
+//back to top
+let backToTop = document.querySelector("#back-to-top");
+backToTop.addEventListener('click', () => {
+    window.scrollTo({
+        top: 0, 
+        left: 0,
+        behavior: 'smooth',
+    });
+});
+
+/**
  * Handles the onclick for setting the hidden input for the qualitative value
  */
 function setQualitative(e) {
@@ -176,7 +206,11 @@ function submit(e) {
     let matchNumber = data.get('MatchNum');
     if (!name || !teamNumber || !teamScouted || !matchNumber) {
         alert('Please make sure you have provided all information (top 4 fields)');
-        //TODO: @Michael, add scroll to top here
+        window.scrollTo({
+            top: 0, 
+            left: 0,
+            behavior: 'smooth',
+        });
         return;
     }
     if (!confirm('Are you sure you want to submit?')) {
@@ -224,11 +258,16 @@ function submit(e) {
             alert('Thank you!');
             //resets the form
             submitButton.disabled = false;
-            document.body.scrollTop = document.documentElement.scrollTop = 0;
+            window.scrollTo({
+                top: 0, 
+                left: 0,
+                behavior: 'smooth',
+            });
             clearInputs();
             let noShow = document.querySelector('input[name=NoShow]');
             noShow.checked = false;
             localStorage.removeItem("inGameData");
+            localStorage.removeItem("breakdown");
             noShowToggleHandler();
             let teamNumScouted = document.querySelector('input[name=TeamNumScouted]');
             teamNumScouted.value = '';
@@ -302,6 +341,7 @@ document.querySelectorAll('.radio-super-box').forEach((radioSuperBoxes) => {
             input.checked = true;
             [...radioButtonBoxes].forEach((b) => (b.className = ''));
             input.parentElement.className = 'checked';
+            updateChargeStationCheckboxes();
         })
     );
 });

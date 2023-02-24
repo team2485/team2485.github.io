@@ -409,3 +409,28 @@ button[type='submit'][disabled] {
 		transform: translateX(-50%) scale(1) rotate(-1deg);
 	}
 }
+
+#back-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 10px;
+    padding: 3px 30px;
+    border-radius: 5px;
+    border: 3px solid black;
+    background: #ffd900;
+}
+#back-to-top:hover {
+	background: black;
+	color: #ffd900;
+}
+#back-to-top > span {
+	vertical-align: middle;
+}
+@media (max-width: 700px) {
+	#back-to-top {
+    	padding: 3px 3px;
+	}
+	#back-to-top > span {
+		display: none;
+	}
+}
