@@ -19,34 +19,24 @@ function subtractGamePiece(e, index) {
     input.value = Math.max(input.min, v - 1);
 }
 
-// Charge Station Methods
-function toggleChargeStation(e){
-    let autoDock = document.querySelector("#auto-charge-docked");
-    let endgameDock = document.querySelector("#end-charge-docked");
-    let endgameEngage = document.querySelector("#end-charge-engaged");
-    let autoEngagedAttempt = document.querySelector("div[name=engage-attempt-auto]")
-    let endgameEngagedAttempt = document.querySelector("#end-engage");
-    let endgamePark = document.querySelector("#end-park");
-    if(autoDock.checked == true){
-        autoEngagedAttempt.style = "";
-    }
-    else{
-        autoEngagedAttempt.style = "display: none"
-    }
+/**
+ * Updates the charge station to display the correct checkboxes
+ */
+function updateChargeStationCheckboxes(){
+	// Getting Data
+	let data = new FormData(document.forms['scouting-form']);
+	// Auto
+	let autoChargeStationState = data.get('auto-charge');
+    let autoEngagedAttempt = document.querySelector("#engage-attempt-auto");
 
-    if(endgameDock.checked == true){
-        endgameEngagedAttempt.style = '';
-    }
-    else{
-        endgameEngagedAttempt.style = "display: none";
-    }
+	autoEngagedAttempt.style = autoChargeStationState == 'docked' ? "" : "display: none;";
+	// End
+	let endChargeStationState = data.get('end-charge');
+    let endEngagedAttempt = document.querySelector("#end-engage");
+    let endPark = document.querySelector("#end-park");
 
-    if(endgameEngage.checked == true){
-        endgamePark.style = '';
-    }
-    else{
-        endgamePark.style = "display: none";
-    }
+	endEngagedAttempt.style = endChargeStationState == 'docked' ? "" : "display: none;";
+	endPark.style = endChargeStationState == 'none' ? "" : "display: none;";
 }
 
 //back to top
@@ -351,7 +341,7 @@ document.querySelectorAll('.radio-super-box').forEach((radioSuperBoxes) => {
             input.checked = true;
             [...radioButtonBoxes].forEach((b) => (b.className = ''));
             input.parentElement.className = 'checked';
-            toggleChargeStation();
+            updateChargeStationCheckboxes();
         })
     );
 });
