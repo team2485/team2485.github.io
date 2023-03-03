@@ -116,7 +116,7 @@ function clearInputs() {
     let checkedRadioEndgame = document.querySelector('#end-charge-none');
     checkedRadioAuto.checked = true;
     checkedRadioEndgame.checked = true;
-
+    
     //removing text boxes
     let breakdownElab = document.querySelector('[name=BreakdownCom]');
     let generalComments = document.querySelector('[name=GeneralCom]');
@@ -205,7 +205,7 @@ function submit(e) {
     let teamScouted = data.get('TeamNumScouted');
     let matchNumber = data.get('MatchNum');
     if (!name || !teamNumber || !teamScouted || !matchNumber) {
-        alert('Please make sure you have provided all information (top 4 fields)');
+        showAlert('Please make sure you have provided all information (top 4 fields)');
         window.scrollTo({
             top: 0, 
             left: 0,
@@ -213,90 +213,99 @@ function submit(e) {
         });
         return;
     }
-    if (!confirm('Are you sure you want to submit?')) {
-        return;
-    }
-    let submitButton = document.querySelector('#submit');
-    submitButton.disabled = true;
-    [
-        { time: 'auto', cap: 'Auto' },
-        { time: 'end', cap: 'End' },
-    ].forEach(({ time, cap }) => {
-        let chargeInfo = data.get(time + '-charge'); //has value: none, attempted, docked, engaged
-        let engagedAttempt = data.get(time + '-engage-attempt');
-        //calculating values
-        let dockAttempt = chargeInfo == 'attempted';
-        let dockSuccess = chargeInfo == 'docked';
-        let engagedSuccess = chargeInfo == 'engaged';
-        if (engagedSuccess) {
-            engagedAttempt = true;
-        }
-        //setting new values
-        data.set(time + '-charge', null);
-        data.set(time + '-engage-attempt', null);
-        data.set(cap + 'DockedAttempt', dockAttempt || dockSuccess || engagedSuccess ? 1 : 0);
-        data.set(cap + 'DockedSuccess', dockSuccess || engagedSuccess ? 1 : 0);
-        data.set(cap + 'EngagedAttempt', engagedAttempt || engagedSuccess ? 1 : 0);
-        data.set(cap + 'EngagedSuccess', engagedSuccess ? 1 : 0);
-    });
-    //adding fields that are empty by default
-    ['NoShow', 'AutoEngagedAttempt', 'EndEngagedAttempt', 'PreLoaded', 'Mobility', 'Breakdown', 'Parked'].forEach((name) => {
-        if (!data.get(name)) {
-            data.set(name, '0');
-        }
-    });
-    fetch(scriptURL, {
-        method: 'POST',
-        body: data,
-    })
-        .then((response) => {
-            console.log(response);
-            if (response.status !== 200) {
-                alert('There was a problem submitting... please try again.');
-                return;
-            }
-            alert('Thank you!');
-            //resets the form
-            submitButton.disabled = false;
-            window.scrollTo({
-                top: 0, 
-                left: 0,
-                behavior: 'smooth',
+    showConfirm(
+        'Are you sure you want to submit?',
+        () => {
+            //Hit yes
+            let submitButton = document.querySelector('#submit');
+            submitButton.disabled = true;
+            [
+                { time: 'auto', cap: 'Auto' },
+                { time: 'end', cap: 'End' },
+            ].forEach(({ time, cap }) => {
+                let chargeInfo = data.get(time + '-charge'); //has value: none, attempted, docked, engaged
+                let engagedAttempt = data.get(time + '-engage-attempt');
+                //calculating values
+                let dockAttempt = chargeInfo == 'attempted';
+                let dockSuccess = chargeInfo == 'docked';
+                let engagedSuccess = chargeInfo == 'engaged';
+                if (engagedSuccess) {
+                    engagedAttempt = true;
+                }
+                //setting new values
+                data.set(time + '-charge', null);
+                data.set(time + '-engage-attempt', null);
+                data.set(cap + 'DockedAttempt', dockAttempt || dockSuccess || engagedSuccess ? 1 : 0);
+                data.set(cap + 'DockedSuccess', dockSuccess || engagedSuccess ? 1 : 0);
+                data.set(cap + 'EngagedAttempt', engagedAttempt || engagedSuccess ? 1 : 0);
+                data.set(cap + 'EngagedSuccess', engagedSuccess ? 1 : 0);
             });
-            clearInputs();
-            let noShow = document.querySelector('input[name=NoShow]');
-            noShow.checked = false;
-            localStorage.removeItem("inGameData");
-            localStorage.removeItem("breakdown");
-            noShowToggleHandler();
-            let teamNumScouted = document.querySelector('input[name=TeamNumScouted]');
-            teamNumScouted.value = '';
-            let matchNum = document.querySelector('input[name=MatchNum]');
-            matchNum.value++;
-            setLocalStorage();
-            document.querySelectorAll('.check-super-box').forEach(csb =>{
-                csb.classList.remove('checked');
+            //adding fields that are empty by default
+            ['NoShow', 'AutoEngagedAttempt', 'EndEngagedAttempt', 'PreLoaded', 'Mobility', 'Breakdown', 'Parked'].forEach((name) => {
+                console.log(!data.get(name));
+                if (!data.get(name)) {
+                    data.set(name, '0');
+                }
             });
-            let checkedRadioAuto = document.querySelector('#auto-charge-none');
-            let checkedRadioEndgame = document.querySelector('#end-charge-none');
-            checkedRadioAuto.click();
-            checkedRadioEndgame.click();
-            
-            //confetti
-            document.querySelector('.confetti').classList.add('go');
-            setTimeout(() => {
-                document.querySelector('.go').classList.remove('go');
-            }, 3000);
-        })
-        .catch((error) => {
-            console.log(error);
-            alert('There was a problem... please try again and notify the Team 2485 Analytics department if this happens again.');
-        });
-        //barrel roll
-        document.querySelector('#submit').classList.add('spin');
-        setTimeout(() => {
-            document.querySelector('#submit').classList.remove('spin');
-        }, 1000);
+            console.log([...data.entries()]);
+            fetch(scriptURL, {
+                method: 'POST',
+                body: data,
+            })
+                .then((response) => {
+                    console.log(response);
+                    if (response.status !== 200) {
+                        showAlert('There was a problem submitting... please try again.');
+                        return;
+                    }
+                    showAlert('Thank you!');
+                    //resets the form
+                    submitButton.disabled = false;
+                    window.scrollTo({
+                        top: 0, 
+                        left: 0,
+                        behavior: 'smooth',
+                    });
+                    clearInputs();
+                    let noShow = document.querySelector('input[name=NoShow]');
+                    noShow.checked = false;
+                    localStorage.removeItem("inGameData");
+                    localStorage.removeItem("breakdown");
+                    noShowToggleHandler();
+                    let teamNumScouted = document.querySelector('input[name=TeamNumScouted]');
+                    teamNumScouted.value = '';
+                    let matchNum = document.querySelector('input[name=MatchNum]');
+                    matchNum.value++;
+                    setLocalStorage();
+                    document.querySelectorAll('.check-super-box').forEach(csb =>{
+                        csb.classList.remove('checked');
+                    });
+                    let checkedRadioAuto = document.querySelector('#auto-charge-none');
+                    let checkedRadioEndgame = document.querySelector('#end-charge-none');
+                    checkedRadioAuto.click();
+                    checkedRadioEndgame.click();
+
+                    //confetti
+                    document.querySelector('.confetti').classList.add('go');
+                    setTimeout(() => {
+                        document.querySelector('.go').classList.remove('go');
+                    }, 3000);
+                })
+                .catch((error) => {
+                    console.log(error);
+                    showAlert('There was a problem... please try again and notify the Team 2485 Analytics department if this happens again.');
+                });
+            setCookie();
+        },
+        () => {
+            /* Hit no */
+        }
+    );
+    //barrel roll
+    document.querySelector('#submit').classList.add('spin');
+    setTimeout(() => {
+        document.querySelector('#submit').classList.remove('spin');
+    }, 1000);
 }
 form.addEventListener('submit', submit);
 
@@ -345,7 +354,66 @@ document.querySelectorAll('.radio-super-box').forEach((radioSuperBoxes) => {
         })
     );
 });
+
+//popups
+/**
+ * The function to make a yes/no confirm popup
+ * @param {String} message The message to display
+ * @param {function} callbackOnConfirmed The function to call when 'yes' is clicked
+ * @param {function} callbackOnCancelled The function to call when 'no' is clicked
+ */
+function showConfirm(message, callbackOnConfirmed, callbackOnCancelled) {
+    console.log('running');
+    let okayButton = document.querySelector('#okay');
+    okayButton.style = 'display: none;';
+    let yesButton = document.querySelector('#yes');
+    let noButton = document.querySelector('#no');
+    yesButton.style = '';
+    noButton.style = '';
+    let confirmPopup = document.querySelector('.transparent');
+    let paragraph = document.querySelector('#popup-message');
+    paragraph.innerText = message;
+    function handleYes(e) {
+        confirmPopup.style = 'display: none;';
+        callbackOnConfirmed();
+        noButton.removeEventListener('click', handleNo);
+        yesButton.removeEventListener('click', handleYes);
+    }
+    function handleNo(e) {
+        confirmPopup.style = 'display: none;';
+        callbackOnCancelled();
+        noButton.removeEventListener('click', handleNo);
+        yesButton.removeEventListener('click', handleYes);
+    }
+    yesButton.addEventListener('click', handleYes);
+    noButton.addEventListener('click', handleNo);
+    confirmPopup.style = '';
+    console.log('ran');
+}
+/**
+ * The function to make a alert popup
+ * @param {String} message The message to display
+ */
+function showAlert(message) {
+    console.log('running');
+    let yesButton = document.querySelector('#yes');
+    let noButton = document.querySelector('#no');
+    yesButton.style = 'display: none;';
+    noButton.style = 'display: none;';
+    let okayButton = document.querySelector('#okay');
+    okayButton.style = '';
+    let alertPopup = document.querySelector('.transparent');
+    let paragraph = document.querySelector('#popup-message');
+    paragraph.innerText = message;
+    function handleOkay(e) {
+        alertPopup.style = 'display: none;';
+        okayButton.removeEventListener('click', handleOkay);
+    }
+    okayButton.addEventListener('click', handleOkay);
+    alertPopup.style = '';
+    console.log('ran');
+}
 //information buttons
 [...document.querySelectorAll('#help,#help-media')].forEach(button => button.addEventListener('click', e => {
 	window.open('https://docs.google.com/presentation/d/1A_ah3rh98wCnLV53Md-9dFzIz7zg2KHp60l6SF2APA0/edit?usp=sharing');
-}))
+}));
