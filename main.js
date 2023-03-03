@@ -20,6 +20,36 @@ function subtractGamePiece(e, index) {
 }
 
 /**
+ * Updates the charge station to display the correct checkboxes
+ */
+function updateChargeStationCheckboxes(){
+	// Getting Data
+	let data = new FormData(document.forms['scouting-form']);
+	// Auto
+	let autoChargeStationState = data.get('auto-charge');
+    let autoEngagedAttempt = document.querySelector("#engage-attempt-auto");
+
+	autoEngagedAttempt.style = autoChargeStationState == 'docked' ? "" : "display: none;";
+	// End
+	let endChargeStationState = data.get('end-charge');
+    let endEngagedAttempt = document.querySelector("#end-engage");
+    let endPark = document.querySelector("#end-park");
+
+	endEngagedAttempt.style = endChargeStationState == 'docked' ? "" : "display: none;";
+	endPark.style = endChargeStationState == 'none' ? "" : "display: none;";
+}
+
+//back to top
+let backToTop = document.querySelector("#back-to-top");
+backToTop.addEventListener('click', () => {
+    window.scrollTo({
+        top: 0, 
+        left: 0,
+        behavior: 'smooth',
+    });
+});
+
+/**
  * Handles the onclick for setting the hidden input for the qualitative value
  */
 function setQualitative(e) {
@@ -41,8 +71,24 @@ function setQualitative(e) {
     });
 }
 
+let breakdownCheckbox = document.querySelector("input[name=Breakdown]");
+breakdownCheckbox.addEventListener('change', (e)=>{
+    let breakdownElab = document.querySelector('#breakdownCommentBox')
+    let breakdownBox = document.querySelector('textarea[name=BreakdownCom]')
+    if(breakdownCheckbox.checked == true){
+        let newValue = localStorage.getItem('breakdown')
+        breakdownBox.value = newValue;
+        breakdownElab.style = "";
+    }
+    else{
+        breakdownElab.style = 'display:none';
+        localStorage.setItem("breakdown", breakdownBox.value)
+        breakdownBox.value = ''
+    }
+})
+
 /**
- * Function to delete inputs upon submission
+ * Function to delete inputs upon submission and no show toggle
  */
 function clearInputs() {
     [...document.querySelectorAll('input')].forEach((input) => {
@@ -51,43 +97,98 @@ function clearInputs() {
             if (input.type == 'text') {
                 input.value = '';
             }
-            if (input.type == 'number') {
+            else if (input.type == 'number') {
                 input.value = 0;
             }
-            if (input.type == 'checkbox') {
+            else if (input.type == 'checkbox') {
                 input.checked = false;
+            }
+            else if(input.type == 'hidden'){
+                input.value = -1;
             }
         }
     });
-}
-
-/**
- * Sets display to none; clears values
- */
-function hideInputs() {
-    let input = document.querySelector('div.not-no-show');
-    input.style = 'display:none';
-    clearInputs();
-}
-
-/**
- * Shows all inputs
- */
-function showInputs() {
-    let input = document.querySelector('div.not-no-show');
-    input.style = '';
+    //removing stars and radio buttons
+    [...document.querySelectorAll('.starred')].forEach((starredButton) =>{
+        starredButton.classList.remove('starred');
+    })
+    let checkedRadioAuto = document.querySelector('#auto-charge-none');
+    let checkedRadioEndgame = document.querySelector('#end-charge-none');
+    checkedRadioAuto.checked = true;
+    checkedRadioEndgame.checked = true;
+    
+    //removing text boxes
+    let breakdownElab = document.querySelector('[name=BreakdownCom]');
+    let generalComments = document.querySelector('[name=GeneralCom]');
+    let defenseCom = document.querySelector('[name=DefenseCom]');
+    breakdownElab.value = '';
+    generalComments.value = '';
+    defenseCom.value = '';
 }
 
 /**
  * Used for the NoShow input
  * Clears form elements if NoShow clicked
  */
-function noShowToggleHandler(e) {
-    let input = document.querySelector('input[name=NoShow]');
-    if (input.checked == true) {
-        hideInputs();
-    } else {
-        showInputs();
+function noShowToggleHandler(e){
+    let input = document.querySelector('div.not-no-show');
+    let inputCheckbox = document.querySelector('input[name=NoShow]');
+    if(inputCheckbox.checked == true){
+        input.style = "display:none";
+        //saves the data needed
+        let info = {};
+        [...document.querySelectorAll('input')].forEach(input =>{
+            if(input.name != "NoShow"){
+                if(input.type == "checkbox"){
+                    info[input.name] = input.checked;
+                }
+                else if(input.type == "radio"){
+                    if(input.checked == true){
+                        info[input.name] = input.value;
+                    }
+                }
+                else{
+                    info[input.name] = input.value;
+                }
+            }
+        });
+
+        [...document.querySelectorAll('textarea')].forEach(input =>{
+            info[input.name] = input.value;
+            console.count("textarea");
+        });
+        
+        let finalizedInfo = JSON.stringify(info);
+        localStorage.setItem("inGameData", finalizedInfo);
+        clearInputs();
+    }
+    else{
+        input.style = "";
+        //displays saved data
+        let dataInfo = localStorage.getItem("inGameData");
+        let finalizedDataInfo = JSON.parse(dataInfo);
+        
+        for(let name in finalizedDataInfo){
+            let queryString = "input[name=" + name + "],textarea[name=" + name + "]";
+            let dataValue = document.querySelector(queryString);
+            if(dataValue.type == "checkbox"){
+                dataValue.checked = finalizedDataInfo[name];
+            }
+            else if(dataValue.type == "radio"){
+                let checkedRadioButton = document.querySelector("[value=" + finalizedDataInfo[name] + "][name=" + name + "]");
+                checkedRadioButton.checked = true;
+            }
+            else{
+                dataValue.value = finalizedDataInfo[name];
+            }
+        }
+
+        //adds classes to starred elements
+        [...document.querySelectorAll(".qual")].forEach(element =>{
+            let input = element.querySelector('input');
+            let checkedStar = element.querySelector('button[value="' + input.value + '"],div[value="' + input.value + '"]');
+            setQualitative(checkedStar);
+        })
     }
 }
 
@@ -105,6 +206,11 @@ function submit(e) {
     let matchNumber = data.get('MatchNum');
     if (!name || !teamNumber || !teamScouted || !matchNumber) {
         showAlert('Please make sure you have provided all information (top 4 fields)');
+        window.scrollTo({
+            top: 0, 
+            left: 0,
+            behavior: 'smooth',
+        });
         return;
     }
     showConfirm(
@@ -155,13 +261,30 @@ function submit(e) {
                     showAlert('Thank you!');
                     //resets the form
                     submitButton.disabled = false;
-                    document.body.scrollTop = document.documentElement.scrollTop = 0;
+                    window.scrollTo({
+                        top: 0, 
+                        left: 0,
+                        behavior: 'smooth',
+                    });
                     clearInputs();
+                    let noShow = document.querySelector('input[name=NoShow]');
+                    noShow.checked = false;
+                    localStorage.removeItem("inGameData");
+                    localStorage.removeItem("breakdown");
+                    noShowToggleHandler();
                     let teamNumScouted = document.querySelector('input[name=TeamNumScouted]');
                     teamNumScouted.value = '';
                     let matchNum = document.querySelector('input[name=MatchNum]');
                     matchNum.value++;
-                    showInputs();
+                    setLocalStorage();
+                    document.querySelectorAll('.check-super-box').forEach(csb =>{
+                        csb.classList.remove('checked');
+                    });
+                    let checkedRadioAuto = document.querySelector('#auto-charge-none');
+                    let checkedRadioEndgame = document.querySelector('#end-charge-none');
+                    checkedRadioAuto.click();
+                    checkedRadioEndgame.click();
+
                     //confetti
                     document.querySelector('.confetti').classList.add('go');
                     setTimeout(() => {
@@ -178,28 +301,31 @@ function submit(e) {
             /* Hit no */
         }
     );
+    //barrel roll
+    document.querySelector('#submit').classList.add('spin');
+    setTimeout(() => {
+        document.querySelector('#submit').classList.remove('spin');
+    }, 1000);
 }
 form.addEventListener('submit', submit);
 
-function setCookie() {
+function setLocalStorage(){
     let formData = new FormData(form);
-    let name = formData.get('ScoutName');
-    let team = formData.get('ScoutTeamNum');
-    document.cookie = encodeURIComponent('name=' + name + ';team=' + team + ';expires=10000000000000000;path=/');
+    let name = formData.get("ScoutName");
+    let team = formData.get("ScoutTeamNum");
+    let matchNum = formData.get("MatchNum")
+    localStorage.setItem("name", name);
+    localStorage.setItem("team", team);
+    localStorage.setItem("match", matchNum)
 }
 
-function displaySavedData() {
-    let scoutName = document.querySelector('input[name=ScoutName]');
-    let teamNum = document.querySelector('input[name=ScoutTeamNum]');
-    let decodedCoookie = decodeURIComponent(document.cookie);
-    for (element of decodedCoookie.split(';')) {
-        let [name, value] = element.split('=');
-        if (name == 'name') {
-            scoutName.value = value;
-        } else if (name == 'team') {
-            teamNum.value = value;
-        }
-    }
+function displaySavedData(){
+    let scoutName = document.querySelector("input[name=ScoutName]");
+    let teamNum = document.querySelector("input[name=ScoutTeamNum]");
+    let matchNum = document.querySelector("input[name=MatchNum");
+    scoutName.value = localStorage.getItem("name");
+    teamNum.value = localStorage.getItem("team");
+    matchNum.value = localStorage.getItem("match");
 }
 
 displaySavedData();
@@ -224,9 +350,11 @@ document.querySelectorAll('.radio-super-box').forEach((radioSuperBoxes) => {
             input.checked = true;
             [...radioButtonBoxes].forEach((b) => (b.className = ''));
             input.parentElement.className = 'checked';
+            updateChargeStationCheckboxes();
         })
     );
 });
+
 //popups
 /**
  * The function to make a yes/no confirm popup
@@ -285,3 +413,7 @@ function showAlert(message) {
     alertPopup.style = '';
     console.log('ran');
 }
+//information buttons
+[...document.querySelectorAll('#help,#help-media')].forEach(button => button.addEventListener('click', e => {
+	window.open('https://docs.google.com/presentation/d/1A_ah3rh98wCnLV53Md-9dFzIz7zg2KHp60l6SF2APA0/edit?usp=sharing');
+}));

@@ -19,6 +19,7 @@
     </head>
 
     <body>
+        <button id="back-to-top"><span>Back to top</span>⬆️</button>
 		<div class="confetti">
 			<div><div style="transform: translate(83px, 89px)"></div></div>
 			<div><div style="transform: translate(15px, 77px)"></div></div>
@@ -251,7 +252,7 @@
                                     <label for="auto-charge-engaged">Docked and Engaged</label>
                                 </div>
                             </div>
-                            <div class="h-flex">
+                            <div id="engage-attempt-auto" class="h-flex" style="display: none">
                                 <div class="check-super-box">
                                     <input type="checkbox" name="auto-engage-attempt" value="1" id="auto-engage-attempt" />
                                     <label for="auto-engage-attempt">Tried to Engage?</label>
@@ -398,11 +399,11 @@
                             </div>
                         </div>
                         <div class="h-flex">
-                            <div class="check-super-box">
+                            <div class="check-super-box" id="end-engage" style="display: none">
                                 <input type="checkbox" name="end-engage-attempt" value="1" id="end-engage-attempt" />
                                 <label for="end-engage-attempt">Tried to Engage?</label>
                             </div>
-                            <div class="check-super-box">
+                            <div class="check-super-box" id="end-park">
                                 <input type="checkbox" id="Parked" name="Parked" value="1" />
                                 <label for="Parked">Parked?</label>
                             </div>
@@ -423,6 +424,7 @@
                             <div class="star" onclick="setQualitative(this)" value="2">★</div>
                             <div class="star" onclick="setQualitative(this)" value="3">★</div>
                             <div class="star" onclick="setQualitative(this)" value="4">★</div>
+							<br>
                             <button type="button" class="clear" onclick="setQualitative(this)" value="-1">Clear</button>
                         </div>
                         <div class="qual">
@@ -433,6 +435,7 @@
                             <div class="star" onclick="setQualitative(this)" value="2">★</div>
                             <div class="star" onclick="setQualitative(this)" value="3">★</div>
                             <div class="star" onclick="setQualitative(this)" value="4">★</div>
+							<br>
                             <button type="button" class="clear" onclick="setQualitative(this)" value="-1">Clear</button>
                         </div>
                         <div class="qual">
@@ -443,6 +446,7 @@
                             <div class="star" onclick="setQualitative(this)" value="2">★</div>
                             <div class="star" onclick="setQualitative(this)" value="3">★</div>
                             <div class="star" onclick="setQualitative(this)" value="4">★</div>
+							<br>
                             <button type="button" class="clear" onclick="setQualitative(this)" value="-1">Clear</button>
                         </div>
                         <div class="qual">
@@ -453,6 +457,7 @@
                             <div class="star" onclick="setQualitative(this)" value="2">★</div>
                             <div class="star" onclick="setQualitative(this)" value="3">★</div>
                             <div class="star" onclick="setQualitative(this)" value="4">★</div>
+							<br>
                             <button type="button" class="clear" onclick="setQualitative(this)" value="-1">Clear</button>
                         </div>
                         <div class="qual">
@@ -463,6 +468,7 @@
                             <div class="star" onclick="setQualitative(this)" value="2">★</div>
                             <div class="star" onclick="setQualitative(this)" value="3">★</div>
                             <div class="star" onclick="setQualitative(this)" value="4">★</div>
+							<br>
                             <button type="button" class="clear" onclick="setQualitative(this)" value="-1">Clear</button>
                         </div>
                         <div class="qual">
@@ -473,33 +479,47 @@
                             <div class="star" onclick="setQualitative(this)" value="2">★</div>
                             <div class="star" onclick="setQualitative(this)" value="3">★</div>
                             <div class="star" onclick="setQualitative(this)" value="4">★</div>
+							<br>
                             <button type="button" class="clear" onclick="setQualitative(this)" value="-1">Clear</button>
                         </div>
                         <div class="qual">
                             <label for="Aggression">Aggression</label>
                             <hr>
                             <input id="Aggression" name="Aggression" type="hidden" value="-1" />
-                            <div class="star" onclick="setQualitative(this)" value="1">★</div>
-                            <div class="star" onclick="setQualitative(this)" value="2">★</div>
-                            <div class="star" onclick="setQualitative(this)" value="3">★</div>
-                            <div class="star" onclick="setQualitative(this)" value="4">★</div>
+                            <div class="star" onclick="setQualitative(this)" value="1">ⵔ</div>
+                            <div class="star" onclick="setQualitative(this)" value="2">ⵔ</div>
+                            <div class="star" onclick="setQualitative(this)" value="3">ⵔ</div>
+                            <div class="star" onclick="setQualitative(this)" value="4">ⵔ</div>
+							<br>
                             <button type="button" class="clear" onclick="setQualitative(this)" value="-1">Clear</button>
                         </div>
                         <div class="qual">
                             <label for="Hazard">Charge Station Hazard</label>
                             <hr>
                             <input id="Hazard" name="Hazard" type="hidden" value="-1" />
-                            <div class="star" onclick="setQualitative(this)" value="1">★</div>
-                            <div class="star" onclick="setQualitative(this)" value="2">★</div>
-                            <div class="star" onclick="setQualitative(this)" value="3">★</div>
-                            <div class="star" onclick="setQualitative(this)" value="4">★</div>
+                            <div class="star" onclick="setQualitative(this)" value="1">ⵔ</div>
+                            <div class="star" onclick="setQualitative(this)" value="2">ⵔ</div>
+                            <div class="star" onclick="setQualitative(this)" value="3">ⵔ</div>
+                            <div class="star" onclick="setQualitative(this)" value="4">ⵔ</div>
+							<br>
                             <button type="button" class="clear" onclick="setQualitative(this)" value="-1">Clear</button>
                         </div>
+						<div class="qual">
+							<label for="DefenseEvade">Defense Evasion</label>
+							<hr>
+							<input id="DefenseEvade" name="DefenseEvade" type="hidden" value="-1" />
+							<div class="star" onclick="setQualitative(this)" value="1">★</div>
+							<div class="star" onclick="setQualitative(this)" value="2">★</div>
+							<div class="star" onclick="setQualitative(this)" value="3">★</div>
+							<div class="star" onclick="setQualitative(this)" value="4">★</div>
+							<br>
+							<button type="button" class="clear" onclick="setQualitative(this)" value="-1">Clear</button>
+						</div>
                     </div>
-                    <br />
+					<br />
                     <div class="check-super-box">
-                        <input type="checkbox" id="broke-down" name="broke-down" value="1" onchange="breakdownCommentBox.style=this.checked ? '' : 'display:none;'" />
-                        <label for="broke-down">Broke down?</label>
+                        <input type="checkbox" id="Breakdown" name="Breakdown" value="1" onchange="breakdownCommentBox.style=this.checked ? '' : 'display:none;'" />
+                        <label for="Breakdown">Broke down?</label>
                     </div>
                     <br />
                     <div id="breakdownCommentBox" style="display: none">

@@ -54,6 +54,7 @@ textarea {
 }
 .check-super-box.checked {
     background: #adffb9;
+	border: 2px solid green;
 }
 .check-super-box * {
     cursor: pointer;
@@ -65,7 +66,7 @@ textarea {
     border-radius: 8px;
     background: #eee;
     justify-content: space-evenly;
-    padding: 2px;
+    padding: 4px;
     gap: 3px;
 }
 .radio-super-box > div {
@@ -76,6 +77,8 @@ textarea {
 }
 .radio-super-box > div.checked {
     background: #adffb9;
+	border: 2px solid green;
+	box-shadow: 0px 0px 5px green;
 }
 .radio-super-box > div:hover:not(.checked) {
     background: #ddd;
@@ -85,6 +88,7 @@ textarea {
 }
 
 button {
+	color: black;
     border-color: #3b3b3b;
     font-family: 'Teko', sans-serif;
     font-size: 30px;
@@ -110,7 +114,9 @@ h3 {
 
 hr {
     background: black;
-    height: 1px;
+    height: 2px;
+	border: none;
+	box-shadow: 0px 2px 4px rgba(0,0,0,0.5);
 }
 
 .svg {
@@ -232,17 +238,18 @@ div.star:hover {
 }
 
 button.clear {
-    background-color: #ffc7c7;
+    background: linear-gradient(160deg, #f66, #f55, #e33);
     border-radius: 5px;
     vertical-align: super;
+	color: white;
 }
 button.clear ~ label {
     vertical-align: super;
 }
 
 button.clear:hover {
-    background-color: #f39d9d;
-	box-shadow: 0px 0px 10px rgba(255,0,0,0.3);
+    background: linear-gradient(-20deg, #f66, #f55, #e33);
+	box-shadow: 0px 0px 10px rgba(255,0,0,0.6);
 }
 
 button.star:hover {
@@ -261,6 +268,14 @@ textarea {
 .qual label {
     margin-bottom: -10px;
     display: block;
+}
+.qual br {
+	display: none; 
+}
+@media (max-width: 700px) {
+	.qual br {
+		display: inline;
+	}
 }
 .star,
 .clear {
@@ -367,6 +382,7 @@ button[type='submit'][disabled] {
 }
 .confetti > * > *::before {
 	content: "🌈";
+	font-size: 50px;
 }
 .confetti > * > * {
 	display: inline;
@@ -427,4 +443,45 @@ button[type='submit'][disabled] {
     top: 0;
     left: 0;
     z-index: 3;
+}
+
+.spin {
+	animation: spin;
+	animation-duration: 1s;
+}
+@keyframes spin {
+	0% {
+		transform: scale(1) rotate(0deg);
+	}
+	50% {
+		transform: translateX(-50%) scale(3) rotate(180deg);
+	}
+	100% {
+		transform: translateX(-50%) scale(1) rotate(-1deg);
+	}
+}
+
+#back-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 10px;
+    padding: 3px 30px;
+    border-radius: 5px;
+    border: 3px solid black;
+    background: #ffd900;
+}
+#back-to-top:hover {
+	background: black;
+	color: #ffd900;
+}
+#back-to-top > span {
+	vertical-align: middle;
+}
+@media (max-width: 700px) {
+	#back-to-top {
+    	padding: 3px 3px;
+	}
+	#back-to-top > span {
+		display: none;
+	}
 }
