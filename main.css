@@ -422,7 +422,7 @@ button[type='submit'][disabled] {
     border-radius: 5px;
     margin-left: 10px;
     margin-right: 10px;
-    width: 60px;
+    min-width: 60px;
     height: 50px;
 	text-align: center;
 }
@@ -445,9 +445,11 @@ button[type='submit'][disabled] {
     z-index: 3;
 }
 
-.spin {
-	animation: spin;
-	animation-duration: 1s;
+@media (min-width: 700px) {
+	.spin {
+		animation: spin;
+		animation-duration: 1s;
+	}
 }
 @keyframes spin {
 	0% {
