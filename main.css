@@ -424,7 +424,7 @@ button[type='submit'][disabled] {
     margin-right: 10px;
     width: 60px;
     height: 50px;
-    content: center;
+	text-align: center;
 }
 .popup button:hover {
     background-color: #a6f0ff;
