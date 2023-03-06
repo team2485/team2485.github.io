@@ -471,6 +471,7 @@ button[type='submit'][disabled] {
     border-radius: 5px;
     border: 3px solid black;
     background: #ffd900;
+	z-index: 1;
 }
 #back-to-top:hover {
 	background: black;

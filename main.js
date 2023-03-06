@@ -22,28 +22,52 @@ function subtractGamePiece(e, index) {
 /**
  * Updates the charge station to display the correct checkboxes
  */
-function updateChargeStationCheckboxes(){
-	// Getting Data
-	let data = new FormData(document.forms['scouting-form']);
-	// Auto
-	let autoChargeStationState = data.get('auto-charge');
-    let autoEngagedAttempt = document.querySelector("#engage-attempt-auto");
+function updateChargeStationCheckboxes() {
+    //* Getting Data
+    let data = new FormData(document.forms['scouting-form']);
 
-	autoEngagedAttempt.style = autoChargeStationState == 'docked' ? "" : "display: none;";
-	// End
-	let endChargeStationState = data.get('end-charge');
-    let endEngagedAttempt = document.querySelector("#end-engage");
-    let endPark = document.querySelector("#end-park");
+    //* Auto
+    let autoChargeStationState = data.get('auto-charge');
+    let autoEngagedAttempt = document.querySelector('#engage-attempt-auto');
+    //reset values
+    if (autoChargeStationState !== 'docked') {
+        //only resets if docked is not the one clicked
+        let autoEngagedAttemptCheckbox = document.querySelector('#auto-engage-attempt');
+        autoEngagedAttemptCheckbox.checked = false;
+        autoEngagedAttemptCheckbox.parentElement.classList.remove('checked'); //makes not green
+    }
+    //hide/unhide
+    autoEngagedAttempt.style = autoChargeStationState == 'docked' ? '' : 'display: none;';
 
-	endEngagedAttempt.style = endChargeStationState == 'docked' ? "" : "display: none;";
-	endPark.style = endChargeStationState == 'none' ? "" : "display: none;";
+    //* End
+    let endChargeStationState = data.get('end-charge');
+    let endEngagedAttempt = document.querySelector('#end-engage');
+    let endPark = document.querySelector('#end-park');
+    //reset values
+    if (endChargeStationState !== 'docked') {
+        //only resets if docked is not the one clicked
+        let endEngagedAttemptCheckbox = document.querySelector('#end-engage-attempt');
+        endEngagedAttemptCheckbox.checked = false;
+        endEngagedAttemptCheckbox.parentElement.classList.remove('checked'); //makes not green
+    }
+	if (endChargeStationState !== 'none') {
+        //only resets if none is not the one clicked
+        let parkedCheckbox = document.querySelector('#Parked');
+        parkedCheckbox.checked = false;
+        parkedCheckbox.parentElement.classList.remove('checked'); //makes not green
+    }
+    autoEngagedAttempt.style = autoChargeStationState == 'docked' ? '' : 'display: none;';
+    //hide/unhide
+    autoEngagedAttempt.style = autoChargeStationState == 'docked' ? '' : 'display: none;';
+    endEngagedAttempt.style = endChargeStationState == 'docked' ? '' : 'display: none;';
+    endPark.style = endChargeStationState == 'none' ? '' : 'display: none;';
 }
 
 //back to top
-let backToTop = document.querySelector("#back-to-top");
+let backToTop = document.querySelector('#back-to-top');
 backToTop.addEventListener('click', () => {
     window.scrollTo({
-        top: 0, 
+        top: 0,
         left: 0,
         behavior: 'smooth',
     });
@@ -71,21 +95,20 @@ function setQualitative(e) {
     });
 }
 
-let breakdownCheckbox = document.querySelector("input[name=Breakdown]");
-breakdownCheckbox.addEventListener('change', (e)=>{
-    let breakdownElab = document.querySelector('#breakdownCommentBox')
-    let breakdownBox = document.querySelector('textarea[name=BreakdownCom]')
-    if(breakdownCheckbox.checked == true){
-        let newValue = localStorage.getItem('breakdown')
+let breakdownCheckbox = document.querySelector('input[name=Breakdown]');
+breakdownCheckbox.addEventListener('change', (e) => {
+    let breakdownElab = document.querySelector('#breakdownCommentBox');
+    let breakdownBox = document.querySelector('textarea[name=BreakdownCom]');
+    if (breakdownCheckbox.checked == true) {
+        let newValue = localStorage.getItem('breakdown');
         breakdownBox.value = newValue;
-        breakdownElab.style = "";
-    }
-    else{
+        breakdownElab.style = '';
+    } else {
         breakdownElab.style = 'display:none';
-        localStorage.setItem("breakdown", breakdownBox.value)
-        breakdownBox.value = ''
+        localStorage.setItem('breakdown', breakdownBox.value);
+        breakdownBox.value = '';
     }
-})
+});
 
 /**
  * Function to delete inputs upon submission and no show toggle
@@ -96,27 +119,24 @@ function clearInputs() {
         if (!['ScoutName', 'ScoutTeamNum', 'TeamNumScouted', 'MatchNum', 'NoShow'].includes(name)) {
             if (input.type == 'text') {
                 input.value = '';
-            }
-            else if (input.type == 'number') {
+            } else if (input.type == 'number') {
                 input.value = 0;
-            }
-            else if (input.type == 'checkbox') {
+            } else if (input.type == 'checkbox') {
                 input.checked = false;
-            }
-            else if(input.type == 'hidden'){
+            } else if (input.type == 'hidden') {
                 input.value = -1;
             }
         }
     });
     //removing stars and radio buttons
-    [...document.querySelectorAll('.starred')].forEach((starredButton) =>{
+    [...document.querySelectorAll('.starred')].forEach((starredButton) => {
         starredButton.classList.remove('starred');
-    })
+    });
     let checkedRadioAuto = document.querySelector('#auto-charge-none');
     let checkedRadioEndgame = document.querySelector('#end-charge-none');
     checkedRadioAuto.checked = true;
     checkedRadioEndgame.checked = true;
-    
+
     //removing text boxes
     let breakdownElab = document.querySelector('[name=BreakdownCom]');
     let generalComments = document.querySelector('[name=GeneralCom]');
@@ -124,6 +144,9 @@ function clearInputs() {
     breakdownElab.value = '';
     generalComments.value = '';
     defenseCom.value = '';
+    //hiding breakdown box
+    let breakdownSection = document.querySelector('#breakdownCommentBox');
+    breakdownSection.style = 'display: none;';
 }
 
 /**
