@@ -249,18 +249,16 @@ function submit(e) {
                 let chargeInfo = data.get(time + '-charge'); //has value: none, attempted, docked, engaged
                 let engagedAttempt = data.get(time + '-engage-attempt');
                 //calculating values
-                let dockAttempt = chargeInfo == 'attempted';
-                let dockSuccess = chargeInfo == 'docked';
                 let engagedSuccess = chargeInfo == 'engaged';
-                if (engagedSuccess) {
-                    engagedAttempt = true;
-                }
+                engagedAttempt = engagedSuccess || engagedAttempt;
+                let dockSuccess = engagedAttempt || chargeInfo == 'docked';
+                let dockAttempt = dockSuccess || chargeInfo == 'attempted';
                 //setting new values
                 data.set(time + '-charge', null);
                 data.set(time + '-engage-attempt', null);
-                data.set(cap + 'DockedAttempt', dockAttempt || dockSuccess || engagedSuccess ? 1 : 0);
-                data.set(cap + 'DockedSuccess', dockSuccess || engagedSuccess ? 1 : 0);
-                data.set(cap + 'EngagedAttempt', engagedAttempt || engagedSuccess ? 1 : 0);
+                data.set(cap + 'DockedAttempt', dockAttempt ? 1 : 0);
+                data.set(cap + 'DockedSuccess', dockSuccess ? 1 : 0);
+                data.set(cap + 'EngagedAttempt', engagedAttempt ? 1 : 0);
                 data.set(cap + 'EngagedSuccess', engagedSuccess ? 1 : 0);
             });
             //adding fields that are empty by default
