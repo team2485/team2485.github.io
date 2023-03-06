@@ -374,17 +374,23 @@ function showConfirm(message, callbackOnConfirmed, callbackOnCancelled) {
     let paragraph = document.querySelector('#popup-message');
     paragraph.innerText = message;
     function handleYes(e) {
-        confirmPopup.style = 'display: none;';
+        closePopup();
         callbackOnConfirmed();
-        noButton.removeEventListener('click', handleNo);
-        yesButton.removeEventListener('click', handleYes);
     }
     function handleNo(e) {
-        confirmPopup.style = 'display: none;';
+        closePopup();
         callbackOnCancelled();
-        noButton.removeEventListener('click', handleNo);
-        yesButton.removeEventListener('click', handleYes);
     }
+    function closePopup() {
+        confirmPopup.style = 'display: none;';
+        try {
+            noButton.removeEventListener('click', handleNo);
+            yesButton.removeEventListener('click', handleYes);
+        } catch (e) {
+            console.error(e);
+        }
+    }
+
     yesButton.addEventListener('click', handleYes);
     noButton.addEventListener('click', handleNo);
     confirmPopup.style = '';
