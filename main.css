@@ -12,7 +12,7 @@ form {
 
 @media (max-width: 700) {
     form [name=scouting-form]{
-        padding: 5px 20px;
+        padding: 5px 5px;
         font-family: 'Teko', sans-serif;
     }
 }
