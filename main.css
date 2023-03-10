@@ -10,10 +10,9 @@ form {
     font-family: 'Teko', sans-serif;
 }
 
-@media (max-width: 700) {
+@media (max-width: 700px) {
     form [name=scouting-form]{
         padding: 5px 5px;
-        font-family: 'Teko', sans-serif;
     }
 }
 
