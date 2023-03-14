@@ -220,6 +220,16 @@ noShow.addEventListener('change', noShowToggleHandler);
 
 const form = document.forms['scouting-form'];
 function submit(e) {
+    let submitButton = document.querySelector('#submit');
+    //undos the submit while leaving data unchanged.
+    function undoSubmit() {
+        submitButton.disabled = false;
+        window.scrollTo({
+        top: 0, 
+        left: 0,
+        behavior: 'smooth',
+        });
+    }
     e.preventDefault();
     window.data = new FormData(form);
     //checking data
@@ -229,18 +239,13 @@ function submit(e) {
     let matchNumber = data.get('MatchNum');
     if (!name || !teamNumber || !teamScouted || !matchNumber) {
         showAlert('Please make sure you have provided all information (top 4 fields)');
-        window.scrollTo({
-            top: 0, 
-            left: 0,
-            behavior: 'smooth',
-        });
+        undoSubmit();
         return;
     }
     showConfirm(
         'Are you sure you want to submit?',
         () => {
             //Hit yes
-            let submitButton = document.querySelector('#submit');
             submitButton.disabled = true;
             [
                 { time: 'auto', cap: 'Auto' },
@@ -277,16 +282,12 @@ function submit(e) {
                     console.log(response);
                     if (response.status !== 200) {
                         showAlert('There was a problem submitting... please try again.');
+                        undoSubmit();
                         return;
                     }
                     showAlert('Thank you!');
                     //resets the form
-                    submitButton.disabled = false;
-                    window.scrollTo({
-                        top: 0, 
-                        left: 0,
-                        behavior: 'smooth',
-                    });
+                    undoSubmit();
                     clearInputs();
                     let noShow = document.querySelector('input[name=NoShow]');
                     noShow.checked = false;
@@ -315,8 +316,8 @@ function submit(e) {
                 .catch((error) => {
                     console.log(error);
                     showAlert('There was a problem... please try again and notify the Team 2485 Analytics department if this happens again.');
+                    undoSubmit();
                 });
-            setCookie();
         },
         () => {
             /* Hit no */
