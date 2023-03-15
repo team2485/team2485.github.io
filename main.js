@@ -289,6 +289,7 @@ function submit(e) {
                     //resets the form
                     undoSubmit();
                     clearInputs();
+                    //removes excess
                     let noShow = document.querySelector('input[name=NoShow]');
                     noShow.checked = false;
                     localStorage.removeItem("inGameData");
