@@ -223,11 +223,11 @@ function submit(e) {
     let submitButton = document.querySelector('#submit');
     //undos the submit while leaving data unchanged.
     function undoSubmit() {
-        submitButton.disabled = false;
-        window.scrollTo({
-        top: 0, 
-        left: 0,
-        behavior: 'smooth',
+            submitButton.disabled = false;
+            window.scrollTo({
+            top: 0, 
+            left: 0,
+            behavior: 'smooth',
         });
     }
     e.preventDefault();
