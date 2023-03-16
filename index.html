@@ -93,7 +93,7 @@
                         <input type="number" name="ScoutTeamNum" min="1" max="9999" />
                     </div>
                     <div>
-                        <label for="TeamNumScouted">Team Scouted:</label>
+                        <label for="TeamNumScouted">Team # Scouted:</label>
                         <input type="number" name="TeamNumScouted" min="1" max="9999" />
                     </div>
                     <div>
@@ -472,17 +472,6 @@
                             <button type="button" class="clear" onclick="setQualitative(this)" value="-1">Clear</button>
                         </div>
                         <div class="qual">
-                            <label for="Defense">Defense</label>
-                            <hr>
-                            <input id="Defense" name="Defense" type="hidden" value="-1" />
-                            <div class="star" onclick="setQualitative(this)" value="1">ⵔ</div>
-                            <div class="star" onclick="setQualitative(this)" value="2">ⵔ</div>
-                            <div class="star" onclick="setQualitative(this)" value="3">ⵔ</div>
-                            <div class="star" onclick="setQualitative(this)" value="4">ⵔ</div>
-							<br>
-                            <button type="button" class="clear" onclick="setQualitative(this)" value="-1">Clear</button>
-                        </div>
-                        <div class="qual">
                             <label for="Aggression">Aggression</label>
                             <hr>
                             <input id="Aggression" name="Aggression" type="hidden" value="-1" />
@@ -527,10 +516,18 @@
                         <label for="BreakdownCom">Breakdown Elaboration:</label><br />
                         <textarea name="BreakdownCom"></textarea><br />
                     </div>
-                    <label for="GeneralCom">General Comments:</label><br />
-                    <textarea name="GeneralCom"></textarea><br />
-                    <label for="DefenseCom">Defense Elaboration:</label><br />
-                    <textarea name="DefenseCom"></textarea><br />
+					<div class="check-super-box">
+                        <input type="checkbox" id="Defense" name="Defense" value="1" onchange="defenseCommentBox.style=this.checked ? '' : 'display:none;'" />
+                        <label for="Defense">Played Defense?</label>
+                    </div>				
+					<div id="defenseCommentBox" style="display: none">
+                        <!-- only appears when checkbox is checked -->
+						<label for="DefenseCom">Defense Elaboration:</label><br />
+						<textarea name="DefenseCom"></textarea><br />
+					</div>
+					<br>
+                    <label for="GeneralCom">General Comments (heavily encouraged):</label><br />
+                    <textarea name="GeneralCom"></textarea>
                 </div>
             </div>
             <br />
