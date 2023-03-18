@@ -95,6 +95,7 @@ function setQualitative(e) {
     });
 }
 
+//TODO: add defense logic
 let breakdownCheckbox = document.querySelector('input[name=Breakdown]');
 breakdownCheckbox.addEventListener('change', (e) => {
     let breakdownElab = document.querySelector('#breakdownCommentBox');
@@ -138,6 +139,7 @@ function clearInputs() {
     checkedRadioEndgame.checked = true;
 
     //removing text boxes
+    //TODO: add defense logic
     let breakdownElab = document.querySelector('[name=BreakdownCom]');
     let generalComments = document.querySelector('[name=GeneralCom]');
     let defenseCom = document.querySelector('[name=DefenseCom]');
@@ -147,71 +149,67 @@ function clearInputs() {
     //hiding breakdown box
     let breakdownSection = document.querySelector('#breakdownCommentBox');
     breakdownSection.style = 'display: none;';
+    //TODO: add defense logic
 }
 
 /**
  * Used for the NoShow input
  * Clears form elements if NoShow clicked
  */
-function noShowToggleHandler(e){
+function noShowToggleHandler(e) {
     let input = document.querySelector('div.not-no-show');
     let inputCheckbox = document.querySelector('input[name=NoShow]');
-    if(inputCheckbox.checked == true){
-        input.style = "display:none";
+    if (inputCheckbox.checked == true) {
+        input.style = 'display:none';
         //saves the data needed
         let info = {};
-        [...document.querySelectorAll('input')].forEach(input =>{
-            if(input.name != "NoShow"){
-                if(input.type == "checkbox"){
+        [...document.querySelectorAll('input')].forEach((input) => {
+            if (input.name != 'NoShow') {
+                if (input.type == 'checkbox') {
                     info[input.name] = input.checked;
-                }
-                else if(input.type == "radio"){
-                    if(input.checked == true){
+                } else if (input.type == 'radio') {
+                    if (input.checked == true) {
                         info[input.name] = input.value;
                     }
-                }
-                else{
+                } else {
                     info[input.name] = input.value;
                 }
             }
         });
 
-        [...document.querySelectorAll('textarea')].forEach(input =>{
+        [...document.querySelectorAll('textarea')].forEach((input) => {
             info[input.name] = input.value;
-            console.count("textarea");
+            console.count('textarea');
         });
-        
+
         let finalizedInfo = JSON.stringify(info);
-        localStorage.setItem("inGameData", finalizedInfo);
+        localStorage.setItem('inGameData', finalizedInfo);
         clearInputs();
-    }
-    else{
-        input.style = "";
+    } else {
+        input.style = '';
         //displays saved data
-        let dataInfo = localStorage.getItem("inGameData");
+        let dataInfo = localStorage.getItem('inGameData');
         let finalizedDataInfo = JSON.parse(dataInfo);
-        
-        for(let name in finalizedDataInfo){
-            let queryString = "input[name=" + name + "],textarea[name=" + name + "]";
+
+        for (let name in finalizedDataInfo) {
+            let queryString = 'input[name=' + name + '],textarea[name=' + name + ']';
             let dataValue = document.querySelector(queryString);
-            if(dataValue.type == "checkbox"){
+            if (dataValue.type == 'checkbox') {
                 dataValue.checked = finalizedDataInfo[name];
-            }
-            else if(dataValue.type == "radio"){
-                let checkedRadioButton = document.querySelector("[value=" + finalizedDataInfo[name] + "][name=" + name + "]");
+            } else if (dataValue.type == 'radio') {
+                let checkedRadioButton = document.querySelector('[value=' + finalizedDataInfo[name] + '][name=' + name + ']');
                 checkedRadioButton.checked = true;
-            }
-            else{
+            } else {
                 dataValue.value = finalizedDataInfo[name];
             }
         }
 
         //adds classes to starred elements
-        [...document.querySelectorAll(".qual")].forEach(element =>{
+        [...document.querySelectorAll('.qual')].forEach((element) => {
             let input = element.querySelector('input');
             let checkedStar = element.querySelector('button[value="' + input.value + '"],div[value="' + input.value + '"]');
             setQualitative(checkedStar);
-        })
+        });
     }
 }
 
@@ -225,7 +223,7 @@ function submit(e) {
     function undoSubmit() {
         submitButton.disabled = false;
         window.scrollTo({
-            top: 0, 
+            top: 0,
             left: 0,
             behavior: 'smooth',
         });
@@ -267,6 +265,7 @@ function submit(e) {
                 data.set(cap + 'EngagedSuccess', engagedSuccess ? 1 : 0);
             });
             //adding fields that are empty by default
+            //TODO: add defense logic
             ['NoShow', 'AutoEngagedAttempt', 'EndEngagedAttempt', 'PreLoaded', 'Mobility', 'Breakdown', 'Parked'].forEach((name) => {
                 console.log(!data.get(name));
                 if (!data.get(name)) {
@@ -292,15 +291,16 @@ function submit(e) {
                     //removes excess
                     let noShow = document.querySelector('input[name=NoShow]');
                     noShow.checked = false;
-                    localStorage.removeItem("inGameData");
-                    localStorage.removeItem("breakdown");
+                    localStorage.removeItem('inGameData');
+                    localStorage.removeItem('breakdown');
+                    //TODO: add defense logic
                     noShowToggleHandler();
                     let teamNumScouted = document.querySelector('input[name=TeamNumScouted]');
                     teamNumScouted.value = '';
                     let matchNum = document.querySelector('input[name=MatchNum]');
                     matchNum.value++;
                     setLocalStorage();
-                    document.querySelectorAll('.check-super-box').forEach(csb =>{
+                    document.querySelectorAll('.check-super-box').forEach((csb) => {
                         csb.classList.remove('checked');
                     });
                     let checkedRadioAuto = document.querySelector('#auto-charge-none');
