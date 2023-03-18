@@ -114,6 +114,7 @@ h3 {
 .big-box > h3 {
     font-size: 75px;
 	line-height: 70px;
+	transform: translateY(11px);
 }
 .big-box > div > div > h3 {
     height: 43px;
