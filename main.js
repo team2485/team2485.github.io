@@ -165,7 +165,6 @@ function clearInputs() {
     breakdownSection.style = 'display: none;';
     let defenseSection = document.querySelector('#defenseCommentBox');
     defenseSection.style = 'display : none;'
-    //TODO: add defense logic
 }
 
 /**
@@ -310,7 +309,6 @@ function submit(e) {
                     localStorage.removeItem('inGameData');
                     localStorage.removeItem('breakdown');
                     ;localStorage.removeItem('defense');
-                    //TODO: add defense logic
                     noShowToggleHandler();
                     let teamNumScouted = document.querySelector('input[name=TeamNumScouted]');
                     teamNumScouted.value = '';
