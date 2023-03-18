@@ -164,7 +164,7 @@ function clearInputs() {
     let breakdownSection = document.querySelector('#breakdownCommentBox');
     breakdownSection.style = 'display: none;';
     let defenseSection = document.querySelector('#defenseCommentBox');
-    defenseSection.style = 'display : none;'
+    defenseSection.style = 'display: none;'
 }
 
 /**
