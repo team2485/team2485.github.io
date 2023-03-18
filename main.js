@@ -111,6 +111,21 @@ breakdownCheckbox.addEventListener('change', (e) => {
     }
 });
 
+let defenseCheckbox = document.querySelector('input[name=Defense]');
+defenseCheckbox.addEventListener('change', (e) => {
+    let defenseElab = document.querySelector('#defenseCommentBox');
+    let defenseBox = document.querySelector('textarea[name=DefenseCom]');
+    if (defenseCheckbox.checked == true) {
+        let newValue = localStorage.getItem('defense');
+        defenseBox.value = newValue;
+        defenseElab.style = '';
+    } else {
+        defenseElab.style = 'display:none';
+        localStorage.setItem('defense', defenseBox.value);
+        defenseBox.value = '';
+    }
+});
+
 /**
  * Function to delete inputs upon submission and no show toggle
  */
@@ -139,7 +154,6 @@ function clearInputs() {
     checkedRadioEndgame.checked = true;
 
     //removing text boxes
-    //TODO: add defense logic
     let breakdownElab = document.querySelector('[name=BreakdownCom]');
     let generalComments = document.querySelector('[name=GeneralCom]');
     let defenseCom = document.querySelector('[name=DefenseCom]');
@@ -149,6 +163,8 @@ function clearInputs() {
     //hiding breakdown box
     let breakdownSection = document.querySelector('#breakdownCommentBox');
     breakdownSection.style = 'display: none;';
+    let defenseSection = document.querySelector('#defenseCommentBox');
+    defenseSection.style = 'display : none;'
     //TODO: add defense logic
 }
 
@@ -265,14 +281,14 @@ function submit(e) {
                 data.set(cap + 'EngagedSuccess', engagedSuccess ? 1 : 0);
             });
             //adding fields that are empty by default
-            //TODO: add defense logic
-            ['NoShow', 'AutoEngagedAttempt', 'EndEngagedAttempt', 'PreLoaded', 'Mobility', 'Breakdown', 'Parked'].forEach((name) => {
+            ['NoShow', 'AutoEngagedAttempt', 'EndEngagedAttempt', 'PreLoaded', 'Mobility', 'Breakdown', 'Parked', 'Defense'].forEach((name) => {
                 console.log(!data.get(name));
                 if (!data.get(name)) {
                     data.set(name, '0');
                 }
             });
             console.log([...data.entries()]);
+            //sends data to form
             fetch(scriptURL, {
                 method: 'POST',
                 body: data,
@@ -293,6 +309,7 @@ function submit(e) {
                     noShow.checked = false;
                     localStorage.removeItem('inGameData');
                     localStorage.removeItem('breakdown');
+                    ;localStorage.removeItem('defense');
                     //TODO: add defense logic
                     noShowToggleHandler();
                     let teamNumScouted = document.querySelector('input[name=TeamNumScouted]');
