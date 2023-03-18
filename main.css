@@ -113,7 +113,7 @@ h3 {
 
 .big-box > h3 {
     font-size: 75px;
-    margin-bottom: -30px;
+	line-height: 70px;
 }
 .big-box > div > div > h3 {
     height: 43px;
