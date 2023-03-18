@@ -95,7 +95,6 @@ function setQualitative(e) {
     });
 }
 
-//TODO: add defense logic
 let breakdownCheckbox = document.querySelector('input[name=Breakdown]');
 breakdownCheckbox.addEventListener('change', (e) => {
     let breakdownElab = document.querySelector('#breakdownCommentBox');
