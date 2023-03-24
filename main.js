@@ -95,6 +95,8 @@ function setQualitative(e) {
     });
 }
 
+//breakdown + defense box logic
+
 let breakdownCheckbox = document.querySelector('input[name=Breakdown]');
 breakdownCheckbox.addEventListener('change', (e) => {
     let breakdownElab = document.querySelector('#breakdownCommentBox');
@@ -159,11 +161,11 @@ function clearInputs() {
     breakdownElab.value = '';
     generalComments.value = '';
     defenseCom.value = '';
-    //hiding breakdown box
+    //hiding breakdown/defense box
     let breakdownSection = document.querySelector('#breakdownCommentBox');
     breakdownSection.style = 'display: none;';
     let defenseSection = document.querySelector('#defenseCommentBox');
-    defenseSection.style = 'display: none;'
+    defenseSection.style = 'display: none;';
 }
 
 /**
@@ -224,6 +226,15 @@ function noShowToggleHandler(e) {
             let checkedStar = element.querySelector('button[value="' + input.value + '"],div[value="' + input.value + '"]');
             setQualitative(checkedStar);
         });
+
+        //shows breakdown + defense boxes
+		let bdCheckBox = document.querySelector('input[name=Breakdown]');
+        let breakdownSection = document.querySelector('#breakdownCommentBox');
+        breakdownSection.style = bdCheckBox.checked ? '' : 'display: none;';
+
+		let dCheckBox = document.querySelector('input[name=Defense]');
+        let defenseSection = document.querySelector('#defenseCommentBox');
+        defenseSection.style = dCheckBox.checked ? '' : 'display: none;';
     }
 }
 
