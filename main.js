@@ -228,11 +228,11 @@ function noShowToggleHandler(e) {
         });
 
         //shows breakdown + defense boxes
-		let bdCheckBox = document.querySelector('input[name=Breakdown]');
+        let bdCheckBox = document.querySelector('input[name=Breakdown]');
         let breakdownSection = document.querySelector('#breakdownCommentBox');
         breakdownSection.style = bdCheckBox.checked ? '' : 'display: none;';
 
-		let dCheckBox = document.querySelector('input[name=Defense]');
+        let dCheckBox = document.querySelector('input[name=Defense]');
         let defenseSection = document.querySelector('#defenseCommentBox');
         defenseSection.style = dCheckBox.checked ? '' : 'display: none;';
     }
