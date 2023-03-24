@@ -106,7 +106,7 @@ breakdownCheckbox.addEventListener('change', (e) => {
         breakdownBox.value = newValue;
         breakdownElab.style = '';
     } else {
-        breakdownElab.style = 'display:none';
+        breakdownElab.style = 'display: none;';
         localStorage.setItem('breakdown', breakdownBox.value);
         breakdownBox.value = '';
     }
@@ -121,7 +121,7 @@ defenseCheckbox.addEventListener('change', (e) => {
         defenseBox.value = newValue;
         defenseElab.style = '';
     } else {
-        defenseElab.style = 'display:none';
+        defenseElab.style = 'display: none;';
         localStorage.setItem('defense', defenseBox.value);
         defenseBox.value = '';
     }
@@ -318,7 +318,7 @@ function submit(e) {
                     noShow.checked = false;
                     localStorage.removeItem('inGameData');
                     localStorage.removeItem('breakdown');
-                    ;localStorage.removeItem('defense');
+                    localStorage.removeItem('defense');
                     noShowToggleHandler();
                     let teamNumScouted = document.querySelector('input[name=TeamNumScouted]');
                     teamNumScouted.value = '';
