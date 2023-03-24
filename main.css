@@ -171,6 +171,18 @@ input::-webkit-inner-spin-button {
     z-index: 1;
 }
 
+.tele-alert {
+    width:100%;
+    display: center;
+    flex-direction: row;
+    background-color: rgb(134, 7, 7);
+    align-items: center;
+    padding-left: 10px;
+    position:fixed;
+    top: 0;
+    z-index: 1;
+}
+
 .navbar h1 {
     margin: 3px 30px;
     color: #ffd900;

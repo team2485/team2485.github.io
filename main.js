@@ -21,17 +21,6 @@ function subtractGamePiece(e, index) {
 }
 
 /**
- * Sets the input/label locations upon load
- */
-function setMobileDimensions(){
-    let screenSize = window.innerWidth;
-    let gamePieceText = document.querySelector(".success,.failure");
-    gamePieceText.style.offsetWidth = screenSize / 15; 
-}
-
-setMobileDimensions();
-
-/**
  * Updates the charge station to display the correct checkboxes
  */
 function updateChargeStationCheckboxes() {
