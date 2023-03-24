@@ -11,8 +11,8 @@ form {
 }
 
 @media (max-width: 700px) {
-    form [name=scouting-form]{
-        padding: 5px 5px;
+    form[name=scouting-form]{
+        padding: 0.5vw 0.5vw;
     }
 }
 
@@ -309,9 +309,11 @@ textarea {
 /* Game Piece Input Table */
 .success {
     background-color: #adffb9;
+    width: calc(1.2vw + 10px);
 }
 .failure {
     background-color: #ffc7c7;
+    width: calc(1.2vw + 10px);
 }
 tr {
     font-size: 30px;

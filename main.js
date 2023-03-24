@@ -9,6 +9,7 @@ function addGamePiece(e, index) {
     input.value = Math.min(input.max, v + 1);
 }
 
+
 /**
  * Handling the onclick for subtracting to the game piece count
  */
@@ -18,6 +19,17 @@ function subtractGamePiece(e, index) {
     let v = input.value * 1; // times 1 so it copies the number, and not a reference
     input.value = Math.max(input.min, v - 1);
 }
+
+/**
+ * Sets the input/label locations upon load
+ */
+function setMobileDimensions(){
+    let screenSize = window.innerWidth;
+    let gamePieceText = document.querySelector(".success,.failure");
+    gamePieceText.style.offsetWidth = screenSize / 15; 
+}
+
+setMobileDimensions();
 
 /**
  * Updates the charge station to display the correct checkboxes
