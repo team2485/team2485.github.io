@@ -9,6 +9,7 @@ function addGamePiece(e, index) {
     input.value = Math.min(input.max, v + 1);
 }
 
+
 /**
  * Handling the onclick for subtracting to the game piece count
  */

@@ -11,8 +11,8 @@ form {
 }
 
 @media (max-width: 700px) {
-    form [name=scouting-form]{
-        padding: 5px 5px;
+    form[name=scouting-form]{
+        padding: 0.5vw 0.5vw;
     }
 }
 
@@ -171,6 +171,18 @@ input::-webkit-inner-spin-button {
     z-index: 1;
 }
 
+.tele-alert {
+    width:100%;
+    display: center;
+    flex-direction: row;
+    background-color: rgb(134, 7, 7);
+    align-items: center;
+    padding-left: 10px;
+    position:fixed;
+    top: 0;
+    z-index: 1;
+}
+
 .navbar h1 {
     margin: 3px 30px;
     color: #ffd900;
@@ -309,9 +321,11 @@ textarea {
 /* Game Piece Input Table */
 .success {
     background-color: #adffb9;
+    width: calc(1.2vw + 10px);
 }
 .failure {
     background-color: #ffc7c7;
+    width: calc(1.2vw + 10px);
 }
 tr {
     font-size: 30px;
