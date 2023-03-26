@@ -19,6 +19,22 @@ function subtractGamePiece(e, index) {
     input.value = Math.max(input.min, v - 1);
 }
 
+function telePopup(){
+    let teleSection = document.querySelector('#tele-scroll');
+    setTimeout(() => {
+        let teleAlert = document.querySelector('.tele-alert');
+        teleAlert.style = '';
+        //if scroll and position correct clears; else continues.
+        document.addEventListener('scroll', () => {
+            if(window.scrollY >= teleSection.offsetTop - 20 && window.scrollY <= teleSection.offsetTop + 10){
+                teleAlert.style = 'display: none';
+            }
+        })
+    }, 17000)
+}
+
+let autoSection = document.querySelectorAll
+document.addEventListener('scroll', telePopup)
 /**
  * Updates the charge station to display the correct checkboxes
  */

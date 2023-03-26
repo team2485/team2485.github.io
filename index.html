@@ -78,6 +78,10 @@
             <button id="help">Instructions</button>
             <button id="help-media">?</button>
         </div>
+        <!-- Tele to auto alert -->
+        <div class="tele-alert" style="display: none">
+            <h2>It appears that the timespan for auto has ended; please scroll to the tele-op section.</h1>
+        </div>
         <form name="scouting-form">
             <!-- Match Info -->
             <div class="big-box" id="match-info">
@@ -264,7 +268,7 @@
                 <div class="h-flex">
                     <!-- TeleOp Info -->
                     <div class="big-box" id="tele-info">
-                        <h3>TeleOp</h3>
+                        <h3 id="tele-scroll">TeleOp</h3>
                         <hr />
                         <div class="h-flex">
                             <div>
@@ -507,7 +511,7 @@
                     </div>
 					<br />
                     <div class="check-super-box">
-                        <input type="checkbox" id="Breakdown" name="Breakdown" value="1" onchange="breakdownCommentBox.style=this.checked ? '' : 'display:none;'" />
+                        <input type="checkbox" id="Breakdown" name="Breakdown"/>
                         <label for="Breakdown">Broke down?</label>
                     </div>
                     <br />
@@ -517,7 +521,7 @@
                         <textarea name="BreakdownCom"></textarea><br />
                     </div>
 					<div class="check-super-box">
-                        <input type="checkbox" id="Defense" name="Defense" value="1" onchange="defenseCommentBox.style=this.checked ? '' : 'display:none;'" />
+                        <input type="checkbox" id="Defense" name="Defense" value="1"/>
                         <label for="Defense">Played Defense?</label>
                     </div>				
 					<div id="defenseCommentBox" style="display: none">
